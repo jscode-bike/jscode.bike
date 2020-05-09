@@ -1,24 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+
+import "./App.css";
+
+import chai from "chai";
+
+const runTest = (fn) => {
+  try {
+    fn();
+    return true;
+  } catch {
+    return false;
+  }
+};
 
 function App() {
+  const [inputValue, setInputValue] = useState("");
+  const handleChange = (e) => {
+    setInputValue(e.target.value);
+  };
+  const handleSubmit = (e) => {
+    var add;
+    eval(inputValue);
+    const passedTest = runTest(() => chai.expect(add(2, 2)).to.equal(4));
+    console.log(inputValue, passedTest);
+  };
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <input type="text" value={inputValue} onChange={handleChange} />
+      <input type="submit" value="submit" onClick={handleSubmit} />
     </div>
   );
 }
