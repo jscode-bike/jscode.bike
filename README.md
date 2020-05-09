@@ -4,5 +4,5 @@ a frontend-only implementation of codewars-style javascript problem solving edit
 
 
 ## references:
-[Stephen Grider JSPlayground](https://github.com/StephenGrider/JSPlaygrounds)
-[React Monaco Editor](https://github.com/react-monaco-editor/react-monaco-editor)
+- [Stephen Grider JSPlayground](https://github.com/StephenGrider/JSPlaygrounds)
+- [React Monaco Editor](https://github.com/react-monaco-editor/react-monaco-editor)
