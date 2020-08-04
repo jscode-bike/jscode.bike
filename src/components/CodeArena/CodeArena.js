@@ -19,7 +19,7 @@ export const CodeArena = ({
     console.log(code, results);
   };
   const editorDidMount = (e) => {
-    console.log("editor did mount e:", e);
+    // console.log("editor did mount e:", e);
   };
   const options = {
     wordWrap: "on",
