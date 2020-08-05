@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { submitCode, codeErrorMessage } from "../../utils/utils";
 import MonacoEditor from "react-monaco-editor";
 import { SidePanel } from "./SidePanel.js";
@@ -14,7 +14,8 @@ export const CodeArena = ({
 }) => {
   const [code, setCode] = useState(startingCode || "");
   const [results, setResults] = useState(null);
-  const editorContainer = useRef(null);
+  const editorContainerRef = useRef(null);
+  const editorRef = useRef(null);
   const handleEditorInput = (inputVal) => {
     setCode(inputVal);
   };
@@ -26,22 +27,37 @@ export const CodeArena = ({
       alert(codeErrorMessage(variableName));
     }
   };
+
   const editorDidMount = (e) => {
+    editorRef.current = e;
+  };
+
+  useEffect(() => {
     const resizeFn = function () {
-      e.layout({
+      editorRef.current.layout({
         height: window.innerHeight - 30,
         width: ((window.innerWidth / 3) * 2) | 0,
       });
     };
-    const cmdSaveFn = e => {
+    const cmdSaveFn = (e) => {
+      console.log(code, tests);
       if ((e.ctrlKey || e.metaKey) && e.which === 83) {
         e.preventDefault();
-        handleSubmit();
+        try {
+          const submissionResults = submitCode(code, tests, variableName);
+          setResults(submissionResults);
+        } catch (error) {
+          alert(codeErrorMessage(variableName));
+        }
       }
-    }
+    };
     window.addEventListener("resize", resizeFn);
-    window.addEventListener('keydown', cmdSaveFn)
-  };
+    window.addEventListener("keydown", cmdSaveFn);
+    return () => {
+      window.removeEventListener("resize", resizeFn);
+      window.removeEventListener("keydown", cmdSaveFn);
+    };
+  }, [code, tests, variableName]);
   const options = {
     wordWrap: "on",
     formatOnType: true,
@@ -50,7 +66,7 @@ export const CodeArena = ({
   return (
     <Container>
       <SidePanel {...{ name, description, handleSubmit, results }} />
-      <div ref={editorContainer}>
+      <div ref={editorContainerRef}>
         <MonacoEditor
           language="javascript"
           theme="vs-dark"
