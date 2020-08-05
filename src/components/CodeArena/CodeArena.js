@@ -1,6 +1,8 @@
-import React, { useState } from "react";
-import { submitCode } from "../../utils/utils";
+import React, { useState, useRef } from "react";
+import { submitCode, codeErrorMessage } from "../../utils/utils";
 import MonacoEditor from "react-monaco-editor";
+import { SidePanel } from "./SidePanel.js";
+import styled from "styled-components";
 
 export const CodeArena = ({
   name,
@@ -12,6 +14,7 @@ export const CodeArena = ({
 }) => {
   const [code, setCode] = useState(startingCode || "");
   const [results, setResults] = useState(null);
+  const editorContainer = useRef(null);
   const handleEditorInput = (inputVal) => {
     setCode(inputVal);
   };
@@ -20,13 +23,17 @@ export const CodeArena = ({
       const submissionResults = submitCode(code, tests, variableName);
       setResults(submissionResults);
     } catch (error) {
-      alert(
-        "there is a syntax error in your submission. please correct it and try again"
-      );
+      alert(codeErrorMessage(variableName));
     }
   };
   const editorDidMount = (e) => {
-    // console.log("editor did mount e:", e);
+    const resizeFn = function () {
+      e.layout({
+        height: window.innerHeight - 30,
+        width: ((window.innerWidth / 3) * 2) | 0,
+      });
+    };
+    window.addEventListener("resize", resizeFn);
   };
   const options = {
     wordWrap: "on",
@@ -34,63 +41,24 @@ export const CodeArena = ({
     tabCompletion: "on",
   };
   return (
-    <div style={{ height: "calc(100vh - 2rem)", display: "flex" }}>
+    <Container>
       <SidePanel {...{ name, description, handleSubmit, results }} />
-      <MonacoEditor
-        width="70%"
-        // height="800"
-        language="javascript"
-        theme="vs-dark"
-        value={code}
-        options={options}
-        onChange={handleEditorInput}
-        editorDidMount={editorDidMount}
-      />
-    </div>
+      <div ref={editorContainer}>
+        <MonacoEditor
+          language="javascript"
+          theme="vs-dark"
+          value={code}
+          options={options}
+          onChange={handleEditorInput}
+          editorDidMount={editorDidMount}
+        />
+      </div>
+    </Container>
   );
 };
 
-const SidePanel = ({ name, description, handleSubmit, results }) => {
-  return (
-    <div>
-      <h3>{name}</h3>
-      <p>{description}</p>
-      <button onClick={handleSubmit}>submit</button>
-      {results && (
-        <div style={{ display: "flex", flexDirection: "column" }}>
-          {results.map((r) => {
-            return <Result result={r} />;
-          })}
-        </div>
-      )}
-    </div>
-  );
-};
-
-const Result = ({ result }) => {
-  const { passed, outputs, error } = result;
-  return (
-    <div
-      style={{
-        alignSelf: "stretch",
-        backgroundColor: passed ? "green" : "red",
-        margin: "1rem",
-        padding: "1rem",
-      }}
-    >
-      <p>{passed ? "passed" : `failed: ${error.message}`}</p>
-      {outputs.length ? (
-        <div
-          style={{
-            backgroundColor: "black",
-          }}
-        >
-          <h6>outputs:</h6>
-          {outputs.map((o) => (
-            <div>{`${o.args}`}</div>
-          ))}
-        </div>
-      ) : null}
-    </div>
-  );
-};
+const Container = styled.div`
+  height: calc(100vh - 2rem);
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+`;

@@ -28,7 +28,7 @@ class Spy {
   outputs = [];
 }
 
-export const runTest = (fn, test) => {
+const runTest = (fn, test) => {
   const [inputs, expected] = test;
   const o = { inputs, expected };
   const spy = new Spy();
@@ -40,3 +40,6 @@ export const runTest = (fn, test) => {
     return { ...o, passed: false, outputs: [...spy.outputs], error: e };
   }
 };
+
+export const codeErrorMessage = (variableName) =>
+  `there is an error in your submission. Make sure your syntax is correct and make sure to define the ${variableName} funcion. please correct it and try again`;
