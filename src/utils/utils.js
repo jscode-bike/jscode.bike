@@ -1,15 +1,7 @@
-// const add = eval(`() => {${code}\nreturn add}`)();
-//     const passedTest = runTest(() => chai.expect(add(2, 2)).to.equal(4));
-
 import chai from "chai";
 
 export const submitCode = (code, tests, variableName) => {
-  const o = {};
-  // do a try/catch here to validate input using babel or soemthing
-  // o[variableName] = eval(`() => {${code}\nreturn ${variableName}}`)();
-  // debugger;
-  o[variableName] = fnMaker(code, variableName);
-  return runTests(o[variableName], tests);
+  return runTests(fnMaker(code, variableName), tests);
 };
 
 const runTests = (fn, tests) => {
@@ -19,7 +11,7 @@ const runTests = (fn, tests) => {
 
 const fnMaker = (code, variableName) => {
   // eslint-disable-next-line no-eval
-  return eval(`() => console => {${code}\nreturn ${variableName}}`)();
+  return eval(`console => {${code}\nreturn ${variableName}}`);
 };
 
 class Spy {
