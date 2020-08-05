@@ -20,7 +20,7 @@ const Result = ({ result }) => {
         >
           <h6>outputs:</h6>
           {outputs.map((o) => (
-            <div>{`${o.args}`}</div>
+            <div>{`${o.args.join(' ')}`}</div>
           ))}
         </div>
       ) : null}
