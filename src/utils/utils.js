@@ -18,6 +18,7 @@ const runTests = (fn, tests) => {
 };
 
 const fnMaker = (code, variableName) => {
+  // eslint-disable-next-line no-eval
   return eval(`() => console => {${code}\nreturn ${variableName}}`)();
 };
 
