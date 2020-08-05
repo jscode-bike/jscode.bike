@@ -33,7 +33,14 @@ export const CodeArena = ({
         width: ((window.innerWidth / 3) * 2) | 0,
       });
     };
+    const cmdSaveFn = e => {
+      if ((e.ctrlKey || e.metaKey) && e.which === 83) {
+        e.preventDefault();
+        handleSubmit();
+      }
+    }
     window.addEventListener("resize", resizeFn);
+    window.addEventListener('keydown', cmdSaveFn)
   };
   const options = {
     wordWrap: "on",
