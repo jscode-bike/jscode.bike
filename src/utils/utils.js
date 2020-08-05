@@ -18,7 +18,6 @@ const runTests = (fn, tests) => {
 };
 
 const fnMaker = (code, variableName) => {
-  // code = code.replaceAll("console.log", "spy.log");
   return eval(`() => console => {${code}\nreturn ${variableName}}`)();
 };
 
@@ -26,22 +25,14 @@ class Spy {
   constructor() {
     Object.keys(console).forEach((key) => {
       this[key] = (...args) => {
-        this.unknowns.push({
+        this.outputs.push({
           key,
           args,
         });
       };
     });
-    this.log = (...vals) => {
-      this.logs.push(vals);
-    };
-    this.warn = (...vals) => {
-      this.warns.push(vals);
-    };
   }
-  warns = [];
-  logs = [];
-  unknowns = [];
+  outputs = [];
 }
 
 export const runTest = (fn, test) => {
@@ -51,11 +42,8 @@ export const runTest = (fn, test) => {
   const fnToTest = fn(spy);
   try {
     chai.expect(fnToTest(...inputs)).to.equal(expected);
-    console.log(spy);
-    return { ...o, passed: true, outputs: [...spy.logs] };
+    return { ...o, passed: true, outputs: [...spy.outputs], error: null };
   } catch (e) {
-    console.log("got error!!", e);
-    console.log(spy);
-    return { ...o, passed: false, outputs: [...spy.logs, e] };
+    return { ...o, passed: false, outputs: [...spy.outputs], error: e };
   }
 };
