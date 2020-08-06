@@ -12,3 +12,7 @@ a frontend-only implementation of codewars-style javascript problem solving edit
 
 ## tools i'm using
 - [react app rewired md](https://hmsk.github.io/frontmatter-markdown-loader/)
+
+
+## tools to research
+- [syntax highlighting for md code snippets](https://github.com/markdown-it/markdown-it)
