@@ -1,6 +1,6 @@
-import React from 'react';
-import Result from './Result.js'
-import styled from 'styled-components';
+import React from "react";
+import Result from "./Result.js";
+import styled from "styled-components";
 
 export const SidePanel = ({ name, description, handleSubmit, results }) => {
   return (
@@ -10,8 +10,8 @@ export const SidePanel = ({ name, description, handleSubmit, results }) => {
       <button onClick={handleSubmit}>submit</button>
       {results && (
         <div style={{ display: "flex", flexDirection: "column" }}>
-          {results.map((r) => {
-            return <Result result={r} />;
+          {results.map((r, idx) => {
+            return <Result key={idx} result={r} />;
           })}
         </div>
       )}
@@ -19,6 +19,4 @@ export const SidePanel = ({ name, description, handleSubmit, results }) => {
   );
 };
 
-const Container = styled.div`
-
-`
+const Container = styled.div``;

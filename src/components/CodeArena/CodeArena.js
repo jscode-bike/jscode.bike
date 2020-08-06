@@ -19,9 +19,9 @@ export const CodeArena = ({
   const handleEditorInput = (inputVal) => {
     setCode(inputVal);
   };
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     try {
-      const submissionResults = submitCode(code, tests, variableName);
+      const submissionResults = await submitCode(code, tests, variableName);
       setResults(submissionResults);
     } catch (error) {
       alert(codeErrorMessage(variableName));
@@ -39,12 +39,11 @@ export const CodeArena = ({
         width: ((window.innerWidth / 3) * 2) | 0,
       });
     };
-    const cmdSaveFn = (e) => {
-      console.log(code, tests);
+    const cmdSaveFn = async (e) => {
       if ((e.ctrlKey || e.metaKey) && e.which === 83) {
         e.preventDefault();
         try {
-          const submissionResults = submitCode(code, tests, variableName);
+          const submissionResults = await submitCode(code, tests, variableName);
           setResults(submissionResults);
         } catch (error) {
           alert(codeErrorMessage(variableName));

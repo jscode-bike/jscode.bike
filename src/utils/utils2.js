@@ -9,20 +9,29 @@ class WebWorker {
 }
 
 export const submitCode = (code, tests, variableName) => {
-  runWorker();
+  return runTestsInWorker(code, tests, variableName);
 };
 
 export const codeErrorMessage = (e) => "hey you got an error:" + e;
 
-const runWorker = () => {
+const runTestsInWorker = (code, tests, variableName) => {
   if (!window.Worker) throw new Error("please enable web workers");
-  const myWorker = new WebWorker(worker);
 
-  const message = { hello: "world", thing: 123 };
+  return new Promise((resolve, reject) => {
+    const myWorker = new WebWorker(worker);
+    let timer = setTimeout(() => {
+      console.log("worker didnt respond...");
+      myWorker.terminate();
+      reject("code timed out");
+    }, 10000);
 
-  myWorker.postMessage(message);
-
-  myWorker.onmessage = (e) => {
-    console.log("worker responded!!:>", e);
-  };
+    const message = { code, tests, variableName };
+    myWorker.postMessage(message);
+    myWorker.onmessage = (e) => {
+      clearTimeout(timer);
+      resolve(e.data);
+      console.log("terminating worker...");
+      myWorker.terminate();
+    };
+  });
 };
