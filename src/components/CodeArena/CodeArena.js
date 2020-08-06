@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { submitCode, codeErrorMessage } from "../../utils/utils";
+import { submitCode, codeErrorMessage } from "../../utils/utils2";
 import MonacoEditor from "react-monaco-editor";
 import { SidePanel } from "./SidePanel.js";
 import styled from "styled-components";
