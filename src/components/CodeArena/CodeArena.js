@@ -11,6 +11,7 @@ export const CodeArena = ({
   startingCode,
   tests,
   solutions,
+  descriptionComponent,
 }) => {
   const [code, setCode] = useState(startingCode || "");
   const [results, setResults] = useState(null);
@@ -29,7 +30,7 @@ export const CodeArena = ({
     } catch (error) {
       alert(codeErrorMessage(variableName, error));
     }
-    setLoading(false)
+    setLoading(false);
   };
 
   const submissionCallback = useCallback(trySubmission);
@@ -68,7 +69,10 @@ export const CodeArena = ({
   };
   return (
     <Container>
-      <SidePanel {...{ name, description, handleSubmit, results, loading }} />
+      <SidePanel
+        {...{ name, description, handleSubmit, results, loading }}
+        c={descriptionComponent}
+      />
       <div ref={editorContainerRef}>
         <MonacoEditor
           language="javascript"

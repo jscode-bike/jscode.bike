@@ -1,4 +1,5 @@
 const MonacoWebpackPlugin = require("monaco-editor-webpack-plugin");
+const rewireFrontmatterMarkdown = require("react-app-rewire-frontmatter-markdown");
 
 module.exports = function override(config, env) {
   config.plugins.push(
@@ -6,5 +7,6 @@ module.exports = function override(config, env) {
       languages: ["json", "javascript"],
     })
   );
+  rewireFrontmatterMarkdown(config)
   return config;
 };

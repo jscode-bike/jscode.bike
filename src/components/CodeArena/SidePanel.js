@@ -8,7 +8,9 @@ export const SidePanel = ({
   handleSubmit,
   results,
   loading,
+  c
 }) => {
+  const Description = c;
   const renderResults = () => {
     return loading ? <div>loading...</div> :(
       results && (
@@ -20,11 +22,12 @@ export const SidePanel = ({
       )
     );
   }
-
+  console.log(c)
   return (
     <Container>
       <h3>{name}</h3>
-      <p>{description}</p>
+      {/* <p>{description}</p> */}
+      <Description />
       <button onClick={handleSubmit} disabled={loading}>
         submit
       </button>

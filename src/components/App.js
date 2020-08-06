@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { CodeArena } from "./CodeArena/CodeArena";
+import fizzBuzzMd, { react as Description } from "./fizzBuzz.md";
 
 //sample schema for problem
 /**
@@ -31,9 +32,10 @@ const sample = {
 };
 
 function App() {
+  console.log(fizzBuzzMd);
   return (
     <div style={{ margin: ".5rem" }}>
-      <CodeArena {...sample} />
+      <CodeArena {...sample} descriptionComponent={Description} />
     </div>
   );
 }
