@@ -1,5 +1,5 @@
-import React, { useState, useRef, useEffect } from "react";
-import { submitCode, codeErrorMessage } from "../../utils/utils2";
+import React, { useState, useRef, useEffect, useCallback } from "react";
+import { submitCode, codeErrorMessage } from "../../utils/utils.js";
 import MonacoEditor from "react-monaco-editor";
 import { SidePanel } from "./SidePanel.js";
 import styled from "styled-components";
@@ -14,20 +14,29 @@ export const CodeArena = ({
 }) => {
   const [code, setCode] = useState(startingCode || "");
   const [results, setResults] = useState(null);
+  const [loading, setLoading] = useState(false);
   const editorContainerRef = useRef(null);
   const editorRef = useRef(null);
   const handleEditorInput = (inputVal) => {
     setCode(inputVal);
   };
-  const handleSubmit = async (e) => {
+  const trySubmission = async () => {
+    if (loading) return;
+    setLoading(true);
     try {
       const submissionResults = await submitCode(code, tests, variableName);
       setResults(submissionResults);
     } catch (error) {
-      alert(codeErrorMessage(variableName));
+      alert(codeErrorMessage(variableName, error));
     }
+    setLoading(false)
   };
 
+  const submissionCallback = useCallback(trySubmission);
+
+  const handleSubmit = async (e) => {
+    await trySubmission();
+  };
   const editorDidMount = (e) => {
     editorRef.current = e;
   };
@@ -42,12 +51,7 @@ export const CodeArena = ({
     const cmdSaveFn = async (e) => {
       if ((e.ctrlKey || e.metaKey) && e.which === 83) {
         e.preventDefault();
-        try {
-          const submissionResults = await submitCode(code, tests, variableName);
-          setResults(submissionResults);
-        } catch (error) {
-          alert(codeErrorMessage(variableName));
-        }
+        await submissionCallback();
       }
     };
     window.addEventListener("resize", resizeFn);
@@ -56,7 +60,7 @@ export const CodeArena = ({
       window.removeEventListener("resize", resizeFn);
       window.removeEventListener("keydown", cmdSaveFn);
     };
-  }, [code, tests, variableName]);
+  }, [submissionCallback]);
   const options = {
     wordWrap: "on",
     formatOnType: true,
@@ -64,7 +68,7 @@ export const CodeArena = ({
   };
   return (
     <Container>
-      <SidePanel {...{ name, description, handleSubmit, results }} />
+      <SidePanel {...{ name, description, handleSubmit, results, loading }} />
       <div ref={editorContainerRef}>
         <MonacoEditor
           language="javascript"
