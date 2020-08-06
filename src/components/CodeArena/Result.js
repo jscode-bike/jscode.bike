@@ -19,8 +19,8 @@ const Result = ({ result }) => {
           }}
         >
           <h6>outputs:</h6>
-          {outputs.map((o) => (
-            <div>{`${o.args.join(' ')}`}</div>
+          {outputs.map((o, idx) => (
+            <div key={idx}>{`${o.args.join(" ")}`}</div>
           ))}
         </div>
       ) : null}

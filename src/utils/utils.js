@@ -1,45 +1,32 @@
-import chai from "chai";
-
 export const submitCode = (code, tests, variableName) => {
-  return runTests(fnMaker(code, variableName), tests);
+  return runTestsInWorker(code, tests, variableName);
 };
 
-const runTests = (fn, tests) => {
-  const results = tests.map((t) => runTest(fn, t));
-  return results;
+export const codeErrorMessage = (variableName, error) =>
+  `there is an issue with your ${variableName} function: ${error}`;
+
+const runTestsInWorker = (code, tests, variableName) => {
+  if (!window.Worker) throw new Error("please enable web workers");
+
+  return new Promise((resolve, reject) => {
+    const myWorker = new Worker("worker.js");
+    let timer = setTimeout(() => {
+      console.log("worker didnt respond...");
+      myWorker.terminate();
+      reject(new Error("code timed out"));
+    }, 10000);
+
+    const message = { code, tests, variableName };
+    myWorker.postMessage(message);
+    myWorker.onmessage = (e) => {
+      clearTimeout(timer);
+      if (e.data.error) {
+        reject(e.data.error);
+      } else {
+        resolve(e.data);
+      }
+      console.log("terminating worker...");
+      myWorker.terminate();
+    };
+  });
 };
-
-const fnMaker = (code, variableName) => {
-  // eslint-disable-next-line no-eval
-  return eval(`console => {${code}\nreturn ${variableName}}`);
-};
-
-class Spy {
-  constructor() {
-    Object.keys(console).forEach((key) => {
-      this[key] = (...args) => {
-        this.outputs.push({
-          key,
-          args,
-        });
-      };
-    });
-  }
-  outputs = [];
-}
-
-const runTest = (fn, test) => {
-  const [inputs, expected] = test;
-  const o = { inputs, expected };
-  const spy = new Spy();
-  const fnToTest = fn(spy);
-  try {
-    chai.expect(fnToTest(...inputs)).to.equal(expected);
-    return { ...o, passed: true, outputs: [...spy.outputs], error: null };
-  } catch (e) {
-    return { ...o, passed: false, outputs: [...spy.outputs], error: e };
-  }
-};
-
-export const codeErrorMessage = (variableName) =>
-  `there is an error in your submission. Make sure your syntax is correct and make sure to define the ${variableName} funcion. please correct it and try again`;
