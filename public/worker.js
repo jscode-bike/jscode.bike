@@ -15,21 +15,6 @@ class Spy {
 }
 
 const runTest = (fn, test) => {
-  // if (Array.isArray(test)) {
-  //   const [inputs, expected] = test;
-  //   const spy = new Spy();
-  //   const fnToTest = fn(spy.console);
-  //   const result = fnToTest(...inputs);
-  //   try {
-  //     // eslint-disable-next-line no-undef
-  //     chai.expect(result).to.equal(expected);
-  //     return { passed: true, outputs: [...spy.console.outputs], error: null };
-  //   } catch (e) {
-  //     return { passed: false, outputs: [...spy.console.outputs], error: e };
-  //   }
-  // } else {
-
-  // }
   const result = {
     description: test.description,
     unitTestResults: test.unitTests.map(runUnitTest(fn)),
