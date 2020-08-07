@@ -5,6 +5,7 @@ tags:
   - conditionals
   - fundamentals
   - numbers
+startingCode: function fizzBuzz(n) {\n  // code here...\n}
 ---
 
 # FizzBuzz

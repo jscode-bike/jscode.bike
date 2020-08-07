@@ -3,14 +3,11 @@ import Result from "./Result.js";
 import styled from "styled-components";
 
 export const SidePanel = ({
-  name,
-  description,
   handleSubmit,
   results,
   loading,
-  c
+  instructionComponent: Instructions
 }) => {
-  const Description = c;
   const renderResults = () => {
     return loading ? <div>loading...</div> :(
       results && (
@@ -22,12 +19,9 @@ export const SidePanel = ({
       )
     );
   }
-  console.log(c)
   return (
     <Container>
-      <h3>{name}</h3>
-      {/* <p>{description}</p> */}
-      <Description />
+      <Instructions />
       <button onClick={handleSubmit} disabled={loading}>
         submit
       </button>

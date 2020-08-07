@@ -11,7 +11,7 @@ export const CodeArena = ({
   startingCode,
   tests,
   solutions,
-  descriptionComponent,
+  instructionComponent,
 }) => {
   const [code, setCode] = useState(startingCode || "");
   const [results, setResults] = useState(null);
@@ -23,6 +23,7 @@ export const CodeArena = ({
   };
   const trySubmission = async () => {
     if (loading) return;
+    setResults(null);
     setLoading(true);
     try {
       const submissionResults = await submitCode(code, tests, variableName);
@@ -70,8 +71,14 @@ export const CodeArena = ({
   return (
     <Container>
       <SidePanel
-        {...{ name, description, handleSubmit, results, loading }}
-        c={descriptionComponent}
+        {...{
+          name,
+          description,
+          handleSubmit,
+          results,
+          loading,
+          instructionComponent,
+        }}
       />
       <div ref={editorContainerRef}>
         <MonacoEditor
