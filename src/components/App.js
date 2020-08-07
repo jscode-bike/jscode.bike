@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { CodeArena } from "./CodeArena/CodeArena";
 
 import sample from '../problems/fizzBuzz'
