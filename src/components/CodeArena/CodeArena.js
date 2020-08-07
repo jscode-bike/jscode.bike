@@ -17,7 +17,6 @@ export const CodeArena = ({
   const [results, setResults] = useState(null);
   const [loading, setLoading] = useState(false);
   const [sidePanelTabIdx, setSidePanelTabIdx] = useState(0);
-  const editorContainerRef = useRef(null);
   const editorRef = useRef(null);
   const handleEditorInput = (inputVal) => {
     setCode(inputVal);
@@ -46,25 +45,29 @@ export const CodeArena = ({
   };
 
   useEffect(() => {
-    const resizeFn = function () {
-      editorRef.current.layout({
-        height: window.innerHeight - 30,
-        width: ((window.innerWidth / 3) * 2) | 0,
-      });
-    };
     const cmdSaveFn = async (e) => {
       if ((e.ctrlKey || e.metaKey) && e.which === 83) {
         e.preventDefault();
         await submissionCallback();
       }
     };
-    window.addEventListener("resize", resizeFn);
     window.addEventListener("keydown", cmdSaveFn);
     return () => {
-      window.removeEventListener("resize", resizeFn);
       window.removeEventListener("keydown", cmdSaveFn);
     };
   }, [submissionCallback]);
+  useEffect(() => {
+    const resizeFn = function () {
+      editorRef.current.layout({
+        height: window.innerHeight - 75,
+        width: ((window.innerWidth / 3) * 2) | 0,
+      });
+    };
+    window.addEventListener("resize", resizeFn);
+    return () => {
+      window.removeEventListener("resize", resizeFn);
+    };
+  }, []);
   const options = {
     wordWrap: "on",
     formatOnType: true,
@@ -84,7 +87,7 @@ export const CodeArena = ({
           setTabIdx: setSidePanelTabIdx,
         }}
       />
-      <div ref={editorContainerRef}>
+      <div>
         <MonacoEditor
           language="javascript"
           theme="vs-dark"
@@ -93,13 +96,16 @@ export const CodeArena = ({
           onChange={handleEditorInput}
           editorDidMount={editorDidMount}
         />
+        <button onClick={handleSubmit} disabled={loading}>
+          Submit Code
+        </button>
       </div>
     </Container>
   );
 };
 
 const Container = styled.div`
-  height: calc(100vh - 2rem);
+  height: calc(100vh - 10rem);
   display: grid;
   grid-template-columns: 1fr 2fr;
 `;
