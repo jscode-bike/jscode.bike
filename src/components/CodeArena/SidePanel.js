@@ -2,14 +2,24 @@ import React from "react";
 import Result from "./Result.js";
 import styled from "styled-components";
 
+const Wrapper = styled.div`
+  margin: .5rem;
+`;
+
+const MarkdownWrapper = ({ children }) => {
+  return <Wrapper>{children}</Wrapper>;
+};
+
 export const SidePanel = ({
   handleSubmit,
   results,
   loading,
-  instructionComponent: Instructions
+  instructionComponent: Instructions,
 }) => {
   const renderResults = () => {
-    return loading ? <div>loading...</div> :(
+    return loading ? (
+      <div>loading...</div>
+    ) : (
       results && (
         <div style={{ display: "flex", flexDirection: "column" }}>
           {results.map((r, idx) => {
@@ -18,10 +28,12 @@ export const SidePanel = ({
         </div>
       )
     );
-  }
+  };
   return (
     <Container>
-      <Instructions />
+      <MarkdownWrapper>
+        <Instructions />
+      </MarkdownWrapper>
       <button onClick={handleSubmit} disabled={loading}>
         submit
       </button>
