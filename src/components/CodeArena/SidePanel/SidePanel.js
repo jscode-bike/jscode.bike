@@ -1,6 +1,6 @@
 import React from "react";
-import Result from "./Result.js";
 import styled from "styled-components";
+import { Results } from "./Results.js";
 import { MarkdownWrapper } from "./MarkdownWrapper.js";
 import { Tabs, TabList, Tab, TabPanel } from "react-tabs";
 
@@ -12,21 +12,8 @@ export const SidePanel = ({
   loading,
   instructionComponent: Instructions,
   tabIdx,
-  setTabIdx
+  setTabIdx,
 }) => {
-  const renderResults = () => {
-    return loading ? (
-      <div>loading...</div>
-    ) : (
-      results && (
-        <div style={{ display: "flex", flexDirection: "column" }}>
-          {results.map((r, idx) => {
-            return <Result key={idx} result={r} />;
-          })}
-        </div>
-      )
-    );
-  };
   return (
     <Container>
       <Tabs selectedIndex={tabIdx} onSelect={setTabIdx}>
@@ -39,7 +26,9 @@ export const SidePanel = ({
             <Instructions />
           </MarkdownWrapper>
         </TabPanel>
-        <TabPanel>{renderResults()}</TabPanel>
+        <TabPanel>
+          <Results {...{ results, loading }} />
+        </TabPanel>
       </Tabs>
     </Container>
   );

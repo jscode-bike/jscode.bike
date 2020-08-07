@@ -2,27 +2,27 @@ const testTemplate = ([input, expected]) =>
   `(fnToTest => chai.expect(fnToTest(${input})).to.equal(${expected}))`;
 
 const sample = {
-  startingCode: "function fizzBuzz(n) {\n  // code here...\n}",
+  startingCode: "function fishBus(n) {\n  // code here...\n}",
   tests: [
     {
-      description: 'should return "fizz" for multiples of 3',
+      description: 'should return "fish" for multiples of 3',
       unitTests: [
-        [3, '"fizz"'],
-        [99, '"fizz"'],
+        [3, '"fish"'],
+        [99, '"fish"'],
       ],
     },
     {
-      description: 'should return "buzz" for multiples of 5',
+      description: 'should return "bus" for multiples of 5',
       unitTests: [
-        [5, '"buzz"'],
-        [25, '"buzz"'],
+        [5, '"bus"'],
+        [25, '"bus"'],
       ],
     },
     {
-      description: 'should return "fizzBuzz" for multiples of both 3 and 5',
+      description: 'should return "fishBus" for multiples of both 3 and 5',
       unitTests: [
-        [15, '"fizzBuzz"'],
-        [60, '"fizzBuzz"'],
+        [15, '"fishBus"'],
+        [60, '"fishBus"'],
       ],
     },
     {

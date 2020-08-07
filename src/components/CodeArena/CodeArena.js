@@ -87,7 +87,7 @@ export const CodeArena = ({
           setTabIdx: setSidePanelTabIdx,
         }}
       />
-      <div>
+      <div style={{margin: '.75rem'}}>
         <MonacoEditor
           language="javascript"
           theme="vs-dark"

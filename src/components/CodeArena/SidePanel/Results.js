@@ -1,4 +1,5 @@
 import React from "react";
+import styled from "styled-components";
 
 const Result = ({ result: { description, unitTestResults } }) => {
   return (
@@ -38,4 +39,47 @@ const Result = ({ result: { description, unitTestResults } }) => {
   );
 };
 
-export default Result;
+const ResultsContainer = styled.div`
+  /* width */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  /* Track */
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+  }
+
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: red;
+    border-radius: 10px;
+  }
+
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #b30000;
+  }
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  max-height: calc(100vh - 80px);
+  scrollbar-width: none;
+`;
+
+export const Results = ({ results, loading }) => {
+  return !loading ? (
+    results ? (
+      <ResultsContainer>
+        {results.map((r, idx) => {
+          return <Result key={idx} result={r} />;
+        })}
+      </ResultsContainer>
+    ) : (
+      <div>Submit your code</div>
+    )
+  ) : (
+    <div>loading...</div>
+  );
+};
