@@ -3,11 +3,10 @@ import Result from "./Result.js";
 import styled from "styled-components";
 
 export const SidePanel = ({
-  name,
-  description,
   handleSubmit,
   results,
   loading,
+  instructionComponent: Instructions
 }) => {
   const renderResults = () => {
     return loading ? <div>loading...</div> :(
@@ -20,11 +19,9 @@ export const SidePanel = ({
       )
     );
   }
-
   return (
     <Container>
-      <h3>{name}</h3>
-      <p>{description}</p>
+      <Instructions />
       <button onClick={handleSubmit} disabled={loading}>
         submit
       </button>

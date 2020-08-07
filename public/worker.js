@@ -7,7 +7,7 @@ class Spy {
       this.console[key] = (...args) => {
         this.console.outputs.push({
           key,
-          args,
+          args: args.map(String),
         });
       };
     });
@@ -15,16 +15,30 @@ class Spy {
 }
 
 const runTest = (fn, test) => {
-  const [inputs, expected] = test;
+  const result = {
+    description: test.description,
+    unitTestResults: test.unitTests.map(runUnitTest(fn)),
+  };
+  return result;
+};
+
+const runUnitTest = (fn) => (test) => {
   const spy = new Spy();
   const fnToTest = fn(spy.console);
-  const result = fnToTest(...inputs);
   try {
-    // eslint-disable-next-line no-undef
-    chai.expect(result).to.equal(expected);
-    return { passed: true, outputs: [...spy.console.outputs], error: null };
+    // eslint-disable-next-line no-eval
+    eval(test)(fnToTest);
+    return {
+      passed: true,
+      outputs: [...spy.console.outputs],
+      error: null,
+    };
   } catch (e) {
-    return { passed: false, outputs: [...spy.console.outputs], error: e };
+    return {
+      passed: false,
+      outputs: [...spy.console.outputs],
+      error: e,
+    };
   }
 };
 
@@ -42,7 +56,8 @@ self.addEventListener(
       const results = tests.map((t) => runTest(fn, t));
       self.postMessage(results);
     } catch (error) {
-      self.postMessage({ error: 'problem with submitted code' });
+      console.error(error);
+      self.postMessage({ error: "problem with submitted code" });
     }
   },
   false
