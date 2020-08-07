@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect, useCallback } from "react";
 import { submitCode, codeErrorMessage } from "../../utils/utils.js";
 import MonacoEditor from "react-monaco-editor";
-import { SidePanel } from "./SidePanel.js";
+import { SidePanel } from "./SidePanel/SidePanel.js";
 import styled from "styled-components";
 
 export const CodeArena = ({
@@ -16,6 +16,7 @@ export const CodeArena = ({
   const [code, setCode] = useState(startingCode || "");
   const [results, setResults] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [sidePanelTabIdx, setSidePanelTabIdx] = useState(0);
   const editorContainerRef = useRef(null);
   const editorRef = useRef(null);
   const handleEditorInput = (inputVal) => {
@@ -23,6 +24,7 @@ export const CodeArena = ({
   };
   const trySubmission = async () => {
     if (loading) return;
+    setSidePanelTabIdx(1);
     setResults(null);
     setLoading(true);
     try {
@@ -78,6 +80,8 @@ export const CodeArena = ({
           results,
           loading,
           instructionComponent,
+          tabIdx: sidePanelTabIdx,
+          setTabIdx: setSidePanelTabIdx,
         }}
       />
       <div ref={editorContainerRef}>

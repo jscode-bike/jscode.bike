@@ -1,20 +1,18 @@
 import React from "react";
 import Result from "./Result.js";
 import styled from "styled-components";
+import { MarkdownWrapper } from "./MarkdownWrapper.js";
+import { Tabs, TabList, Tab, TabPanel } from "react-tabs";
 
-const Wrapper = styled.div`
-  margin: .5rem;
-`;
-
-const MarkdownWrapper = ({ children }) => {
-  return <Wrapper>{children}</Wrapper>;
-};
+import "react-tabs/style/react-tabs.css";
 
 export const SidePanel = ({
   handleSubmit,
   results,
   loading,
   instructionComponent: Instructions,
+  tabIdx,
+  setTabIdx
 }) => {
   const renderResults = () => {
     return loading ? (
@@ -31,13 +29,18 @@ export const SidePanel = ({
   };
   return (
     <Container>
-      <MarkdownWrapper>
-        <Instructions />
-      </MarkdownWrapper>
-      <button onClick={handleSubmit} disabled={loading}>
-        submit
-      </button>
-      {renderResults()}
+      <Tabs selectedIndex={tabIdx} onSelect={setTabIdx}>
+        <TabList>
+          <Tab>Instructions</Tab>
+          <Tab>Results</Tab>
+        </TabList>
+        <TabPanel>
+          <MarkdownWrapper>
+            <Instructions />
+          </MarkdownWrapper>
+        </TabPanel>
+        <TabPanel>{renderResults()}</TabPanel>
+      </Tabs>
     </Container>
   );
 };
