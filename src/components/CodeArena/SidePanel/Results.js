@@ -56,7 +56,7 @@ const ResultsContainer = styled.div`
   display: flex;
   flex-direction: column;
   overflow-y: scroll;
-  max-height: calc(100vh - 80px);
+  max-height: calc(100vh - var(--header-height) - var(--tab-height));
   scrollbar-width: none;
 `;
 

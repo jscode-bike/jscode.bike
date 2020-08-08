@@ -56,7 +56,7 @@ export const CodeArena = ({
       const height = window.innerHeight - headerTabAndSubmitHeight;
       editorRef.current.layout({
         height,
-        width: ((window.innerWidth / 3) * 2) | 0,
+        width: ((window.innerWidth / 9) * 4) | 0,
       });
     };
     window.addEventListener("resize", resizeFn);
@@ -114,6 +114,7 @@ const Header = styled.header`
   justify-content: center;
   align-items: center;
   background-color: var(--bg-color-darker);
+  font-weight: bolder;
 `;
 
 const SubmitButton = styled.button`
@@ -145,6 +146,6 @@ const SubmitButton = styled.button`
 const Container = styled.div`
   height: 100vh;
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 4fr 5fr;
   grid-template-rows: var(--header-height) 1fr;
 `;
