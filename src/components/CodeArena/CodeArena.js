@@ -75,7 +75,7 @@ export const CodeArena = ({
       const height = window.innerHeight - headerTabAndSubmitHeight;
       editorRef.current.layout({
         height,
-        width: ((window.innerWidth / 9) * 4) | 0,
+        width: ((window.innerWidth / 9) * 5) | 0,
       });
     };
     window.addEventListener("resize", resizeFn);
