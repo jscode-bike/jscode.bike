@@ -12,6 +12,7 @@
   cursor: pointer;
   user-select: none;
   background-color: var(--bg-color-dark);
+  outline: none;
 }
 
 .tab[aria-selected="true"] {

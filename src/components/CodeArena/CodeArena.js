@@ -50,7 +50,7 @@ export const CodeArena = ({
     const resizeFn = function () {
       const headerTabAndSubmitHeight =
         getCssVariableNumberValue("--header-height") +
-        getCssVariableNumberValue("--submit-bar-height") +
+        getCssVariableNumberValue("--submit-button-height") +
         getCssVariableNumberValue("--tab-height") +
         getCssVariableNumberValue("--spacing-small") * 2;
       const height = window.innerHeight - headerTabAndSubmitHeight;
@@ -119,7 +119,7 @@ const Header = styled.header`
 const SubmitButton = styled.button`
   width: 100%;
   margin: var(--spacing-small) 0;
-  height: var(--submit-bar-height);
+  height: var(--submit-button-height);
   background-color: var(--submit-button-color);
   color: inherit;
   border: none;
