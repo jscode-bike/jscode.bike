@@ -5,10 +5,7 @@
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="be a javascript ninja"
-    />
+    <meta name="description" content="be a javascript ninja" />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <!--
       manifest.json provides metadata used when your web app is installed on a
@@ -24,8 +21,10 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,400;0,700;1,400;1,700&display=swap"
-      rel="stylesheet">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+      rel="stylesheet"
+    />
     <title>JS Code Ninja</title>
     <style>
       html {
@@ -35,9 +34,12 @@
         --header-height: 40px;
         --header-color: black;
         --submit-bar-height: 40px;
-        --spacing-small: .5rem;
-        --spacing-medium: 1.1rem;
-        --editor-height: calc(100vh - var(--header-height) - var(--submit-bar-height));
+        --spacing-small: 10px;
+        --spacing-medium: 22px;
+        --editor-height: calc(
+          100vh - var(--header-height) - var(--submit-bar-height) -
+            var(--tab-height) - calc(var(--spacing-small) * 2)
+        );
         --tab-height: 40px;
         --bg-color: #323330;
         --bg-color-dark: #1e1f1d;
@@ -45,7 +47,7 @@
         --submit-button-color: green;
         --submit-button-hover: blue;
         --submit-button-active: purple;
-    }
+      }
       * {
         margin: 0;
         padding: 0;

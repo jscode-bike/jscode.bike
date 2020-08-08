@@ -88,7 +88,7 @@ export const CodeArena = ({
           }}
           onChange={(inputVal) => setCode(inputVal)}
           editorDidMount={(e) => (editorRef.current = e)}
-          height="calc(100vh - var(--header-height) - var(--submit-bar-height) - var(--tab-height) - calc(var(--spacing-small) * 2))"
+          height="var(--editor-height)"
         />
         <SubmitButton
           onClick={async (e) => await trySubmission()}
