@@ -7,6 +7,7 @@ import {
 import MonacoEditor from "react-monaco-editor";
 import { SidePanel } from "./SidePanel/SidePanel.js";
 import styled from "styled-components";
+import { js } from "js-beautify";
 
 export const CodeArena = ({
   name,
@@ -35,17 +36,35 @@ export const CodeArena = ({
     }
     setLoading(false);
   };
+  const handleBeautify = (e) => {
+    const beautified = js(code, {
+      indent_size: 2,
+      indent_char: " ",
+    });
+    setCode(beautified);
+  };
   const submissionCallback = useCallback(trySubmission);
+  const beautifyCallback = useCallback(handleBeautify);
   useEffect(() => {
     const cmdSaveFn = async (e) => {
-      if ((e.ctrlKey || e.metaKey) && e.which === 83) {
+      if ((e.ctrlKey || e.metaKey) && e.keyCode === 83) {
         e.preventDefault();
         await submissionCallback();
       }
     };
+    const beautifyShortcutFn = (e) => {
+      if (e.shiftKey && e.altKey && e.keyCode === 70) {
+        e.preventDefault();
+        beautifyCallback();
+      }
+    };
     window.addEventListener("keydown", cmdSaveFn);
-    return () => window.removeEventListener("keydown", cmdSaveFn);
-  }, [submissionCallback]);
+    window.addEventListener("keydown", beautifyShortcutFn);
+    return () => {
+      window.removeEventListener("keydown", cmdSaveFn);
+      window.removeEventListener("keydown", beautifyShortcutFn);
+    };
+  }, [submissionCallback, beautifyCallback]);
   useEffect(() => {
     const resizeFn = function () {
       const headerTabAndSubmitHeight =
@@ -90,12 +109,15 @@ export const CodeArena = ({
           editorDidMount={(e) => (editorRef.current = e)}
           height="var(--editor-height)"
         />
-        <SubmitButton
-          onClick={async (e) => await trySubmission()}
-          disabled={loading}
-        >
-          Submit Code
-        </SubmitButton>
+        <ButtonPanel>
+          <SubmitButton
+            onClick={trySubmission}
+            disabled={loading}
+          >
+            Submit Code
+          </SubmitButton>
+          <BeautifyButton onClick={handleBeautify}>{"{}"}</BeautifyButton>
+        </ButtonPanel>
       </RightPanel>
     </Container>
   );
@@ -117,17 +139,49 @@ const Header = styled.header`
   font-weight: bolder;
 `;
 
-const SubmitButton = styled.button`
+const ButtonPanel = styled.div`
   width: 100%;
   margin: var(--spacing-small) 0;
   height: var(--submit-button-height);
+  display: inline-flex;
+  gap: var(--spacing-small);
+  align-items: stretch;
+  /* justify-content: stretch; */
+`;
+
+const SubmitButton = styled.button`
   background-color: var(--submit-button-color);
   color: inherit;
   border: none;
   text-transform: uppercase;
-  letter-spacing: .2rem;
+  letter-spacing: 0.2rem;
   font-weight: bolder;
   cursor: pointer;
+  flex-grow: 1;
+
+  :hover {
+    background-color: var(--submit-button-hover);
+  }
+
+  :active {
+    background-color: var(--submit-button-active);
+  }
+
+  :disabled {
+    opacity: 50%;
+    pointer-events: none;
+  }
+`;
+
+const BeautifyButton = styled.button`
+  background-color: var(--submit-button-color);
+  color: inherit;
+  border: none;
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
+  font-weight: bolder;
+  cursor: pointer;
+  flex-grow: 1;
 
   :hover {
     background-color: var(--submit-button-hover);
