@@ -40,26 +40,18 @@ const Result = ({ result: { description, unitTestResults } }) => {
 };
 
 const ResultsContainer = styled.div`
-  /* width */
   ::-webkit-scrollbar {
-    width: 10px;
+    width: 12px;
   }
-
-  /* Track */
   ::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 5px grey;
-    border-radius: 10px;
+    background-color: var(--bg-color);
   }
-
-  /* Handle */
   ::-webkit-scrollbar-thumb {
-    background: red;
-    border-radius: 10px;
+    background-color: var(--bg-color-dark);
+    cursor: pointer;
   }
-
-  /* Handle on hover */
   ::-webkit-scrollbar-thumb:hover {
-    background: #b30000;
+    background-color: var(--bg-color-darker);
   }
   display: flex;
   flex-direction: column;

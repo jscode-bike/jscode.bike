@@ -5,7 +5,7 @@ import sample from "../problems/fishBus/";
 
 function App() {
   return (
-    <div style={{ margin: ".5rem 1rem" }}>
+    <div>
       <CodeArena {...sample} />
     </div>
   );

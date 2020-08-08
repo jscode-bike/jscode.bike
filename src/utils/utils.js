@@ -30,3 +30,9 @@ const runTestsInWorker = (code, tests, variableName) => {
     };
   });
 };
+
+export const getCssVariableNumberValue = (key) => {
+  const html = document.querySelector("html");
+  const str = window.getComputedStyle(html).getPropertyValue(key);
+  return +str.replace("px", "").trim();
+};

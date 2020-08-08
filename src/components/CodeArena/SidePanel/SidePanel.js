@@ -3,11 +3,9 @@ import styled from "styled-components";
 import { Results } from "./Results.js";
 import { MarkdownWrapper } from "./MarkdownWrapper.js";
 import { Tabs, TabList, Tab, TabPanel } from "react-tabs";
-
-import "react-tabs/style/react-tabs.css";
+import s from './SidePanel.module.css';
 
 export const SidePanel = ({
-  handleSubmit,
   results,
   loading,
   instructionComponent: Instructions,
@@ -17,9 +15,11 @@ export const SidePanel = ({
   return (
     <Container>
       <Tabs selectedIndex={tabIdx} onSelect={setTabIdx}>
-        <TabList>
-          <Tab>Instructions</Tab>
-          <Tab>Results</Tab>
+        <TabList
+          className={s.tabList}
+        >
+          <Tab className={s.tab}>Instructions</Tab>
+          <Tab className={s.tab}>Results</Tab>
         </TabList>
         <TabPanel>
           <MarkdownWrapper>

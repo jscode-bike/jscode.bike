@@ -29,13 +29,27 @@
     <title>JS Code Ninja</title>
     <style>
       html {
-        background-color: black;
+        background-color: #323330;
         color: white;
         font-family: "Karla";
-      }
+        --header-height: 40px;
+        --header-color: black;
+        --submit-bar-height: 40px;
+        --spacing-small: .5rem;
+        --spacing-medium: 1.1rem;
+        --editor-height: calc(100vh - var(--header-height) - var(--submit-bar-height));
+        --tab-height: 40px;
+        --bg-color: #323330;
+        --bg-color-dark: #1e1f1d;
+        --bg-color-darker: #0a0b0a;
+        --submit-button-color: green;
+        --submit-button-hover: blue;
+        --submit-button-active: purple;
+    }
       * {
         margin: 0;
         padding: 0;
+        box-sizing: border-box;
       }
     </style>
   </head>

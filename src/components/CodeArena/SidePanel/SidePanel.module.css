@@ -1,0 +1,19 @@
+.tabList {
+  display: flex;
+  height: var(--tab-height);
+  align-items: stretch;
+  list-style: none;
+  background-color: var(--bg-color-dark);
+  padding: 0;
+}
+
+.tab {
+  padding: var(--spacing-small) var(--spacing-medium);
+  cursor: pointer;
+  user-select: none;
+  background-color: var(--bg-color-dark);
+}
+
+.tab[aria-selected="true"] {
+  background-color: var(--bg-color);
+}
