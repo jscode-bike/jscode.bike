@@ -5,7 +5,7 @@ import {
   getCssVariableNumberValue,
 } from "../../utils/utils.js";
 import MonacoEditor from "react-monaco-editor";
-import { SidePanel } from "./SidePanel/SidePanel.js";
+import { LeftPanel } from "./LeftPanel/LeftPanel.js";
 import styled from "styled-components";
 import { js } from "js-beautify";
 
@@ -21,11 +21,11 @@ export const CodeArena = ({
   const [code, setCode] = useState(startingCode || "");
   const [results, setResults] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [sidePanelTabIdx, setSidePanelTabIdx] = useState(0);
+  const [leftPanelTabIdx, setLeftPanelTabIdx] = useState(0);
   const editorRef = useRef(null);
   const trySubmission = async () => {
     if (loading) return;
-    setSidePanelTabIdx(1);
+    setLeftPanelTabIdx(1);
     setResults(null);
     setLoading(true);
     try {
@@ -40,6 +40,8 @@ export const CodeArena = ({
     const beautified = js(code, {
       indent_size: 2,
       indent_char: " ",
+      wrap_line_length: 80,
+      break_chained_methods: true,
     });
     setCode(beautified);
   };
@@ -84,15 +86,15 @@ export const CodeArena = ({
   return (
     <Container>
       <Header>JS Code Ninja</Header>
-      <SidePanel
+      <LeftPanel
         {...{
           name,
           description,
           results,
           loading,
           instructionComponent,
-          tabIdx: sidePanelTabIdx,
-          setTabIdx: setSidePanelTabIdx,
+          tabIdx: leftPanelTabIdx,
+          setTabIdx: setLeftPanelTabIdx,
         }}
       />
       <RightPanel>
@@ -110,10 +112,7 @@ export const CodeArena = ({
           height="var(--editor-height)"
         />
         <ButtonPanel>
-          <SubmitButton
-            onClick={trySubmission}
-            disabled={loading}
-          >
+          <SubmitButton onClick={trySubmission} disabled={loading}>
             Submit Code
           </SubmitButton>
           <BeautifyButton onClick={handleBeautify}>{"{}"}</BeautifyButton>
@@ -146,7 +145,6 @@ const ButtonPanel = styled.div`
   display: inline-flex;
   gap: var(--spacing-small);
   align-items: stretch;
-  /* justify-content: stretch; */
 `;
 
 const SubmitButton = styled.button`

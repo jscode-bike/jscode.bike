@@ -53,11 +53,12 @@ const ResultsContainer = styled.div`
   ::-webkit-scrollbar-thumb:hover {
     background-color: var(--bg-color-darker);
   }
-  display: flex;
-  flex-direction: column;
   overflow-y: scroll;
   max-height: calc(100vh - var(--header-height) - var(--tab-height));
-  scrollbar-width: none;
+  scrollbar-width: var(--spacing-small);
+
+  display: flex;
+  flex-direction: column;
 `;
 
 export const Results = ({ results, loading }) => {

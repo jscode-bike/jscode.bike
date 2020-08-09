@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "styled-components";
-import { Results } from "./Results.js";
+import { Results } from "./Results/Results.js";
 import { MarkdownWrapper } from "./MarkdownWrapper.js";
 import { Tabs, TabList, Tab, TabPanel } from "react-tabs";
-import s from "./SidePanel.module.css";
+import s from "./LeftPanel.module.css";
 
-export const SidePanel = ({
+export const LeftPanel = ({
   results,
   loading,
   instructionComponent: Instructions,
