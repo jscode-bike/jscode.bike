@@ -125,7 +125,7 @@ export const CodeArena = ({
             multiCursorModifier: "ctrlCmd",
             fontSize: 18,
           }}
-          onChange={(inputVal) => setCode(inputVal)}
+          onChange={setCode}
           editorDidMount={(e) => (editorRef.current = e)}
           height="var(--editor-height)"
         />
@@ -168,7 +168,7 @@ const ButtonPanel = styled.div`
   align-items: stretch;
 `;
 
-const SubmitButton = styled.button`
+const Button = styled.button`
   background-color: var(--submit-button-color);
   color: inherit;
   border: none;
@@ -176,14 +176,15 @@ const SubmitButton = styled.button`
   letter-spacing: 0.2rem;
   font-weight: bolder;
   cursor: pointer;
-  flex-grow: 1;
+  outline: none;
+  width: calc(var(--tab-height) * 1.618);
 
   :hover {
-    background-color: var(--submit-button-hover);
+    filter: brightness(80%)
   }
 
   :active {
-    background-color: var(--submit-button-active);
+    filter: brightness(55%)
   }
 
   :disabled {
@@ -192,52 +193,17 @@ const SubmitButton = styled.button`
   }
 `;
 
-const BeautifyButton = styled.button`
-  background-color: var(--submit-button-color);
-  color: inherit;
-  border: none;
-  text-transform: uppercase;
-  letter-spacing: 0.2rem;
-  font-weight: bolder;
-  cursor: pointer;
+const SubmitButton = styled(Button)`
   flex-grow: 1;
-
-  :hover {
-    background-color: var(--submit-button-hover);
-  }
-
-  :active {
-    background-color: var(--submit-button-active);
-  }
-
-  :disabled {
-    opacity: 50%;
-    pointer-events: none;
-  }
 `;
 
-const ToggleThemeButton = styled.button`
-  background-color: var(--submit-button-color);
-  color: inherit;
-  border: none;
-  text-transform: uppercase;
-  letter-spacing: 0.2rem;
-  font-weight: bolder;
-  cursor: pointer;
-  flex-grow: 1;
+const BeautifyButton = styled(Button)`
+  padding: 0 var(--spacing-medium);
+`;
 
-  :hover {
-    background-color: var(--submit-button-hover);
-  }
-
-  :active {
-    background-color: var(--submit-button-active);
-  }
-
-  :disabled {
-    opacity: 50%;
-    pointer-events: none;
-  }
+const ToggleThemeButton = styled(Button)`
+  padding: 0 var(--spacing-medium);
+  font-size: 1.1rem;
 `;
 
 const Container = styled.div`
