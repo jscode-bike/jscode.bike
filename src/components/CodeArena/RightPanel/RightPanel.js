@@ -13,6 +13,7 @@ const RightPanel = ({
   tests,
   setLeftPanelTabIdx,
   setResults,
+  setMessage,
   loading,
   setLoading,
 }) => {
@@ -27,7 +28,7 @@ const RightPanel = ({
       const submissionResults = await submitCode(code, tests, variableName);
       setResults(submissionResults);
     } catch (error) {
-      alert(codeErrorMessage(variableName, error));
+      setMessage(codeErrorMessage(variableName, error));
     }
     setLoading(false);
   };

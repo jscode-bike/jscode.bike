@@ -5,9 +5,7 @@ import RightPanel from "./RightPanel/RightPanel.js";
 import Header from "./Header/Header.js";
 
 export const CodeArena = ({
-  name,
   variableName,
-  description,
   startingCode,
   tests,
   solutions,
@@ -15,16 +13,16 @@ export const CodeArena = ({
 }) => {
   const [results, setResults] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [message, setMessage] = useState('submit your code');
   const [leftPanelTabIdx, setLeftPanelTabIdx] = useState(0);
   return (
     <Container>
       <Header />
       <LeftPanel
         {...{
-          name,
-          description,
           results,
           loading,
+          message,
           instructionComponent,
           tabIdx: leftPanelTabIdx,
           setTabIdx: setLeftPanelTabIdx,
@@ -37,6 +35,7 @@ export const CodeArena = ({
           tests,
           setLeftPanelTabIdx,
           setResults,
+          setMessage,
           loading,
           setLoading,
         }}

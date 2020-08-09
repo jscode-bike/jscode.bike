@@ -7,6 +7,7 @@ import { Tabs, TabList, Tab, TabPanel } from "react-tabs";
 const LeftPanel = ({
   results,
   loading,
+  message,
   instructionComponent: Instructions,
   tabIdx,
   setTabIdx,
@@ -24,7 +25,7 @@ const LeftPanel = ({
           </MarkdownWrapper>
         </TabPanel>
         <TabPanel>
-          <Results {...{ results, loading }} />
+          <Results {...{ results, loading, message }} />
         </TabPanel>
       </Tabs>
     </LeftPanelContaner>
@@ -45,11 +46,12 @@ const TabStyled = styled(Tab)`
   cursor: pointer;
   user-select: none;
   background-color: ${({ selected }) =>
-    selected ? "var(--bg-color)" : "var-bg-color-dark"};
+    selected ? "var(--bg-color)" : "var(--bg-color-dark)"};
   outline: none;
 
   :hover {
-    background-color: var(--bg-color-darker);
+    background-color: ${({ selected }) =>
+      selected ? "var(--bg-color)" : "var(--bg-color-darker)"};
   }
 `;
 

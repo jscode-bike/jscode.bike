@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import Loading from "./Loading.js";
+import Message from "./Message.js";
 
 const Result = ({ result: { description, unitTestResults } }) => {
   return (
@@ -62,7 +63,7 @@ const ResultsContainer = styled.div`
   flex-direction: column;
 `;
 
-export const Results = ({ results, loading }) => {
+export const Results = ({ results, loading, message }) => {
   return !loading ? (
     results ? (
       <ResultsContainer>
@@ -71,7 +72,7 @@ export const Results = ({ results, loading }) => {
         })}
       </ResultsContainer>
     ) : (
-      <div>Submit your code</div>
+      <Message {...{ message }} />
     )
   ) : (
     <Loading />
