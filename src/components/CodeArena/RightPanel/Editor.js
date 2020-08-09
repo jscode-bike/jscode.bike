@@ -4,14 +4,16 @@ import { getCssVariableNumberValue } from "../../../utils/utils.js";
 
 const Editor = ({ editorTheme, code, setCode }) => {
   const editorRef = useRef(null);
+  
   useEffect(() => {
     const resizeFn = function () {
-      const headerTabAndSubmitHeight =
-        getCssVariableNumberValue("--header-height") +
-        getCssVariableNumberValue("--submit-button-height") +
-        getCssVariableNumberValue("--tab-height") +
-        getCssVariableNumberValue("--spacing-small") +
-        getCssVariableNumberValue("--spacing-medium");
+      const headerTabAndSubmitHeight = [
+        "--header-height",
+        "--submit-button-height",
+        "--tab-height",
+        "--spacing-small",
+        "--spacing-medium",
+      ].reduce((a, b) => a + getCssVariableNumberValue(b), 0);
       const height = window.innerHeight - headerTabAndSubmitHeight;
       editorRef.current.layout({
         height,
@@ -24,6 +26,7 @@ const Editor = ({ editorTheme, code, setCode }) => {
     window.addEventListener("resize", resizeFn);
     return () => window.removeEventListener("resize", resizeFn);
   }, [editorRef]);
+
   return (
     <MonacoEditor
       language="javascript"

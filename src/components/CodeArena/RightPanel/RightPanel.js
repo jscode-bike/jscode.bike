@@ -45,7 +45,7 @@ const RightPanel = ({
   };
 
   const submissionCallback = useCallback(trySubmission);
-  const beautifyCallback = useCallback(handlePrettify);
+  const prettifyCallback = useCallback(handlePrettify);
   useEffect(() => {
     const cmdSaveFn = async (e) => {
       if ((e.ctrlKey || e.metaKey) && e.keyCode === 83) {
@@ -56,7 +56,7 @@ const RightPanel = ({
     const beautifyShortcutFn = (e) => {
       if (e.shiftKey && e.altKey && e.keyCode === 70) {
         e.preventDefault();
-        beautifyCallback();
+        prettifyCallback();
       }
     };
     window.addEventListener("keydown", cmdSaveFn);
@@ -65,7 +65,7 @@ const RightPanel = ({
       window.removeEventListener("keydown", cmdSaveFn);
       window.removeEventListener("keydown", beautifyShortcutFn);
     };
-  }, [submissionCallback, beautifyCallback]);
+  }, [submissionCallback, prettifyCallback]);
 
   return (
     <RightPanelContainer>

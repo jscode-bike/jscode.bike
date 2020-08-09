@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import Loading from "./Loading.js";
 
 const Result = ({ result: { description, unitTestResults } }) => {
   return (
@@ -73,6 +74,6 @@ export const Results = ({ results, loading }) => {
       <div>Submit your code</div>
     )
   ) : (
-    <div>loading...</div>
+    <Loading />
   );
 };
