@@ -1,10 +1,9 @@
 import React, { useState, useEffect, useCallback } from "react";
 import styled from "styled-components";
-import {
-  submitCode,
-  codeErrorMessage,
-} from "../../../utils/utils.js";
-import { js } from "js-beautify";
+import prettier from "prettier/standalone.js";
+import babelParser from "prettier/parser-babel";
+
+import { submitCode, codeErrorMessage } from "../../../utils/utils.js";
 import ButtonPanel from "./ButtonPanel.js";
 import Editor from "./Editor.js";
 
@@ -19,7 +18,6 @@ const RightPanel = ({
 }) => {
   const [editorTheme, setEditorTheme] = useState("vs-dark");
   const [code, setCode] = useState(startingCode || "");
-  //   const editorRef = useRef(null);
   const trySubmission = async () => {
     if (loading) return;
     setLeftPanelTabIdx(1);
@@ -33,14 +31,12 @@ const RightPanel = ({
     }
     setLoading(false);
   };
-  const handleBeautify = (e) => {
-    const beautified = js(code, {
-      indent_size: 2,
-      indent_char: " ",
-      wrap_line_length: 80,
-      break_chained_methods: true,
+  const handlePrettify = (e) => {
+    const prettifiedCode = prettier.format(code, {
+      parser: "babel",
+      plugins: [babelParser],
     });
-    setCode(beautified);
+    setCode(prettifiedCode);
   };
   const toggleEditorTheme = (e) => {
     setEditorTheme((currentTheme) => {
@@ -49,7 +45,7 @@ const RightPanel = ({
   };
 
   const submissionCallback = useCallback(trySubmission);
-  const beautifyCallback = useCallback(handleBeautify);
+  const beautifyCallback = useCallback(handlePrettify);
   useEffect(() => {
     const cmdSaveFn = async (e) => {
       if ((e.ctrlKey || e.metaKey) && e.keyCode === 83) {
@@ -84,7 +80,7 @@ const RightPanel = ({
         {...{
           trySubmission,
           loading,
-          handleBeautify,
+          handlePrettify,
           editorTheme,
           toggleEditorTheme,
         }}
