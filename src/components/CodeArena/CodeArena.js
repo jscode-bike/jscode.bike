@@ -22,6 +22,7 @@ export const CodeArena = ({
   const [results, setResults] = useState(null);
   const [loading, setLoading] = useState(false);
   const [leftPanelTabIdx, setLeftPanelTabIdx] = useState(0);
+  const [editorTheme, setEditorTheme] = useState("vs-dark");
   const editorRef = useRef(null);
   const trySubmission = async () => {
     if (loading) return;
@@ -73,16 +74,26 @@ export const CodeArena = ({
         getCssVariableNumberValue("--header-height") +
         getCssVariableNumberValue("--submit-button-height") +
         getCssVariableNumberValue("--tab-height") +
-        getCssVariableNumberValue("--spacing-small") * 2;
+        getCssVariableNumberValue("--spacing-small") +
+        getCssVariableNumberValue("--spacing-medium");
       const height = window.innerHeight - headerTabAndSubmitHeight;
       editorRef.current.layout({
+        // height,
         height,
-        width: ((window.innerWidth / 9) * 5) | 0,
+        width:
+          ((window.innerWidth / 9) * 5 -
+            getCssVariableNumberValue("--spacing-medium")) |
+          0,
       });
     };
     window.addEventListener("resize", resizeFn);
     return () => window.removeEventListener("resize", resizeFn);
   }, []);
+  const toggleTheme = (e) => {
+    setEditorTheme((currentTheme) => {
+      return currentTheme === "vs-dark" ? "vs" : "vs-dark";
+    });
+  };
   return (
     <Container>
       <Header>JS Code Ninja</Header>
@@ -100,12 +111,19 @@ export const CodeArena = ({
       <RightPanel>
         <MonacoEditor
           language="javascript"
-          theme="vs-dark"
+          // theme="vs-dark"
+          theme={editorTheme}
           value={code}
           options={{
             wordWrap: "on",
             formatOnType: true,
             tabCompletion: "on",
+            mouseWheelZoom: true,
+            scrollBeyondLastLine: false,
+            automaticLayout: true,
+            contextmenu: true,
+            multiCursorModifier: "ctrlCmd",
+            fontSize: 18,
           }}
           onChange={(inputVal) => setCode(inputVal)}
           editorDidMount={(e) => (editorRef.current = e)}
@@ -116,6 +134,9 @@ export const CodeArena = ({
             Submit Code
           </SubmitButton>
           <BeautifyButton onClick={handleBeautify}>{"{}"}</BeautifyButton>
+          <ToggleThemeButton onClick={toggleTheme}>
+            {{ vs: "☼", "vs-dark": "☾" }[editorTheme]}
+          </ToggleThemeButton>
         </ButtonPanel>
       </RightPanel>
     </Container>
@@ -125,7 +146,7 @@ export const CodeArena = ({
 const RightPanel = styled.div`
   border-top: var(--tab-height) solid var(--bg-color-dark);
   height: calc(100vh - var(--header-height) - var(--tab-height));
-  padding-right: var(--spacing-small);
+  padding-right: var(--spacing-medium);
 `;
 
 const Header = styled.header`
@@ -140,7 +161,7 @@ const Header = styled.header`
 
 const ButtonPanel = styled.div`
   width: 100%;
-  margin: var(--spacing-small) 0;
+  margin: var(--spacing-small) 0 var(--spacing-medium) 0;
   height: var(--submit-button-height);
   display: inline-flex;
   gap: var(--spacing-small);
@@ -172,6 +193,30 @@ const SubmitButton = styled.button`
 `;
 
 const BeautifyButton = styled.button`
+  background-color: var(--submit-button-color);
+  color: inherit;
+  border: none;
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
+  font-weight: bolder;
+  cursor: pointer;
+  flex-grow: 1;
+
+  :hover {
+    background-color: var(--submit-button-hover);
+  }
+
+  :active {
+    background-color: var(--submit-button-active);
+  }
+
+  :disabled {
+    opacity: 50%;
+    pointer-events: none;
+  }
+`;
+
+const ToggleThemeButton = styled.button`
   background-color: var(--submit-button-color);
   color: inherit;
   border: none;
