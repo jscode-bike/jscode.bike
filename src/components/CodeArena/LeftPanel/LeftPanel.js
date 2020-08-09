@@ -3,9 +3,8 @@ import styled from "styled-components";
 import { Results } from "./Results/Results.js";
 import { MarkdownWrapper } from "./MarkdownWrapper.js";
 import { Tabs, TabList, Tab, TabPanel } from "react-tabs";
-import s from "./LeftPanel.module.css";
 
-export const LeftPanel = ({
+const LeftPanel = ({
   results,
   loading,
   instructionComponent: Instructions,
@@ -13,12 +12,12 @@ export const LeftPanel = ({
   setTabIdx,
 }) => {
   return (
-    <Container>
+    <LeftPanelContaner>
       <Tabs selectedIndex={tabIdx} onSelect={setTabIdx}>
-        <TabList className={s.tabList}>
-          <Tab className={s.tab}>Instructions</Tab>
-          <Tab className={s.tab}>Results</Tab>
-        </TabList>
+        <TabListStyled>
+          <TabStyled>Instructions</TabStyled>
+          <TabStyled>Results</TabStyled>
+        </TabListStyled>
         <TabPanel>
           <MarkdownWrapper>
             <Instructions />
@@ -28,8 +27,32 @@ export const LeftPanel = ({
           <Results {...{ results, loading }} />
         </TabPanel>
       </Tabs>
-    </Container>
+    </LeftPanelContaner>
   );
 };
 
-const Container = styled.div``;
+const TabListStyled = styled(TabList)`
+  display: flex;
+  height: var(--tab-height);
+  align-items: stretch;
+  list-style: none;
+  background-color: var(--bg-color-dark);
+  padding: 0;
+`;
+
+const TabStyled = styled(Tab)`
+  padding: var(--spacing-small) var(--spacing-medium);
+  cursor: pointer;
+  user-select: none;
+  background-color: ${({ selected }) =>
+    selected ? "var(--bg-color)" : "var-bg-color-dark"};
+  outline: none;
+
+  :hover {
+    background-color: var(--bg-color-darker);
+  }
+`;
+
+const LeftPanelContaner = styled.div``;
+
+export default LeftPanel;
