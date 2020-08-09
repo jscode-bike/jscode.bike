@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import LeftPanel from "./LeftPanel/LeftPanel.js";
 import RightPanel from "./RightPanel/RightPanel.js";
+import Header from "./Header/Header.js";
 
 export const CodeArena = ({
   name,
@@ -17,7 +18,7 @@ export const CodeArena = ({
   const [leftPanelTabIdx, setLeftPanelTabIdx] = useState(0);
   return (
     <Container>
-      <Header>JS Code Ninja</Header>
+      <Header />
       <LeftPanel
         {...{
           name,
@@ -43,16 +44,6 @@ export const CodeArena = ({
     </Container>
   );
 };
-
-const Header = styled.header`
-  width: 100%;
-  grid-column: span 2;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: var(--bg-color-darker);
-  font-weight: bolder;
-`;
 
 const Container = styled.div`
   height: 100vh;

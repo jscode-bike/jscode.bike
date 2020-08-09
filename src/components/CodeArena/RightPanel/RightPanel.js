@@ -1,13 +1,12 @@
-import React, { useState, useEffect, useCallback, useRef } from "react";
-import MonacoEditor from "react-monaco-editor";
+import React, { useState, useEffect, useCallback } from "react";
 import styled from "styled-components";
 import {
   submitCode,
   codeErrorMessage,
-  getCssVariableNumberValue,
 } from "../../../utils/utils.js";
 import { js } from "js-beautify";
 import ButtonPanel from "./ButtonPanel.js";
+import Editor from "./Editor.js";
 
 const RightPanel = ({
   startingCode,
@@ -20,7 +19,7 @@ const RightPanel = ({
 }) => {
   const [editorTheme, setEditorTheme] = useState("vs-dark");
   const [code, setCode] = useState(startingCode || "");
-  const editorRef = useRef(null);
+  //   const editorRef = useRef(null);
   const trySubmission = async () => {
     if (loading) return;
     setLeftPanelTabIdx(1);
@@ -71,48 +70,15 @@ const RightPanel = ({
       window.removeEventListener("keydown", beautifyShortcutFn);
     };
   }, [submissionCallback, beautifyCallback]);
-  useEffect(() => {
-    const resizeFn = function () {
-      const headerTabAndSubmitHeight =
-        getCssVariableNumberValue("--header-height") +
-        getCssVariableNumberValue("--submit-button-height") +
-        getCssVariableNumberValue("--tab-height") +
-        getCssVariableNumberValue("--spacing-small") +
-        getCssVariableNumberValue("--spacing-medium");
-      const height = window.innerHeight - headerTabAndSubmitHeight;
-      editorRef.current.layout({
-        // height,
-        height,
-        width:
-          ((window.innerWidth / 9) * 5 -
-            getCssVariableNumberValue("--spacing-medium")) |
-          0,
-      });
-    };
-    window.addEventListener("resize", resizeFn);
-    return () => window.removeEventListener("resize", resizeFn);
-  }, []);
 
   return (
     <RightPanelContainer>
-      <MonacoEditor
-        language="javascript"
-        theme={editorTheme}
-        value={code}
-        options={{
-          wordWrap: "on",
-          formatOnType: true,
-          tabCompletion: "on",
-          mouseWheelZoom: true,
-          scrollBeyondLastLine: false,
-          automaticLayout: true,
-          contextmenu: true,
-          multiCursorModifier: "ctrlCmd",
-          fontSize: 18,
+      <Editor
+        {...{
+          editorTheme,
+          code,
+          setCode,
         }}
-        onChange={setCode}
-        editorDidMount={(e) => (editorRef.current = e)}
-        height="var(--editor-height)"
       />
       <ButtonPanel
         {...{
