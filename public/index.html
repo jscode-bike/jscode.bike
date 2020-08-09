@@ -29,8 +29,9 @@
     <style>
       html {
         background-color: #323330;
-        color: white;
+        color: var(--text-color);
         font-family: "Karla";
+        --text-color: white;
         --header-height: 40px;
         --header-color: black;
         --submit-button-height: 40px;
@@ -38,7 +39,7 @@
         --spacing-medium: 22px;
         --editor-height: calc(
           100vh - var(--header-height) - var(--submit-button-height) -
-            var(--tab-height) - calc(var(--spacing-small) * 2)
+            var(--tab-height) - var(--spacing-small) - var(--spacing-medium)
         );
         --tab-height: 40px;
         --bg-color: #323330;
