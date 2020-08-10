@@ -4,7 +4,7 @@ import styled from "styled-components";
 const ButtonPanel = ({
   trySubmission,
   loading,
-  handleBeautify,
+  handlePrettify,
   editorTheme,
   toggleEditorTheme,
 }) => {
@@ -13,7 +13,7 @@ const ButtonPanel = ({
       <SubmitButton onClick={trySubmission} disabled={loading}>
         Submit Code
       </SubmitButton>
-      <BeautifyButton onClick={handleBeautify}>{"{}"}</BeautifyButton>
+      <BeautifyButton onClick={handlePrettify}>{"{}"}</BeautifyButton>
       <ToggleThemeButton onClick={toggleEditorTheme}>
         {{ "vs-dark": "☼", vs: "☾" }[editorTheme]}
       </ToggleThemeButton>
