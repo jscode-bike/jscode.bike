@@ -28,26 +28,29 @@
     <title>JS Code Ninja</title>
     <style>
       html {
-        background-color: #323330;
+        background-color: var(--bg-color);
         color: var(--text-color);
         font-family: "Karla";
         --text-color: white;
         --header-height: 40px;
         --header-color: black;
-        --submit-button-height: 40px;
+        --button-panel-height: 40px;
         --spacing-small: 10px;
         --spacing-medium: 22px;
+        --tab-height: 40px;
         --editor-height: calc(
-          100vh - var(--header-height) - var(--submit-button-height) -
+          100vh - var(--header-height) - var(--button-panel-height) -
             var(--tab-height) - var(--spacing-small) - var(--spacing-medium)
         );
-        --tab-height: 40px;
+        --panel-height: calc(100vh - var(--tab-height) - var(--header-height));
         --bg-color: #323330;
         --bg-color-dark: #1e1f1d;
         --bg-color-darker: #0a0b0a;
-        --submit-button-color: green;
-        --submit-button-hover: blue;
-        --submit-button-active: purple;
+
+        --color-green: #3e7a43;
+        --color-yellow: #d0b61e;
+        --color-blue: #1040a8;
+        --color-red: #b63d3d;
       }
       * {
         margin: 0;

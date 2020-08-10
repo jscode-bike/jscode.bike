@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import "highlight.js/styles/vs2015.css";
 
 const Wrapper = styled.div`
   ::-webkit-scrollbar {
@@ -18,7 +19,6 @@ const Wrapper = styled.div`
   overflow-y: scroll;
   max-height: calc(100vh - var(--header-height) - var(--tab-height));
   scrollbar-width: var(--spacing-small);
-
 
   --line-height: 2.2rem;
 

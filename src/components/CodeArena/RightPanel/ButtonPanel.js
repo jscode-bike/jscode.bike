@@ -24,14 +24,13 @@ const ButtonPanel = ({
 const ButtonPanelContainer = styled.div`
   width: 100%;
   margin: var(--spacing-small) 0 var(--spacing-medium) 0;
-  height: var(--submit-button-height);
+  height: var(--button-panel-height);
   display: inline-flex;
   gap: var(--spacing-small);
   align-items: stretch;
 `;
 
 const Button = styled.button`
-  background-color: var(--submit-button-color);
   color: inherit;
   border: none;
   text-transform: uppercase;
@@ -56,14 +55,17 @@ const Button = styled.button`
 `;
 
 const SubmitButton = styled(Button)`
+  background-color: var(--color-green);
   flex-grow: 1;
 `;
 
 const BeautifyButton = styled(Button)`
+  background-color: var(--color-blue);
   padding: 0 var(--spacing-medium);
 `;
 
 const ToggleThemeButton = styled(Button)`
+  background-color: var(--color-blue);
   padding: 0 var(--spacing-medium);
   font-size: 1.1rem;
 `;

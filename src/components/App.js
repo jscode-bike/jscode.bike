@@ -1,6 +1,5 @@
 import React from "react";
-import { CodeArena } from "./CodeArena/CodeArena";
-import "highlight.js/styles/vs2015.css";
+import CodeArena from "./CodeArena/CodeArena";
 import sample from "../problems/fishBus/";
 
 function App() {

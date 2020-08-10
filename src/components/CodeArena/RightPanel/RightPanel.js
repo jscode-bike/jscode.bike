@@ -28,7 +28,10 @@ const RightPanel = ({
       const submissionResults = await submitCode(code, tests, variableName);
       setResults(submissionResults);
     } catch (error) {
-      setMessage(codeErrorMessage(variableName, error));
+      setMessage({
+        type: "error",
+        text: codeErrorMessage(variableName, error),
+      });
     }
     setLoading(false);
   };
@@ -92,7 +95,7 @@ const RightPanel = ({
 
 const RightPanelContainer = styled.div`
   border-top: var(--tab-height) solid var(--bg-color-dark);
-  height: calc(100vh - var(--header-height) - var(--tab-height));
+  height: var(--panel-height);
   padding-right: var(--spacing-medium);
 `;
 

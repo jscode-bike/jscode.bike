@@ -56,7 +56,7 @@ const ResultsContainer = styled.div`
     background-color: var(--bg-color-darker);
   }
   overflow-y: scroll;
-  max-height: calc(100vh - var(--header-height) - var(--tab-height));
+  max-height: var(--panel-height);
   scrollbar-width: var(--spacing-small);
 
   display: flex;

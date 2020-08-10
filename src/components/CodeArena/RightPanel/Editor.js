@@ -9,9 +9,9 @@ const Editor = ({ editorTheme, code, setCode }) => {
     const resizeFn = function () {
       const headerTabAndSubmitHeight = [
         "--header-height",
-        "--submit-button-height",
         "--tab-height",
         "--spacing-small",
+        "--button-panel-height",
         "--spacing-medium",
       ].reduce((a, b) => a + getCssVariableNumberValue(b), 0);
       const height = window.innerHeight - headerTabAndSubmitHeight;

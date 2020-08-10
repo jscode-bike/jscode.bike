@@ -6,7 +6,7 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: calc((calc(100vh - var(--header-height) - var(--tab-height))) * 0.6);
+  height: calc(var(--panel-height) * 0.75);
 `;
 
 const Loading = () => {
