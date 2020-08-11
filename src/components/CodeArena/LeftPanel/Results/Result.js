@@ -9,17 +9,8 @@ const Result = ({ result: { description, unitTestResults } }) => {
         {unitTestResults.map((u, idx) => {
           const { outputs, passed, error } = u;
           return (
-            <UnitTestContainer
-              key={idx}
-              //   style={{
-              //     alignSelf: "stretch",
-              //     backgroundColor: passed ? "green" : "red",
-              //     margin: "1rem 0",
-              //     padding: "1rem",
-              //   }}
-              passed={passed}
-            >
-              <code>{passed ? "passed" : `failed: ${error.message}`}</code>
+            <UnitTestContainer passed={passed}>
+              <code>{passed ? "☑ passed" : `🅧 failed: ${error.message}`}</code>
               {outputs.length ? (
                 <div
                   style={{
@@ -44,8 +35,10 @@ const UnitTestContainer = styled.div`
   align-self: stretch;
   margin: var(--spacing-small) 0;
   padding: var(--spacing-small);
-  background-color: var(--bg-color-darker);
-  color: var(--color-${({ passed }) => (passed ? "green" : "red")});
+  font-weight: bolder;
+  background-color: var(
+    ${({ passed }) => (passed ? "--color-green-bright" : "--color-red")}
+  );
 `;
 
 const ResultContainer = styled.div`

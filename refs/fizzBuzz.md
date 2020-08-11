@@ -14,6 +14,6 @@ Write a function `fizzBuzz` that accepts an integer `n` and returns `"fizz"` if 
 ### Answer
 
 ```javascript
-const fizzBuzz = (n) =>
-  n % 15 ? (n % 5 ? (n % 3 ? n : "fizz") : "buzz") : "fizzBuzz";
+const fishBus = (n) =>
+  n % 15 ? (n % 5 ? (n % 3 ? n : "fish") : "bus") : "fishBus";
 ```
