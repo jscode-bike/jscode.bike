@@ -9,7 +9,9 @@ const Result = ({ result: { description, unitTestResults } }) => {
         const { outputs, passed, error } = u;
         return (
           <UnitTestContainer key={idx} passed={passed}>
-            <code>{passed ? "☑ passed" : `🅧 failed: ${error.message}`}</code>
+            <code>
+              {passed ? "☑ Passed" : `🅧 Not Passing: ${error.message}`}
+            </code>
             {!!outputs.length && <Outputs outputs={outputs} />}
           </UnitTestContainer>
         );
@@ -37,7 +39,6 @@ const Outputs = ({ outputs }) => {
 
 const UnitTestContainer = styled.div`
   align-self: stretch;
-  margin: var(--spacing-small) 0;
   padding: var(--spacing-small);
   font-weight: bolder;
   background-color: var(
@@ -45,13 +46,12 @@ const UnitTestContainer = styled.div`
   );
 `;
 
-const Description = styled.code`
+const Description = styled.div`
   padding: var(--spacing-medium) 0;
+  font-family: monospace;
   font-size: 1.2rem;
 `;
 
-const ResultContainer = styled.div`
-  margin: var(--spacing-small) var(--spacing-medium);
-`;
+const ResultContainer = styled.div``;
 
 export default Result;

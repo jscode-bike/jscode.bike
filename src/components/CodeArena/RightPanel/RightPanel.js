@@ -3,7 +3,11 @@ import styled from "styled-components";
 import prettier from "prettier/standalone.js";
 import babelParser from "prettier/parser-babel";
 
-import { submitCode, codeErrorMessage } from "../../../utils/utils.js";
+import {
+  submitCode,
+  codeErrorMessage,
+  prettifyErrorMessage,
+} from "../../../utils/utils.js";
 import ButtonPanel from "./ButtonPanel.js";
 import Editor from "./Editor.js";
 
@@ -44,11 +48,20 @@ const RightPanel = ({
     if (res) setCode(startingCode || "");
   };
   const handlePrettify = (e) => {
-    const prettifiedCode = prettier.format(code, {
-      parser: "babel",
-      plugins: [babelParser],
-    });
-    setCode(prettifiedCode);
+    try {
+      const prettifiedCode = prettier.format(code, {
+        parser: "babel",
+        plugins: [babelParser],
+      });
+      setCode(prettifiedCode);
+    } catch (error) {
+      console.error(error);
+      setMessage({
+        type: "error",
+        text: prettifyErrorMessage(variableName, error),
+      });
+      setLeftPanelTabIdx(1);
+    }
   };
   const toggleEditorTheme = (e) => {
     setEditorTheme((currentTheme) => {

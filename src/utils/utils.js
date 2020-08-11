@@ -5,6 +5,9 @@ export const submitCode = (code, tests, variableName) => {
 export const codeErrorMessage = (variableName, error) =>
   `there is an issue with your ${variableName} function: ${error}`;
 
+export const prettifyErrorMessage = (variableName, error) =>
+  `can't format your code: ${error}`
+
 const runTestsInWorker = (code, tests, variableName) => {
   if (!window.Worker) throw new Error("please enable web workers");
 

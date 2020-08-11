@@ -1,24 +1,22 @@
 import React from "react";
 import styled from "styled-components";
 import Result from "./Result.js";
+import ResultsSummary from './ResultsSummary.js'
 
-const ResultsSummary = ({ summary }) => {
-  const { passed, failed, total } = summary;
-  // need to make this nicer and more useful
-  // need to make messaging more aware of above values
-  return (
-    <div>
-      you passed {passed} of {total} tests. {failed} tests are not passing
-    </div>
-  );
-};
+const TestResultsContainer = styled.div`
+  background-color: var(--bg-color-dark);
+  margin: 0 var(--spacing-medium) var(--spacing-medium);
+  padding: 0 var(--spacing-medium) var(--spacing-medium);
+`;
 
 const Results = ({ results: { summary, testResults } }) => (
   <ResultsContainer>
     <ResultsSummary {...{ summary }} />
-    {testResults.map((r, idx) => (
-      <Result key={idx} result={r} />
-    ))}
+    <TestResultsContainer>
+      {testResults.map((r, idx) => (
+        <Result key={idx} result={r} />
+      ))}
+    </TestResultsContainer>
   </ResultsContainer>
 );
 
