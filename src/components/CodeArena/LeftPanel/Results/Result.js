@@ -36,7 +36,7 @@ const Outputs = ({ outputs }) => {
 const UnitTestContainer = styled.div`
   align-self: stretch;
   margin: var(--spacing-small) 0;
-  /* padding: var(--spacing-small); */
+  padding: var(--spacing-small);
   font-weight: bolder;
   background-color: var(
     ${({ passed }) => (passed ? "--color-green-bright" : "--color-red")}
@@ -45,6 +45,7 @@ const UnitTestContainer = styled.div`
 
 const Description = styled.code`
   padding: var(--spacing-medium) 0;
+  font-size: 1.2rem;
 `
 
 const ResultContainer = styled.div`

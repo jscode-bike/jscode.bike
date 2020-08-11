@@ -25,9 +25,15 @@ const ResultsContainer = styled.div`
   flex-direction: column;
 `;
 
+const ResultSummary = () => {
+  // need to return a result summary from backend also to populate this area
+  return <div></div>
+};
+
 export const Results = ({ results, message }) => {
   return results ? (
     <ResultsContainer>
+      <ResultSummary {...{ results }} />
       {results.map((r, idx) => {
         return <Result key={idx} result={r} />;
       })}

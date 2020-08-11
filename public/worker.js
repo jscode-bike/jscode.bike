@@ -7,6 +7,9 @@ class Spy {
       this.console[key] = (...args) => {
         this.console.outputs.push({
           key,
+          // change the line below for improved syntax highlighting on UI-side
+          // return an object with type and string
+          // (would require work on UI side also)
           args: args.map(String),
         });
       };
@@ -54,9 +57,11 @@ self.addEventListener(
     try {
       const fn = fnMaker(code, variableName);
       const results = tests.map((t) => runTest(fn, t));
+      // do a summary calculation and return {summary, results}
       self.postMessage(results);
     } catch (error) {
       console.error(error);
+      // return the plain text error also for use in the frontend
       self.postMessage({ error: "problem with submitted code" });
     }
   },
