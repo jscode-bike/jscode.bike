@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import Message from "./Message.js";
 import Result from "./Result.js";
 
 const ResultsSummary = ({ summary }) => {
@@ -14,18 +13,14 @@ const ResultsSummary = ({ summary }) => {
   );
 };
 
-const Results = ({ results, message }) => {
-  return results ? (
-    <ResultsContainer>
-      <ResultsSummary summary={results.summary} />
-      {results.testResults.map((r, idx) => {
-        return <Result key={idx} result={r} />;
-      })}
-    </ResultsContainer>
-  ) : (
-    <Message {...{ message }} />
-  );
-};
+const Results = ({ results: { summary, testResults } }) => (
+  <ResultsContainer>
+    <ResultsSummary {...{ summary }} />
+    {testResults.map((r, idx) => (
+      <Result key={idx} result={r} />
+    ))}
+  </ResultsContainer>
+);
 
 const ResultsContainer = styled.div`
   ::-webkit-scrollbar {
@@ -49,4 +44,4 @@ const ResultsContainer = styled.div`
   flex-direction: column;
 `;
 
-export default Results
+export default Results;

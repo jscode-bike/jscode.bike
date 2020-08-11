@@ -3,7 +3,8 @@ import styled from "styled-components";
 import Results from "./Results/Results.js";
 import MarkdownWrapper from "./MarkdownWrapper.js";
 import { Tabs, TabList, Tab, TabPanel } from "react-tabs";
-import Loading from "./Results/Loading.js";
+import Loading from "./Loading.js";
+import Message from "./Message.js";
 
 const LeftPanel = ({
   results,
@@ -13,6 +14,11 @@ const LeftPanel = ({
   tabIdx,
   setTabIdx,
 }) => {
+  const renderTab = () => {
+    if (loading) return <Loading />;
+    if (!results) return <Message {...{ message }} />;
+    return <Results {...{ results }} />;
+  };
   return (
     <LeftPanelContaner>
       <Tabs selectedIndex={tabIdx} onSelect={setTabIdx}>
@@ -26,11 +32,7 @@ const LeftPanel = ({
           </MarkdownWrapper>
         </TabPanel>
         <TabPanel>
-          {loading ? (
-            <Loading />
-          ) : (
-            <Results {...{ results, message }} />
-          )}
+          {renderTab()}
         </TabPanel>
       </Tabs>
     </LeftPanelContaner>
