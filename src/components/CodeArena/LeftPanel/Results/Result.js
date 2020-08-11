@@ -26,9 +26,10 @@ const Outputs = ({ outputs }) => {
       }}
     >
       <h6>outputs:</h6>
-      {outputs.map((o, idx) => (
-        <div key={idx}>{`${o.args.join(" ")}`}</div>
-      ))}
+      {outputs.map((o, idx) => {
+        // once output model has changed, make syntax highlighting etc legit
+        return <div key={idx}>{`${o.args.join(" ")}`}</div>;
+      })}
     </div>
   );
 };
@@ -46,7 +47,7 @@ const UnitTestContainer = styled.div`
 const Description = styled.code`
   padding: var(--spacing-medium) 0;
   font-size: 1.2rem;
-`
+`;
 
 const ResultContainer = styled.div`
   margin: var(--spacing-small) var(--spacing-medium);

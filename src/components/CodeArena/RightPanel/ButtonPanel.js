@@ -7,12 +7,14 @@ const ButtonPanel = ({
   handlePrettify,
   editorTheme,
   toggleEditorTheme,
+  resetCode
 }) => {
   return (
     <ButtonPanelContainer>
       <SubmitButton onClick={trySubmission} disabled={loading}>
         Submit Code
       </SubmitButton>
+      <ResetButton onClick={resetCode}>⎌</ResetButton>
       <BeautifyButton onClick={handlePrettify}>{"{}"}</BeautifyButton>
       <ToggleThemeButton onClick={toggleEditorTheme}>
         {{ "vs-dark": "☼", vs: "☾" }[editorTheme]}
@@ -39,7 +41,7 @@ const Button = styled.button`
   cursor: pointer;
   outline: none;
   width: calc(var(--tab-height) * 1.618);
-  transition: filter .1s;
+  transition: filter 0.1s;
 
   :hover {
     filter: brightness(120%);
@@ -63,6 +65,11 @@ const SubmitButton = styled(Button)`
 const BeautifyButton = styled(Button)`
   background-color: var(--color-blue);
   padding: 0 var(--spacing-medium);
+`;
+const ResetButton = styled(Button)`
+  background-color: var(--color-blue);
+  padding: 0 var(--spacing-medium);
+  font-size: 1.3rem;
 `;
 
 const ToggleThemeButton = styled(Button)`

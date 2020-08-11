@@ -30,6 +30,8 @@ const ResultSummary = () => {
   return <div></div>
 };
 
+// will add a summary key to the results message from the worker
+// need to populate ResultSummary with values from that object
 export const Results = ({ results, message }) => {
   return results ? (
     <ResultsContainer>

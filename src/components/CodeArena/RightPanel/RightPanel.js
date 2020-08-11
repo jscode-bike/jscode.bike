@@ -35,6 +35,14 @@ const RightPanel = ({
     }
     setLoading(false);
   };
+  const resetCode = () => {
+    const confirmMessage =
+      "Are you sure you want to reset back to starting code?\n" +
+      "Your current input will be deleted";
+    // eslint-disable-next-line no-restricted-globals
+    const res = confirm(confirmMessage);
+    if (res) setCode(startingCode || "");
+  };
   const handlePrettify = (e) => {
     const prettifiedCode = prettier.format(code, {
       parser: "babel",
@@ -87,6 +95,7 @@ const RightPanel = ({
           handlePrettify,
           editorTheme,
           toggleEditorTheme,
+          resetCode,
         }}
       />
     </RightPanelContainer>
