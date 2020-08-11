@@ -1,8 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import Loading from "./Loading.js";
 import Message from "./Message.js";
-import Result from './Result.js'
+import Result from "./Result.js";
 
 const ResultsContainer = styled.div`
   ::-webkit-scrollbar {
@@ -26,18 +25,14 @@ const ResultsContainer = styled.div`
   flex-direction: column;
 `;
 
-export const Results = ({ results, loading, message }) => {
-  return !loading ? (
-    results ? (
-      <ResultsContainer>
-        {results.map((r, idx) => {
-          return <Result key={idx} result={r} />;
-        })}
-      </ResultsContainer>
-    ) : (
-      <Message {...{ message }} />
-    )
+export const Results = ({ results, message }) => {
+  return results ? (
+    <ResultsContainer>
+      {results.map((r, idx) => {
+        return <Result key={idx} result={r} />;
+      })}
+    </ResultsContainer>
   ) : (
-    <Loading />
+    <Message {...{ message }} />
   );
 };

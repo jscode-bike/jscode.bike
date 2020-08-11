@@ -39,13 +39,14 @@ const Button = styled.button`
   cursor: pointer;
   outline: none;
   width: calc(var(--tab-height) * 1.618);
+  transition: filter .1s;
 
   :hover {
-    filter: brightness(80%);
+    filter: brightness(120%);
   }
 
   :active {
-    filter: brightness(55%);
+    filter: brightness(85%);
   }
 
   :disabled {

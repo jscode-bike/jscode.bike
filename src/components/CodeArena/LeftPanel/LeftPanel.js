@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Results } from "./Results/Results.js";
 import { MarkdownWrapper } from "./MarkdownWrapper.js";
 import { Tabs, TabList, Tab, TabPanel } from "react-tabs";
+import Loading from "./Results/Loading.js";
 
 const LeftPanel = ({
   results,
@@ -25,7 +26,11 @@ const LeftPanel = ({
           </MarkdownWrapper>
         </TabPanel>
         <TabPanel>
-          <Results {...{ results, loading, message }} />
+          {loading ? (
+            <Loading />
+          ) : (
+            <Results {...{ results, message }} />
+          )}
         </TabPanel>
       </Tabs>
     </LeftPanelContaner>
