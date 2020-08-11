@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { Results } from "./Results/Results.js";
-import { MarkdownWrapper } from "./MarkdownWrapper.js";
+import Results from "./Results/Results.js";
+import MarkdownWrapper from "./MarkdownWrapper.js";
 import { Tabs, TabList, Tab, TabPanel } from "react-tabs";
 import Loading from "./Results/Loading.js";
 

@@ -7,10 +7,11 @@ class Spy {
       this.console[key] = (...args) => {
         this.console.outputs.push({
           key,
-          // change the line below for improved syntax highlighting on UI-side
-          // return an object with type and string
-          // (would require work on UI side also)
-          args: args.map(String),
+          args: args.map((a) => {
+            const type = typeof a;
+            const text = String(a);
+            return { type, text };
+          }),
         });
       };
     });
@@ -18,9 +19,19 @@ class Spy {
 }
 
 const runTest = (fn, test) => {
+  const unitTestResults = test.unitTests.map(runUnitTest(fn));
+  const testSummary = unitTestResults.reduce(
+    (a, r) => ({
+      passed: a.passed + (r.passed ? 1 : 0),
+      failed: a.failed + (r.passed ? 0 : 1),
+      total: a.total + 1,
+    }),
+    { passed: 0, failed: 0, total: 0 }
+  );
   const result = {
     description: test.description,
-    unitTestResults: test.unitTests.map(runUnitTest(fn)),
+    unitTestResults,
+    testSummary,
   };
   return result;
 };
@@ -55,14 +66,27 @@ self.addEventListener(
   function (e) {
     const { code, tests, variableName } = e.data;
     try {
-      const fn = fnMaker(code, variableName);
-      const results = tests.map((t) => runTest(fn, t));
-      // do a summary calculation and return {summary, results}
-      self.postMessage(results);
+      const fn = fnMaker(code, variableName),
+        testResults = tests.map((t) => runTest(fn, t)),
+        summary = testResults.reduce(
+          (a, { testSummary: ts }) => ({
+            total: a.total + ts.passed + ts.failed,
+            passed: a.passed + ts.passed,
+            failed: a.failed + ts.failed,
+          }),
+          {
+            total: 0,
+            passed: 0,
+            failed: 0,
+          }
+        );
+      self.postMessage({ testResults, summary });
     } catch (error) {
       console.error(error);
-      // return the plain text error also for use in the frontend
-      self.postMessage({ error: "problem with submitted code" });
+      self.postMessage({
+        error: "problem with submitted code",
+        rawError: String(error),
+      });
     }
   },
   false

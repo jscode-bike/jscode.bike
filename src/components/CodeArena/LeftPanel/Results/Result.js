@@ -19,6 +19,7 @@ const Result = ({ result: { description, unitTestResults } }) => {
 };
 
 const Outputs = ({ outputs }) => {
+  // need to make this component more legit...
   return (
     <div
       style={{
@@ -28,7 +29,7 @@ const Outputs = ({ outputs }) => {
       <h6>outputs:</h6>
       {outputs.map((o, idx) => {
         // once output model has changed, make syntax highlighting etc legit
-        return <div key={idx}>{`${o.args.join(" ")}`}</div>;
+        return <div key={idx}>{`${o.args.map((a) => a.text).join(" ")}`}</div>;
       })}
     </div>
   );

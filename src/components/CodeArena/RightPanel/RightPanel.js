@@ -22,8 +22,8 @@ const RightPanel = ({
   const trySubmission = async () => {
     if (loading) return;
     setLeftPanelTabIdx(1);
-    setResults(null);
     setLoading(true);
+    setResults(null);
     try {
       const submissionResults = await submitCode(code, tests, variableName);
       setResults(submissionResults);

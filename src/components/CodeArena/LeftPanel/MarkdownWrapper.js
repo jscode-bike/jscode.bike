@@ -38,4 +38,6 @@ const Wrapper = styled.div`
   }
 `;
 
-export const MarkdownWrapper = ({ children }) => <Wrapper>{children}</Wrapper>;
+const MarkdownWrapper = ({ children }) => <Wrapper>{children}</Wrapper>;
+
+export default MarkdownWrapper

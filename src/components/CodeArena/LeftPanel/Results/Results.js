@@ -3,6 +3,30 @@ import styled from "styled-components";
 import Message from "./Message.js";
 import Result from "./Result.js";
 
+const ResultsSummary = ({ summary }) => {
+  const { passed, failed, total } = summary;
+  // need to make this nicer and more useful
+  // need to make messaging more aware of above values
+  return (
+    <div>
+      you passed {passed} of {total} tests. {failed} tests are not passing
+    </div>
+  );
+};
+
+const Results = ({ results, message }) => {
+  return results ? (
+    <ResultsContainer>
+      <ResultsSummary summary={results.summary} />
+      {results.testResults.map((r, idx) => {
+        return <Result key={idx} result={r} />;
+      })}
+    </ResultsContainer>
+  ) : (
+    <Message {...{ message }} />
+  );
+};
+
 const ResultsContainer = styled.div`
   ::-webkit-scrollbar {
     width: 12px;
@@ -25,22 +49,4 @@ const ResultsContainer = styled.div`
   flex-direction: column;
 `;
 
-const ResultSummary = () => {
-  // need to return a result summary from backend also to populate this area
-  return <div></div>
-};
-
-// will add a summary key to the results message from the worker
-// need to populate ResultSummary with values from that object
-export const Results = ({ results, message }) => {
-  return results ? (
-    <ResultsContainer>
-      <ResultSummary {...{ results }} />
-      {results.map((r, idx) => {
-        return <Result key={idx} result={r} />;
-      })}
-    </ResultsContainer>
-  ) : (
-    <Message {...{ message }} />
-  );
-};
+export default Results
