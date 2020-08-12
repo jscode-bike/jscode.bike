@@ -7,7 +7,7 @@ hljs.registerLanguage("js", javascript);
 module.exports = function override(config, env) {
   config.plugins.push(
     new MonacoWebpackPlugin({
-      languages: ["json", "javascript"],
+      languages: ["json", "javascript", 'typescript'],
     })
   );
   rewireFrontmatterMarkdown(config, {

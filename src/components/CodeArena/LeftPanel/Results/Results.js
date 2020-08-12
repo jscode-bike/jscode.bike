@@ -23,6 +23,10 @@ const TestResultsContainer = styled.div`
   ::-webkit-scrollbar-thumb {
     background-color: var(--bg-color-darker);
   }
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-medium);
 `;
 
 const Results = ({ results: { summary, testResults } }) => (
@@ -38,8 +42,6 @@ const Results = ({ results: { summary, testResults } }) => (
 
 const ResultsContainer = styled.div`
   max-height: var(--panel-height);
-  display: flex;
-  flex-direction: column;
 `;
 
 export default Results;
