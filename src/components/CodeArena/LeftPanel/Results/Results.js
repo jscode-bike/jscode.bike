@@ -1,12 +1,28 @@
 import React from "react";
 import styled from "styled-components";
 import Result from "./Result.js";
-import ResultsSummary from './ResultsSummary.js'
+import ResultsSummary from "./ResultsSummary.js";
 
 const TestResultsContainer = styled.div`
   background-color: var(--bg-color-dark);
   margin: 0 var(--spacing-medium) var(--spacing-medium);
   padding: 0 var(--spacing-medium) var(--spacing-medium);
+  max-height: calc(
+    var(--panel-height) - calc(var(--spacing-medium) * 2) -
+      var(--summary-container-height)
+  );
+  overflow-y: scroll;
+
+  ::-webkit-scrollbar {
+    width: var(--spacing-small);
+    cursor: pointer;
+  }
+  ::-webkit-scrollbar-track {
+    background-color: var(--bg-color-dark);
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--bg-color-darker);
+  }
 `;
 
 const Results = ({ results: { summary, testResults } }) => (
@@ -21,23 +37,7 @@ const Results = ({ results: { summary, testResults } }) => (
 );
 
 const ResultsContainer = styled.div`
-  ::-webkit-scrollbar {
-    width: 12px;
-  }
-  ::-webkit-scrollbar-track {
-    background-color: var(--bg-color);
-  }
-  ::-webkit-scrollbar-thumb {
-    background-color: var(--bg-color-dark);
-    cursor: pointer;
-  }
-  ::-webkit-scrollbar-thumb:hover {
-    background-color: var(--bg-color-darker);
-  }
-  overflow-y: scroll;
   max-height: var(--panel-height);
-  scrollbar-width: var(--spacing-small);
-
   display: flex;
   flex-direction: column;
 `;

@@ -56,6 +56,7 @@ const RightPanel = ({
       setCode(prettifiedCode);
     } catch (error) {
       console.error(error);
+      setResults(null);
       setMessage({
         type: "error",
         text: prettifyErrorMessage(variableName, error),

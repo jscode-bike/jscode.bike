@@ -28,6 +28,7 @@ const SummaryContainer = styled.code`
   display: flex;
   align-items: center;
   gap: var(--spacing-small);
+  height: var(--summary-container-height);
 `;
 
 const SummarySpan = styled.span`
