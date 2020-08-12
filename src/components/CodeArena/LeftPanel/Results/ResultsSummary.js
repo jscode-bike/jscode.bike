@@ -32,12 +32,10 @@ const SummaryContainer = styled.code`
 `;
 
 const SummarySpan = styled.span`
-  /* padding-bottom: var(--spacing-small); */
   font-size: 1.5rem;
 `;
 
 const SummaryIcon = styled(SummarySpan)`
-  /* padding-bottom: var(--spacing-small); */
   font-size: ${({ isPassing }) => (isPassing ? "1.8rem" : "1.5rem")};
 `;
 const SummaryText = styled(SummarySpan)`

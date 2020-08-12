@@ -42,7 +42,7 @@ const UnitTestContainer = styled.div`
   padding: var(--spacing-small);
   font-weight: bolder;
   background-color: var(
-    ${({ passed }) => (passed ? "--color-green-bright" : "--color-red")}
+    ${({ passed }) => (passed ? "--color-green" : "--color-red-dark")}
   );
 `;
 
