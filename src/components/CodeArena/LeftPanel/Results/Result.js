@@ -26,8 +26,8 @@ const Result = ({ result: { description, unitTestResults } }) => {
 
 const ResultTextContainter = styled.div`
   font-family: monospace;
-  padding: 0 var(--spacing-small) var(--spacing-small);
-  font-size: 1.2rem;
+  padding-bottom: var(--spacing-small);
+  font-size: 1.4rem;
 `;
 
 const OutputsContainer = styled.div`
