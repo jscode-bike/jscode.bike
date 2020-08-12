@@ -9,7 +9,7 @@ class Spy {
           key,
           args: args.map((a) => {
             const type = typeof a;
-            const text = String(a);
+            const text = type === "function" ? String(a) : JSON.stringify(a);
             return { type, text };
           }),
         });

@@ -1,41 +1,32 @@
 import React from "react";
 import styled from "styled-components";
+import Outputs from "./Outputs.js";
 
 const Result = ({ result: { description, unitTestResults } }) => {
   return (
     <ResultContainer>
       <Description>{description}</Description>
-      {unitTestResults.map((u, idx) => {
-        const { outputs, passed, error } = u;
-        return (
-          <UnitTestContainer key={idx} passed={passed}>
-            <code>
-              {passed ? "☑ Passed" : `🅧 Not Passing: ${error.message}`}
-            </code>
-            {!!outputs.length && <Outputs outputs={outputs} />}
-          </UnitTestContainer>
-        );
-      })}
+      <UnitTestsContainer>
+        {unitTestResults.map((u, idx) => {
+          const { outputs, passed, error } = u;
+          return (
+            <UnitTestContainer key={idx} passed={passed}>
+              <ResultTextContainter>
+                {passed ? "☑ Passed" : `🅧 Not Passing: ${error.message}`}
+              </ResultTextContainter>
+              {!!outputs.length && <Outputs {...{ outputs }} />}
+            </UnitTestContainer>
+          );
+        })}
+      </UnitTestsContainer>
     </ResultContainer>
   );
 };
 
-const Outputs = ({ outputs }) => {
-  // need to make this component more legit...
-  return (
-    <div
-      style={{
-        backgroundColor: "black",
-      }}
-    >
-      <h6>outputs:</h6>
-      {outputs.map((o, idx) => {
-        // once output model has changed, make syntax highlighting etc legit
-        return <div key={idx}>{`${o.args.map((a) => a.text).join(" ")}`}</div>;
-      })}
-    </div>
-  );
-};
+const ResultTextContainter = styled.div`
+  font-family: monospace;
+  font-size: 1.4rem;
+`;
 
 const UnitTestContainer = styled.div`
   align-self: stretch;
@@ -44,6 +35,12 @@ const UnitTestContainer = styled.div`
   background-color: var(
     ${({ passed }) => (passed ? "--color-green" : "--color-red-dark")}
   );
+`;
+
+const UnitTestsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-medium);
 `;
 
 const Description = styled.div`
