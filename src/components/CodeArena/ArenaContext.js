@@ -1,17 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, createContext } from "react";
 
 import prettier from "prettier/standalone.js";
 import babelParser from "prettier/parser-babel";
 
 import { submitCode, prettifyErrorMessage } from "../../utils/utils.js";
 
-export const ArenaContext = React.createContext();
+export const ArenaContext = createContext();
 
 const ArenaProvider = (props) => {
-  // please pass in these props to the provider:
   const { startingCode, tests, variableName, instructionComponent } = props;
-
-  // from CodeArena.js
   const [results, setResults] = useState(null);
   const [loading, setLoading] = useState(false);
   const [leftPanelTabIdx, setLeftPanelTabIdx] = useState(0);
@@ -19,8 +16,6 @@ const ArenaProvider = (props) => {
     type: "initial",
     text: "Submit your code to see results!",
   });
-
-  // from RightPanel.js
   const [editorTheme, setEditorTheme] = useState("vs-dark");
   const [code, setCode] = useState(startingCode || "");
   const trySubmission = async () => {

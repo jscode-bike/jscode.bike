@@ -5,7 +5,6 @@ import Editor from "./Editor.js";
 
 import { ArenaContext } from "../ArenaContext";
 
-//done?
 const RightPanel = () => {
   const { trySubmission, handlePrettify } = useContext(ArenaContext);
   const submissionCallback = useCallback(trySubmission);
