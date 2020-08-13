@@ -2,9 +2,6 @@ export const submitCode = (code, tests, variableName) => {
   return runTestsInWorker(code, tests, variableName);
 };
 
-export const codeErrorMessage = (variableName, error) =>
-  `there is an issue with your ${variableName} function: ${error}`;
-
 export const prettifyErrorMessage = (variableName, error) =>
   `can't format your code: ${error}`
 
@@ -14,7 +11,7 @@ const runTestsInWorker = (code, tests, variableName) => {
   return new Promise((resolve, reject) => {
     const myWorker = new Worker("worker.js");
     let timer = setTimeout(() => {
-      console.log("worker didnt respond...");
+      console.warn("worker didnt respond...");
       myWorker.terminate();
       reject(new Error("code timed out"));
     }, 10000);
@@ -24,11 +21,11 @@ const runTestsInWorker = (code, tests, variableName) => {
     myWorker.onmessage = (e) => {
       clearTimeout(timer);
       if (e.data.error) {
-        reject(e.data.error);
+        reject(e.data);
       } else {
         resolve(e.data);
       }
-      console.log("terminating worker...");
+      console.info("terminating worker...");
       myWorker.terminate();
     };
   });

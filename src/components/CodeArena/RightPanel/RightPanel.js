@@ -5,7 +5,6 @@ import babelParser from "prettier/parser-babel";
 
 import {
   submitCode,
-  codeErrorMessage,
   prettifyErrorMessage,
 } from "../../../utils/utils.js";
 import ButtonPanel from "./ButtonPanel.js";
@@ -32,9 +31,12 @@ const RightPanel = ({
       const submissionResults = await submitCode(code, tests, variableName);
       setResults(submissionResults);
     } catch (error) {
+      debugger;
+      const { error: text, rawError } = error;
       setMessage({
         type: "error",
-        text: codeErrorMessage(variableName, error),
+        text,
+        rawError,
       });
     }
     setLoading(false);
