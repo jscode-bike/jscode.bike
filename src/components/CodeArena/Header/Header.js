@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 const Header = () => {
-  return <HeaderContainer>JS Code Ninja</HeaderContainer>;
+  return <HeaderContainer>JS Code Fish</HeaderContainer>;
 };
 
 const HeaderContainer = styled.header`
