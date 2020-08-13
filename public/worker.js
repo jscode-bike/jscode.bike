@@ -1,11 +1,10 @@
 /* eslint-disable no-restricted-globals */
 self.importScripts("/chai.min.js");
-class Spy {
-  constructor() {
-    this.console = { outputs: [] };
+class Console {
+  constructor(outputs) {
     Object.keys(console).forEach((key) => {
-      this.console[key] = (...args) => {
-        this.console.outputs.push({
+      this[key] = (...args) => {
+        outputs.push({
           key,
           args: args.map((a) => {
             const type = typeof a;
@@ -15,6 +14,8 @@ class Spy {
         });
       };
     });
+
+    return Object.freeze(this);
   }
 }
 
@@ -37,20 +38,21 @@ const runTest = (fn, test) => {
 };
 
 const runUnitTest = (fn) => (test) => {
-  const spy = new Spy();
-  const fnToTest = fn(spy.console);
+  const outputs = []
+  const spy = new Console(outputs);
+  const fnToTest = fn(spy);
   try {
     // eslint-disable-next-line no-eval
     eval(test)(fnToTest);
     return {
       passed: true,
-      outputs: [...spy.console.outputs],
+      outputs: [...outputs],
       error: null,
     };
   } catch (e) {
     return {
       passed: false,
-      outputs: [...spy.console.outputs],
+      outputs: [...outputs],
       error: e,
     };
   }
@@ -58,7 +60,7 @@ const runUnitTest = (fn) => (test) => {
 
 const fnMaker = (code, variableName) => {
   // eslint-disable-next-line no-eval
-  return eval(`console => {${code}\nreturn ${variableName}}`);
+  return eval(`console => {"use strict"\n${code}\nreturn ${variableName}}`);
 };
 
 self.addEventListener(
