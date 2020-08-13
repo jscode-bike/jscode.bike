@@ -7,7 +7,9 @@ class Console {
         outputs.push({
           key,
           args: args.map((a) => {
-            if (a === this) throw new Error("illegal console operation");
+            // eslint-disable-next-line no-undef
+            if (a === this || a === globalThis)
+              throw new Error("illegal console operation");
             const type = typeof a;
             const text = type === "function" ? String(a) : JSON.stringify(a);
             return { type, text };
@@ -16,7 +18,6 @@ class Console {
       };
       this[key].toString = () => "[internal code]";
     });
-    // this.toString = () => "[internal code]";
 
     return Object.freeze(this);
   }
