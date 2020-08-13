@@ -1,17 +1,23 @@
 import React from "react";
 import styled from "styled-components";
 
-const ResultsSummary = ({ summary }) => {
+const ResultsSummary = ({
+  summary,
+  isPassing,
+  setIsCollapsed,
+  isCollapsed,
+}) => {
   const { passed, total } = summary;
-  // need to make this nicer and more useful
-  // need to make messaging more aware of above values
-  const isPassing = passed === total;
   const icon = isPassing ? "☑" : "🅧";
   const text = isPassing ? "PASSED" : "Not Passing";
   const ratio = `${passed}/${total}`;
+  const collapseIcon = isCollapsed ? "▸" : "▾";
 
   return (
     <SummaryContainer {...{ isPassing }}>
+      <ToggleCollapse onClick={(_e) => setIsCollapsed((c) => !c)}>
+        {collapseIcon}
+      </ToggleCollapse>
       <SummaryIcon {...{ isPassing }}>{icon}</SummaryIcon>
       <SummaryText>{text}</SummaryText>
       <SummaryRatio>{ratio}</SummaryRatio>
@@ -43,6 +49,10 @@ const SummaryText = styled(SummarySpan)`
 `;
 const SummaryRatio = styled(SummarySpan)`
   font-size: 1rem;
+`;
+
+const ToggleCollapse = styled(SummarySpan)`
+  cursor: pointer;
 `;
 
 export default ResultsSummary;
