@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 import styled from "styled-components";
 
 const ResultsSummary = ({ summary }) => {
@@ -32,11 +32,11 @@ const SummaryContainer = styled.code`
 `;
 
 const SummarySpan = styled.span`
-  font-size: 1.5rem;
+  font-size: 1.2rem;
 `;
 
 const SummaryIcon = styled(SummarySpan)`
-  font-size: ${({ isPassing }) => (isPassing ? "1.8rem" : "1.5rem")};
+  font-size: 1.2rem;
 `;
 const SummaryText = styled(SummarySpan)`
   flex-grow: 1;
@@ -45,4 +45,4 @@ const SummaryRatio = styled(SummarySpan)`
   font-size: 1rem;
 `;
 
-export default ResultsSummary
+export default ResultsSummary;

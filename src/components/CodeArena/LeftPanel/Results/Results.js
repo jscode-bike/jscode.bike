@@ -11,7 +11,7 @@ const TestResultsContainer = styled.div`
     var(--panel-height) - calc(var(--spacing-medium) * 2) -
       var(--summary-container-height)
   );
-  overflow-y: scroll;
+  overflow-y: auto;
 
   ::-webkit-scrollbar {
     width: var(--spacing-small);
