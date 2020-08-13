@@ -1,77 +1,12 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useEffect, useCallback, useContext } from "react";
 import styled from "styled-components";
-import prettier from "prettier/standalone.js";
-import babelParser from "prettier/parser-babel";
-
-import {
-  submitCode,
-  prettifyErrorMessage,
-} from "../../../utils/utils.js";
 import ButtonPanel from "./ButtonPanel.js";
 import Editor from "./Editor.js";
 
-const RightPanel = ({
-  startingCode,
-  variableName,
-  tests,
-  setLeftPanelTabIdx,
-  setResults,
-  setMessage,
-  loading,
-  setLoading,
-}) => {
-  const [editorTheme, setEditorTheme] = useState("vs-dark");
-  const [code, setCode] = useState(startingCode || "");
-  const trySubmission = async () => {
-    if (loading) return;
-    setLeftPanelTabIdx(1);
-    setLoading(true);
-    setResults(null);
-    try {
-      const submissionResults = await submitCode(code, tests, variableName);
-      setResults(submissionResults);
-    } catch (error) {
-      debugger;
-      const { error: text, rawError } = error;
-      setMessage({
-        type: "error",
-        text,
-        rawError,
-      });
-    }
-    setLoading(false);
-  };
-  const resetCode = () => {
-    const confirmMessage =
-      "Are you sure you want to reset back to starting code?\n" +
-      "Your current input will be deleted";
-    // eslint-disable-next-line no-restricted-globals
-    const res = confirm(confirmMessage);
-    if (res) setCode(startingCode || "");
-  };
-  const handlePrettify = (e) => {
-    try {
-      const prettifiedCode = prettier.format(code, {
-        parser: "babel",
-        plugins: [babelParser],
-      });
-      setCode(prettifiedCode);
-    } catch (error) {
-      console.error(error);
-      setResults(null);
-      setMessage({
-        type: "error",
-        text: prettifyErrorMessage(variableName, error),
-      });
-      setLeftPanelTabIdx(1);
-    }
-  };
-  const toggleEditorTheme = (e) => {
-    setEditorTheme((currentTheme) => {
-      return currentTheme === "vs-dark" ? "vs" : "vs-dark";
-    });
-  };
+import { ArenaContext } from "../ArenaContext";
 
+const RightPanel = () => {
+  const { trySubmission, handlePrettify } = useContext(ArenaContext);
   const submissionCallback = useCallback(trySubmission);
   const prettifyCallback = useCallback(handlePrettify);
   useEffect(() => {
@@ -97,23 +32,8 @@ const RightPanel = ({
 
   return (
     <RightPanelContainer>
-      <Editor
-        {...{
-          editorTheme,
-          code,
-          setCode,
-        }}
-      />
-      <ButtonPanel
-        {...{
-          trySubmission,
-          loading,
-          handlePrettify,
-          editorTheme,
-          toggleEditorTheme,
-          resetCode,
-        }}
-      />
+      <Editor />
+      <ButtonPanel />
     </RightPanelContainer>
   );
 };

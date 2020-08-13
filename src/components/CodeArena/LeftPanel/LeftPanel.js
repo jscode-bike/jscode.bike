@@ -1,19 +1,21 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import Results from "./Results/Results.js";
 import MarkdownWrapper from "./MarkdownWrapper.js";
 import { Tabs, TabList, Tab, TabPanel } from "react-tabs";
 import Loading from "./Loading.js";
 import Message from "./Message.js";
+import { ArenaContext } from "../ArenaContext.js";
 
-const LeftPanel = ({
-  results,
-  loading,
-  message,
-  instructionComponent: Instructions,
-  tabIdx,
-  setTabIdx,
-}) => {
+const LeftPanel = () => {
+  const {
+    results,
+    loading,
+    message,
+    instructionComponent: Instructions,
+    leftPanelTabIdx: tabIdx,
+    setLeftPanelTabIdx: setTabIdx,
+  } = useContext(ArenaContext);
   const renderTab = () => {
     if (loading) return <Loading />;
     if (!results) return <Message {...{ message }} />;
@@ -31,9 +33,7 @@ const LeftPanel = ({
             <Instructions />
           </MarkdownWrapper>
         </TabPanel>
-        <TabPanel>
-          {renderTab()}
-        </TabPanel>
+        <TabPanel>{renderTab()}</TabPanel>
       </Tabs>
     </LeftPanelContaner>
   );

@@ -1,14 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
+import { ArenaContext } from "../ArenaContext";
 
-const ButtonPanel = ({
-  trySubmission,
-  loading,
-  handlePrettify,
-  editorTheme,
-  toggleEditorTheme,
-  resetCode
-}) => {
+const ButtonPanel = () => {
+  const {
+    trySubmission,
+    loading,
+    handlePrettify,
+    editorTheme,
+    toggleEditorTheme,
+    resetCode,
+  } = useContext(ArenaContext);
   return (
     <ButtonPanelContainer>
       <SubmitButton onClick={trySubmission} disabled={loading}>

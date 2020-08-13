@@ -1,49 +1,31 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import LeftPanel from "./LeftPanel/LeftPanel.js";
 import RightPanel from "./RightPanel/RightPanel.js";
 import Header from "./Header/Header.js";
+import ArenaProvider from "./ArenaContext.js";
 
 const CodeArena = ({
-  variableName,
   startingCode,
   tests,
-  solutions,
+  variableName,
   instructionComponent,
 }) => {
-  const [results, setResults] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const [leftPanelTabIdx, setLeftPanelTabIdx] = useState(0);
-  const [message, setMessage] = useState({
-    type: "initial",
-    text: "Submit your code to see results!",
-  });
   return (
-    <Container>
-      <Header />
-      <LeftPanel
-        {...{
-          results,
-          loading,
-          message,
-          instructionComponent,
-          tabIdx: leftPanelTabIdx,
-          setTabIdx: setLeftPanelTabIdx,
-        }}
-      />
-      <RightPanel
-        {...{
-          startingCode,
-          variableName,
-          tests,
-          setLeftPanelTabIdx,
-          setResults,
-          setMessage,
-          loading,
-          setLoading,
-        }}
-      />
-    </Container>
+    <ArenaProvider
+      {...{
+        startingCode,
+        tests,
+        variableName,
+        instructionComponent,
+      }}
+    >
+      <Container>
+        <Header />
+        <LeftPanel />
+        <RightPanel />
+      </Container>
+    </ArenaProvider>
   );
 };
 
