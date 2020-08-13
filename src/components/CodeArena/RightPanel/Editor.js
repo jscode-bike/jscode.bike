@@ -1,10 +1,11 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useContext } from "react";
 import MonacoEditor from "react-monaco-editor";
 import { getCssVariableNumberValue } from "../../../utils/utils.js";
+import { ArenaContext } from "../ArenaContext.js";
 
-const Editor = ({ editorTheme, code, setCode }) => {
+const Editor = () => {
   const editorRef = useRef(null);
-  
+  const { editorTheme, code, setCode } = useContext(ArenaContext);
   useEffect(() => {
     const resizeFn = function () {
       const headerTabAndSubmitHeight = [
