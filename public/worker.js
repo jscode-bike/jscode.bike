@@ -7,13 +7,16 @@ class Console {
         outputs.push({
           key,
           args: args.map((a) => {
+            if (a === this) throw new Error("illegal console operation");
             const type = typeof a;
             const text = type === "function" ? String(a) : JSON.stringify(a);
             return { type, text };
           }),
         });
       };
+      this[key].toString = () => "[internal code]";
     });
+    // this.toString = () => "[internal code]";
 
     return Object.freeze(this);
   }
@@ -38,7 +41,7 @@ const runTest = (fn, test) => {
 };
 
 const runUnitTest = (fn) => (test) => {
-  const outputs = []
+  const outputs = [];
   const spy = new Console(outputs);
   const fnToTest = fn(spy);
   try {
