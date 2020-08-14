@@ -14,10 +14,11 @@ const ResultsSummary = ({
   const collapseIcon = isCollapsed ? "▸" : "▾";
 
   return (
-    <SummaryContainer {...{ isPassing }}>
-      <ToggleCollapse onClick={(_e) => setIsCollapsed((c) => !c)}>
-        {collapseIcon}
-      </ToggleCollapse>
+    <SummaryContainer
+      {...{ isPassing }}
+      onClick={(_e) => setIsCollapsed((c) => !c)}
+    >
+      <ToggleCollapse>{collapseIcon}</ToggleCollapse>
       <SummaryIcon {...{ isPassing }}>{icon}</SummaryIcon>
       <SummaryText>{text}</SummaryText>
       <SummaryRatio>{ratio}</SummaryRatio>
@@ -35,6 +36,7 @@ const SummaryContainer = styled.code`
   align-items: center;
   gap: var(--spacing-small);
   height: var(--summary-container-height);
+  cursor: pointer;
 `;
 
 const SummarySpan = styled.span`
@@ -51,8 +53,6 @@ const SummaryRatio = styled(SummarySpan)`
   font-size: 1rem;
 `;
 
-const ToggleCollapse = styled(SummarySpan)`
-  cursor: pointer;
-`;
+const ToggleCollapse = styled(SummarySpan)``;
 
 export default ResultsSummary;

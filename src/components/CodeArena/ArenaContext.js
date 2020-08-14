@@ -27,7 +27,6 @@ const ArenaProvider = (props) => {
       const submissionResults = await submitCode(code, tests, variableName);
       setResults(submissionResults);
     } catch (error) {
-      debugger;
       const { error: text, rawError } = error;
       setMessage({
         type: "error",
