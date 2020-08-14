@@ -42,8 +42,7 @@ const ResultTextContainter = styled.div`
 
 const DescriptionSpan = styled.span``;
 
-const ToggleCollapse = styled(DescriptionSpan)`
-`;
+const ToggleCollapse = styled(DescriptionSpan)``;
 const DescriptionText = styled(DescriptionSpan)`
   flex-grow: 1;
 `;

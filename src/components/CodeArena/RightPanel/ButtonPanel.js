@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
 import { ArenaContext } from "../ArenaContext";
+import Button from "../../shared/Button.js";
 
 const ButtonPanel = () => {
   const {
@@ -34,48 +35,28 @@ const ButtonPanelContainer = styled.div`
   align-items: stretch;
 `;
 
-const Button = styled.button`
-  color: inherit;
-  border: none;
-  text-transform: uppercase;
-  letter-spacing: 0.2rem;
-  font-weight: bolder;
-  cursor: pointer;
-  outline: none;
-  width: calc(var(--tab-height) * 1.618);
-  transition: filter 0.1s;
-
-  :hover {
-    filter: brightness(120%);
-  }
-
-  :active {
-    filter: brightness(85%);
-  }
-
-  :disabled {
-    opacity: 50%;
-    pointer-events: none;
-  }
-`;
-
 const SubmitButton = styled(Button)`
   background-color: var(--color-green);
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
   flex-grow: 1;
 `;
 
 const BeautifyButton = styled(Button)`
   background-color: var(--color-blue);
+  width: calc(var(--tab-height) * 1.618);
   padding: 0 var(--spacing-medium);
 `;
 const ResetButton = styled(Button)`
   background-color: var(--color-blue);
+  width: calc(var(--tab-height) * 1.618);
   padding: 0 var(--spacing-medium);
   font-size: 1.3rem;
 `;
 
 const ToggleThemeButton = styled(Button)`
   background-color: var(--color-blue);
+  width: calc(var(--tab-height) * 1.618);
   padding: 0 var(--spacing-medium);
   font-size: 1.1rem;
 `;

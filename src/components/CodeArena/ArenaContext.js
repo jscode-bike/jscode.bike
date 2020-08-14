@@ -3,7 +3,9 @@ import React, { useState, createContext } from "react";
 import prettier from "prettier/standalone.js";
 import babelParser from "prettier/parser-babel";
 
-import { submitCode, prettifyErrorMessage } from "../../utils/utils.js";
+import submitCode from "../../utils/submitCode.js";
+
+import { prettifyErrorMessage } from "../../utils/utils.js";
 
 export const ArenaContext = createContext();
 
@@ -84,7 +86,7 @@ const ArenaProvider = (props) => {
     resetCode,
     handlePrettify,
     toggleEditorTheme,
-    instructionComponent
+    instructionComponent,
   };
   return (
     <ArenaContext.Provider value={value}>
