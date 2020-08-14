@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import LeftPanel from "./LeftPanel/LeftPanel.js";
 import RightPanel from "./RightPanel/RightPanel.js";
-import Header from "./Header/Header.js";
 import ArenaProvider from "./ArenaContext.js";
 
 const CodeArena = ({
@@ -21,7 +20,6 @@ const CodeArena = ({
       }}
     >
       <Container>
-        <Header />
         <LeftPanel />
         <RightPanel />
       </Container>
@@ -30,10 +28,10 @@ const CodeArena = ({
 };
 
 const Container = styled.div`
-  height: 100vh;
+  height: calc(100vh - var(--header-height));
   display: grid;
   grid-template-columns: 4fr 5fr;
-  grid-template-rows: var(--header-height) 1fr;
+  grid-template-rows: 1fr;
 `;
 
 export default CodeArena;

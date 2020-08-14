@@ -2,12 +2,14 @@ import React from "react";
 import styled from "styled-components";
 
 const Message = ({ message }) => {
-  const { type, text } = message;
+  const { type, text, rawError } = message;
 
   return (
     <MessageContainer>
       {type === "error" ? (
-        <ErrorText>{text}</ErrorText>
+        <ErrorText>
+          {text} : {rawError}
+        </ErrorText>
       ) : (
         <InfoText>{text}</InfoText>
       )}

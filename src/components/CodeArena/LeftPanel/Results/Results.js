@@ -35,7 +35,9 @@ const Results = ({ results: { summary, testResults } }) => {
   const [isCollapsed, setIsCollapsed] = useState(isPassing);
   return (
     <ResultsContainer>
-      <ResultsSummary {...{ summary, setIsCollapsed, isPassing, isCollapsed }} />
+      <ResultsSummary
+        {...{ summary, setIsCollapsed, isPassing, isCollapsed }}
+      />
       {!isCollapsed && (
         <TestResultsContainer>
           {testResults.map((r, idx) => (

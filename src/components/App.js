@@ -1,11 +1,33 @@
 import React from "react";
-import CodeArena from "./CodeArena/CodeArena";
-import sample from "../problems/fishBus/";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  useParams,
+} from "react-router-dom";
+
+import CodeArena from "./CodeArena/CodeArena.js";
+import Header from "./Header/Header.js";
+import Home from "./Home/Home.js";
+
+import { obj as exerciseHash } from "../exercises/index";
+
+const ArenaWrapper = () => {
+  const { variableName } = useParams();
+  const exercise = exerciseHash[variableName];
+  return <CodeArena {...exercise} />;
+};
 
 function App() {
   return (
     <div>
-      <CodeArena {...sample} />
+      <Router>
+        <Header />
+        <Switch>
+          <Route path="/" exact component={Home} />
+          <Route path="/:variableName" component={ArenaWrapper} />
+        </Switch>
+      </Router>
     </div>
   );
 }
