@@ -1,30 +1,36 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { vs2015 } from "react-syntax-highlighter/dist/esm/styles/hljs";
 
 const Outputs = ({ outputs }) => {
+  const [isCollapsed, setIsCollapsed] = useState(false);
+  const collapseIcon = isCollapsed ? "▸" : "▾";
   return (
     <OutputsContainer>
-      <ConsoleHeading>console:</ConsoleHeading>
-      {outputs.map((o, idx) => {
-        const codeString = `${o.args.map((a) => a.text).join(" ")}`;
-        return (
-          <ConsoleOutputContainer key={idx}>
-            <SyntaxHighlighterContainer
-              language="javascript"
-              style={vs2015}
-              customStyle={{
-                margin: 0,
-                padding: "var(--spacing-small)",
-                backgroundColor: "var(--bg-color-darker)",
-              }}
-            >
-              {codeString}
-            </SyntaxHighlighterContainer>
-          </ConsoleOutputContainer>
-        );
-      })}
+      <ConsoleHeading onClick={(_e) => setIsCollapsed((c) => !c)}>
+        <span>{collapseIcon}</span>
+        <span>console</span>
+      </ConsoleHeading>
+      {!isCollapsed &&
+        outputs.map((o, idx) => {
+          const codeString = `${o.args.map((a) => a.text).join(" ")}`;
+          return (
+            <ConsoleOutputContainer key={idx}>
+              <SyntaxHighlighterContainer
+                language="javascript"
+                style={vs2015}
+                customStyle={{
+                  margin: 0,
+                  padding: "var(--spacing-small)",
+                  backgroundColor: "var(--bg-color-darker)",
+                }}
+              >
+                {codeString}
+              </SyntaxHighlighterContainer>
+            </ConsoleOutputContainer>
+          );
+        })}
     </OutputsContainer>
   );
 };
@@ -61,6 +67,9 @@ const ConsoleHeading = styled.h4`
   font-family: monospace;
   padding: var(--spacing-small);
   background-color: var(--bg-color-dark);
+  display: flex;
+  gap: var(--spacing-small);
+  cursor: pointer;
 `;
 
 export default Outputs;

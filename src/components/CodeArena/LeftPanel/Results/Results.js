@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Result from "./Result.js";
 import ResultsSummary from "./ResultsSummary.js";
@@ -29,16 +29,23 @@ const TestResultsContainer = styled.div`
   gap: var(--spacing-medium);
 `;
 
-const Results = ({ results: { summary, testResults } }) => (
-  <ResultsContainer>
-    <ResultsSummary {...{ summary }} />
-    <TestResultsContainer>
-      {testResults.map((r, idx) => (
-        <Result key={idx} result={r} />
-      ))}
-    </TestResultsContainer>
-  </ResultsContainer>
-);
+const Results = ({ results: { summary, testResults } }) => {
+  const { passed, total } = summary;
+  const isPassing = passed === total;
+  const [isCollapsed, setIsCollapsed] = useState(isPassing);
+  return (
+    <ResultsContainer>
+      <ResultsSummary {...{ summary, setIsCollapsed, isPassing, isCollapsed }} />
+      {!isCollapsed && (
+        <TestResultsContainer>
+          {testResults.map((r, idx) => (
+            <Result key={idx} result={r} />
+          ))}
+        </TestResultsContainer>
+      )}
+    </ResultsContainer>
+  );
+};
 
 const ResultsContainer = styled.div`
   max-height: var(--panel-height);
