@@ -32,10 +32,26 @@ const Wrapper = styled.div`
   }
 
   pre {
-    margin: var(--spacing-medium) 0;
-    padding: 5px var(--spacing-small);
+    ::-webkit-scrollbar {
+      width: var(--spacing-small);
+      height: var(--spacing-small);
+      cursor: pointer;
+    }
+    ::-webkit-scrollbar-track {
+      background-color: var(--bg-color-dark);
+    }
+    ::-webkit-scrollbar-thumb {
+      background-color: var(--bg-color-darker);
+    }
+
+    width: calc(
+      calc(100vw * (4 / 9)) - calc(var(--spacing-medium) * 2) -
+        var(--spacing-small)
+    );
+    padding: 0 var(--spacing-small);
     background-color: var(--bg-color-dark);
     letter-spacing: 1px;
+    overflow-x: auto;
   }
 `;
 
