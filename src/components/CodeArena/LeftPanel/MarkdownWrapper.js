@@ -31,6 +31,12 @@ const Wrapper = styled.div`
     margin: 0 0 var(--spacing-medium) 0;
   }
 
+  p code {
+    padding: 5px var(--spacing-small);
+    background-color: var(--bg-color-dark);
+    letter-spacing: 1px;
+  }
+
   pre {
     ::-webkit-scrollbar {
       width: var(--spacing-small);
@@ -54,7 +60,6 @@ const Wrapper = styled.div`
     margin: var(--spacing-medium) 0;
     padding: 0 var(--spacing-small);
     background-color: var(--bg-color-dark);
-    letter-spacing: 1px;
     overflow-x: auto;
   }
 `;
