@@ -2,7 +2,7 @@ import React, { Suspense, lazy } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import Header from "../Header/Header.js";
-import Spinner from "./Spinner.js";
+import Spinner from "../shared/Spinner.js";
 import NoMatch from "./NoMatch.js";
 
 const Home = lazy(() => import("../Home/Home.js"));

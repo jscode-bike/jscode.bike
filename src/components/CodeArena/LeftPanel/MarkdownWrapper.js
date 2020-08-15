@@ -31,7 +31,8 @@ const Wrapper = styled.div`
     margin: 0 0 var(--spacing-medium) 0;
   }
 
-  code {
+  pre {
+    margin: var(--spacing-medium) 0;
     padding: 5px var(--spacing-small);
     background-color: var(--bg-color-dark);
     letter-spacing: 1px;

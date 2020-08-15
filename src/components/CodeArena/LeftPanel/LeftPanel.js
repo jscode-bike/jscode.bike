@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Results from "./Results/Results.js";
 import MarkdownWrapper from "./MarkdownWrapper.js";
 import { Tabs, TabList, Tab, TabPanel } from "react-tabs";
-import Loading from "./Loading.js";
+import Spinner from "../../shared/Spinner.js";
 import Message from "./Message.js";
 import { ArenaContext } from "../ArenaContext.js";
 
@@ -17,7 +17,7 @@ const LeftPanel = () => {
     setLeftPanelTabIdx: setTabIdx,
   } = useContext(ArenaContext);
   const renderTab = () => {
-    if (loading) return <Loading />;
+    if (loading) return <Spinner />;
     if (!results) return <Message {...{ message }} />;
     return <Results {...{ results }} />;
   };
