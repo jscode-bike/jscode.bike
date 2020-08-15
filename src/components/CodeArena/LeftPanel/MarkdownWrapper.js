@@ -48,6 +48,10 @@ const Wrapper = styled.div`
       calc(100vw * (4 / 9)) - calc(var(--spacing-medium) * 2) -
         var(--spacing-small)
     );
+
+    font-size: 0.9rem;
+
+    margin: var(--spacing-medium) 0;
     padding: 0 var(--spacing-small);
     background-color: var(--bg-color-dark);
     letter-spacing: 1px;
