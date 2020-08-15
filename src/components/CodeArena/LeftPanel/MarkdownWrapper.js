@@ -55,10 +55,11 @@ const Wrapper = styled.div`
         var(--spacing-small)
     );
 
+    line-height: 1.2rem;
     font-size: 0.9rem;
 
     margin: var(--spacing-medium) 0;
-    padding: 0 var(--spacing-small);
+    padding: var(--spacing-small);
     background-color: var(--bg-color-dark);
     overflow-x: auto;
   }
