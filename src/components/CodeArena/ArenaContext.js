@@ -6,6 +6,10 @@ import babelParser from "prettier/parser-babel";
 import submitCode from "../../utils/submitCode.js";
 
 import { prettifyErrorMessage } from "../../utils/utils.js";
+import {
+  saveToLocalStorage,
+  fetchFromLocalStorage,
+} from "../../utils/localStorage.js";
 
 export const ArenaContext = createContext();
 
@@ -19,7 +23,9 @@ const ArenaProvider = (props) => {
     text: "Submit your code to see results!",
   });
   const [editorTheme, setEditorTheme] = useState("vs-dark");
-  const [code, setCode] = useState(startingCode || "");
+  const [code, setCode] = useState(
+    fetchFromLocalStorage(variableName) || startingCode || ""
+  );
   const trySubmission = async () => {
     if (loading) return;
     setLeftPanelTabIdx(1);
@@ -27,6 +33,7 @@ const ArenaProvider = (props) => {
     setResults(null);
     try {
       const submissionResults = await submitCode(code, tests, variableName);
+      saveToLocalStorage(variableName, code, submissionResults);
       setResults(submissionResults);
     } catch (error) {
       const { error: text, rawError } = error;
