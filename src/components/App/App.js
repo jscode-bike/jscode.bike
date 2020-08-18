@@ -16,7 +16,7 @@ function App() {
         <Suspense fallback={<Spinner />}>
           <Switch>
             <Route path="/" exact component={Home} />
-            <Route path="/:variableName" component={ArenaWrapper} />
+            <Route path="/c/:variableName" component={ArenaWrapper} />
             <Route path="*" component={NoMatch} />
           </Switch>
         </Suspense>
