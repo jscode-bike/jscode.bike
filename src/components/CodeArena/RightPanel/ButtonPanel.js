@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
-import { ArenaContext } from "../ArenaContext";
+import { ArenaContext } from "../ArenaContext.js";
 import Button from "../../shared/Button.js";
 
 const ButtonPanel = () => {
