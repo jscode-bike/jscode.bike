@@ -21,7 +21,7 @@ const ArenaProvider = (props) => {
   const isSmallScreen = width < 768;
   const [results, setResults] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [leftPanelTabIdx, setLeftPanelTabIdx] = useState(0);
+  const [tabIdx, setTabIdx] = useState(0);
   const [message, setMessage] = useState({
     type: "initial",
     text: "Submit your code to see results!",
@@ -32,7 +32,7 @@ const ArenaProvider = (props) => {
   );
   const trySubmission = async () => {
     if (loading) return;
-    setLeftPanelTabIdx(1);
+    setTabIdx(1);
     setLoading(true);
     setResults(null);
     try {
@@ -71,7 +71,7 @@ const ArenaProvider = (props) => {
         type: "error",
         text: prettifyErrorMessage(variableName, error),
       });
-      setLeftPanelTabIdx(1);
+      setTabIdx(1);
     }
   };
   const toggleEditorTheme = (e) => {
@@ -85,8 +85,8 @@ const ArenaProvider = (props) => {
     setResults,
     loading,
     setLoading,
-    leftPanelTabIdx,
-    setLeftPanelTabIdx,
+    tabIdx,
+    setTabIdx,
     message,
     setMessage,
     editorTheme,

@@ -1,15 +1,16 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
 import { Tabs, TabPanel } from "react-tabs";
-import { ArenaContext } from "../ArenaContext.js";
+
 import { TabStyled, TabListStyled } from "../shared/styledTabs.js";
 import Instructions from "../shared/Instructions.js";
 import ResultsPanel from "../shared/Results/ResultsPanel.js";
+import { ArenaContext } from "../ArenaContext.js";
 
-const LeftPanel = () => {
+const SinglePanel = () => {
   const { tabIdx, setTabIdx } = useContext(ArenaContext);
   return (
-    <LeftPanelContaner>
+    <SinglePanelContainer>
       <Tabs selectedIndex={tabIdx} onSelect={setTabIdx}>
         <TabListStyled>
           <TabStyled>Instructions</TabStyled>
@@ -22,10 +23,10 @@ const LeftPanel = () => {
           <ResultsPanel />
         </TabPanel>
       </Tabs>
-    </LeftPanelContaner>
+    </SinglePanelContainer>
   );
 };
 
-const LeftPanelContaner = styled.div``;
+const SinglePanelContainer = styled.div``;
 
-export default LeftPanel;
+export default SinglePanel;
