@@ -1,4 +1,4 @@
-import React, { useState, createContext } from "react";
+import React, { useState, createContext, useEffect, useCallback } from "react";
 
 import prettier from "prettier/standalone.js";
 import babelParser from "prettier/parser-babel";
@@ -79,6 +79,30 @@ const ArenaProvider = (props) => {
       return currentTheme === "vs-dark" ? "vs" : "vs-dark";
     });
   };
+
+  // listeners from RightPanel
+  const submissionCallback = useCallback(trySubmission);
+  const prettifyCallback = useCallback(handlePrettify);
+  useEffect(() => {
+    const cmdSaveFn = async (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.keyCode === 83) {
+        e.preventDefault();
+        await submissionCallback();
+      }
+    };
+    const beautifyShortcutFn = (e) => {
+      if (e.shiftKey && e.altKey && e.keyCode === 70) {
+        e.preventDefault();
+        prettifyCallback();
+      }
+    };
+    window.addEventListener("keydown", cmdSaveFn);
+    window.addEventListener("keydown", beautifyShortcutFn);
+    return () => {
+      window.removeEventListener("keydown", cmdSaveFn);
+      window.removeEventListener("keydown", beautifyShortcutFn);
+    };
+  }, [submissionCallback, prettifyCallback]);
 
   const value = {
     results,

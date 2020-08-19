@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useContext } from "react";
-import MonacoEditor from "react-monaco-editor";
 import { getCssVariableNumberValue } from "../../../utils/utils.js";
 import { ArenaContext } from "../ArenaContext.js";
+import Monaco from "../shared/Monaco.js";
 
 const Editor = () => {
   const editorRef = useRef(null);
@@ -27,26 +27,14 @@ const Editor = () => {
     window.addEventListener("resize", resizeFn);
     return () => window.removeEventListener("resize", resizeFn);
   }, [editorRef]);
-
   return (
-    <MonacoEditor
-      language="javascript"
-      theme={editorTheme}
-      value={code}
-      options={{
-        wordWrap: "on",
-        formatOnType: true,
-        tabCompletion: "on",
-        mouseWheelZoom: true,
-        scrollBeyondLastLine: false,
-        automaticLayout: true,
-        contextmenu: true,
-        multiCursorModifier: "ctrlCmd",
-        fontSize: 18,
+    <Monaco
+      {...{
+        editorTheme,
+        code,
+        setCode,
+        editorRef,
       }}
-      onChange={setCode}
-      editorDidMount={(e) => (editorRef.current = e)}
-      height="var(--editor-height)"
     />
   );
 };

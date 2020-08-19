@@ -3,9 +3,7 @@ import styled from "styled-components";
 import { getCssVariableNumberValue } from "../../../utils/utils.js";
 import Button from "../../shared/Button.js";
 import { ArenaContext } from "../ArenaContext.js";
-import MonacoEditor from "react-monaco-editor";
-
-const EditorPanelContainer = styled.div``;
+import Monaco from "../shared/Monaco.js";
 
 const EditorPanel = () => {
   const editorRef = useRef(null);
@@ -18,7 +16,6 @@ const EditorPanel = () => {
     resetCode,
     handlePrettify,
     toggleEditorTheme,
-    setTabIdx,
   } = useContext(ArenaContext);
   useEffect(() => {
     const resizeFn = function () {
@@ -32,34 +29,22 @@ const EditorPanel = () => {
       const height = window.innerHeight - headerTabAndSubmitHeight;
       editorRef.current.layout({
         height,
-        width: window.innerWidth,
+        width:
+          window.innerWidth - getCssVariableNumberValue("--spacing-small") * 2,
       });
     };
     window.addEventListener("resize", resizeFn);
-    return () => {
-      window.removeEventListener("resize", resizeFn);
-    };
-  }, [editorRef, setTabIdx]);
+    return () => window.removeEventListener("resize", resizeFn);
+  }, [editorRef]);
   return (
     <EditorPanelContainer>
-      <MonacoEditor
-        language="javascript"
-        theme={editorTheme}
-        value={code}
-        options={{
-          wordWrap: "on",
-          formatOnType: true,
-          tabCompletion: "on",
-          mouseWheelZoom: true,
-          scrollBeyondLastLine: false,
-          automaticLayout: true,
-          contextmenu: true,
-          multiCursorModifier: "ctrlCmd",
-          fontSize: 18,
+      <Monaco
+        {...{
+          editorTheme,
+          code,
+          setCode,
+          editorRef,
         }}
-        onChange={setCode}
-        editorDidMount={(e) => (editorRef.current = e)}
-        height="var(--editor-height)"
       />
       <ButtonPanelContainer>
         <SubmitButton onClick={trySubmission} disabled={loading}>
@@ -75,13 +60,17 @@ const EditorPanel = () => {
   );
 };
 
+const EditorPanelContainer = styled.div`
+  padding: var(--spacing-small);
+`;
+
 const ButtonPanelContainer = styled.div`
-  /* width: 100%;
-  margin: var(--spacing-small) 0 var(--spacing-medium) 0;
+  width: 100%;
+  margin-top: var(--spacing-small);
   height: var(--button-panel-height);
   display: inline-flex;
   gap: var(--spacing-small);
-  align-items: stretch; */
+  align-items: stretch;
 `;
 
 const SubmitButton = styled(Button)`

@@ -10,7 +10,10 @@ import { ArenaContext } from "../ArenaContext.js";
 
 const SinglePanel = () => {
   const { tabIdx, setTabIdx } = useContext(ArenaContext);
-  useEffect(() => () => setTabIdx(0), [setTabIdx]);
+  useEffect(
+    () => () => setTabIdx((oldTabIdx) => (oldTabIdx < 2 ? oldTabIdx : 0)),
+    [setTabIdx]
+  );
   return (
     <SinglePanelContainer>
       <Tabs selectedIndex={tabIdx} onSelect={setTabIdx}>
