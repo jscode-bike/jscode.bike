@@ -1,36 +1,25 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import LeftPanel from "./LeftPanel/LeftPanel.js";
 import RightPanel from "./RightPanel/RightPanel.js";
-import ArenaProvider from "./ArenaContext.js";
+import { ArenaContext } from "./ArenaContext.js";
 
-const CodeArena = ({
-  startingCode,
-  tests,
-  variableName,
-  instructionComponent,
-}) => {
+const CodeArena = () => {
+  const { isSmallScreen } = useContext(ArenaContext);
+  console.log("isSmallScreen?", isSmallScreen);
   return (
-    <ArenaProvider
-      {...{
-        startingCode,
-        tests,
-        variableName,
-        instructionComponent,
-      }}
-    >
-      <Container>
-        <LeftPanel />
-        <RightPanel />
-      </Container>
-    </ArenaProvider>
+    <Container>
+      <LeftPanel />
+      <RightPanel />
+    </Container>
   );
 };
 
 const Container = styled.div`
   height: calc(100vh - var(--header-height));
   display: grid;
-  grid-template-columns: 4fr 5fr;
+  grid-template-columns: ${({ isSmallScreen }) =>
+    isSmallScreen ? "1fr" : "4fr 5fr"};
   grid-template-rows: 1fr;
 `;
 

@@ -3,6 +3,8 @@ import React, { useState, createContext } from "react";
 import prettier from "prettier/standalone.js";
 import babelParser from "prettier/parser-babel";
 
+import useWindowSize from "react-use/lib/useWindowSize";
+
 import submitCode from "../../utils/submitCode.js";
 
 import { prettifyErrorMessage } from "../../utils/utils.js";
@@ -15,6 +17,8 @@ export const ArenaContext = createContext();
 
 const ArenaProvider = (props) => {
   const { startingCode, tests, variableName, instructionComponent } = props;
+  const { width } = useWindowSize();
+  const isSmallScreen = width < 768;
   const [results, setResults] = useState(null);
   const [loading, setLoading] = useState(false);
   const [leftPanelTabIdx, setLeftPanelTabIdx] = useState(0);
@@ -94,6 +98,7 @@ const ArenaProvider = (props) => {
     handlePrettify,
     toggleEditorTheme,
     instructionComponent,
+    isSmallScreen,
   };
   return (
     <ArenaContext.Provider value={value}>
