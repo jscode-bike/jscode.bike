@@ -13,7 +13,7 @@ const Home = () => {
       <ListContainer>
         {exercises.map((e) => {
           return (
-            <StyledLink key={e.variableName} to={`/c/${e.variableName}`}>
+            <StyledLink key={e.variableName} to={`/${e.variableName}`}>
               <ExerciseButton>{e.name}</ExerciseButton>
             </StyledLink>
           );
