@@ -14,6 +14,7 @@ v1
 - build out header component
 - make `message` and `error message` components more helpful
 - add more problems
+- code split and dynamically load each problem
 - use local storage to show user progress
 
 consider
