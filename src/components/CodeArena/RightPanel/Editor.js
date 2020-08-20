@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useContext } from "react";
-import { getCssVariableNumberValue } from "../../../utils/utils.js";
+import { getCssVariableNumberValue, debounce } from "../../../utils/utils.js";
 import { ArenaContext } from "../ArenaContext.js";
 import Monaco from "../shared/Monaco.js";
 
@@ -7,7 +7,7 @@ const Editor = () => {
   const editorRef = useRef(null);
   const { editorTheme, code, setCode } = useContext(ArenaContext);
   useEffect(() => {
-    const resizeFn = function () {
+    const resizeFn = debounce(function () {
       const headerTabAndSubmitHeight = [
         "--header-height",
         "--tab-height",
@@ -23,7 +23,7 @@ const Editor = () => {
             getCssVariableNumberValue("--spacing-medium")) |
           0,
       });
-    };
+    });
     window.addEventListener("resize", resizeFn);
     return () => window.removeEventListener("resize", resizeFn);
   }, [editorRef]);

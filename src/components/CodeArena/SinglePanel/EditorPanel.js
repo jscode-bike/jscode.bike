@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useRef } from "react";
 import styled from "styled-components";
-import { getCssVariableNumberValue } from "../../../utils/utils.js";
+import { getCssVariableNumberValue, debounce } from "../../../utils/utils.js";
 import Button from "../../shared/Button.js";
 import { ArenaContext } from "../ArenaContext.js";
 import Monaco from "../shared/Monaco.js";
@@ -18,7 +18,7 @@ const EditorPanel = () => {
     toggleEditorTheme,
   } = useContext(ArenaContext);
   useEffect(() => {
-    const resizeFn = function () {
+    const resizeFn = debounce(function () {
       const headerTabAndSubmitHeight = [
         "--header-height",
         "--tab-height",
@@ -32,7 +32,7 @@ const EditorPanel = () => {
         width:
           window.innerWidth - getCssVariableNumberValue("--spacing-small") * 2,
       });
-    };
+    });
     window.addEventListener("resize", resizeFn);
     return () => window.removeEventListener("resize", resizeFn);
   }, [editorRef]);
