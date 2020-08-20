@@ -1,13 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import styled from "styled-components";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { vs2015 } from "react-syntax-highlighter/dist/esm/styles/hljs";
+import { ArenaContext } from "../../ArenaContext";
 
 const Outputs = ({ outputs }) => {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const collapseIcon = isCollapsed ? "▸" : "▾";
+
+  const { isSmallScreen } = useContext(ArenaContext);
   return (
-    <OutputsContainer>
+    <OutputsContainer {...{ isSmallScreen }}>
       <ConsoleHeading onClick={(_e) => setIsCollapsed((c) => !c)}>
         <span>{collapseIcon}</span>
         <span>console</span>
@@ -57,8 +60,8 @@ const ConsoleOutputContainer = styled.div``;
 const OutputsContainer = styled.div`
   background-color: var(--bg-color-darker);
   width: calc(
-    calc(100vw * 4 / 9) - calc(var(--spacing-medium) * 4) -
-      calc(var(--spacing-small) * 3)
+    calc(${({ isSmallScreen }) => (isSmallScreen ? "100vw" : "100vw * 4 / 9")}) -
+      calc(var(--spacing-medium) * 4) - calc(var(--spacing-small) * 3)
   );
   margin-top: var(--spacing-small);
 `;

@@ -21,3 +21,5 @@ a frontend-only implementation of codewars-style javascript problem solving edit
 ## useful tips:
 
 - 'rafce' makes a new component in react as a snippet named after filename (learned from Fullstack Mastery channel on youtube)
+
+- trying memoization: https://medium.com/@rossbulat/how-to-memoize-in-react-3d20cbcd2b6e

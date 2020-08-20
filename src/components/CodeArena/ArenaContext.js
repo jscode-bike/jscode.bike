@@ -15,6 +15,7 @@ import {
 
 export const ArenaContext = createContext();
 
+/// lot of tech debt in this component
 const ArenaProvider = (props) => {
   const { startingCode, tests, variableName, instructionComponent } = props;
   const { width } = useWindowSize();
@@ -106,7 +107,6 @@ const ArenaProvider = (props) => {
 
   const value = {
     results,
-    setResults,
     loading,
     setLoading,
     tabIdx,
