@@ -31,6 +31,7 @@ consider
 - integrating tabs with router, finding new solution for tabs w/ code splitting
 - finding better solution for syntax highlighter in results
   - too slow; look into memoization or just new solution altogether
+- different themes!!
 - solutions tab, or at least link to blog
 - create data structures section for fundamentals practice
 - SEO, and/or potential migration to gatsby
