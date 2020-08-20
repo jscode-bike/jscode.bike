@@ -108,13 +108,10 @@ const ArenaProvider = (props) => {
   const value = {
     results,
     loading,
-    setLoading,
     tabIdx,
     setTabIdx,
     message,
-    setMessage,
     editorTheme,
-    setEditorTheme,
     code,
     setCode,
     trySubmission,

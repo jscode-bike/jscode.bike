@@ -13,8 +13,7 @@ const DesktopView = () => (
 const DesktopContainer = styled.div`
   height: calc(100vh - var(--header-height));
   display: grid;
-  grid-template-columns: ${({ isSmallScreen }) =>
-    isSmallScreen ? "1fr" : "4fr 5fr"};
+  grid-template-columns: 4fr 5fr;
   grid-template-rows: 1fr;
 `;
 
