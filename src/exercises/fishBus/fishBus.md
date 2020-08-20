@@ -6,6 +6,7 @@ tags:
   - fundamentals
   - numbers
 startingCode: function fishBus(n) {\n  // code here...\n}
+difficulty: 1
 ---
 
 # FishBus

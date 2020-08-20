@@ -4,6 +4,7 @@ variableName: findOdd
 tags:
   - arrays
 startingCode: function findOdd(arr) {\n // code here...\n}
+difficulty: 2
 ---
 
 # Find Odd Integer

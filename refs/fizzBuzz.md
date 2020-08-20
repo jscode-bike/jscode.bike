@@ -5,6 +5,7 @@ tags:
   - conditionals
   - fundamentals
   - numbers
+difficulty: 1
 ---
 
 # FizzBuzz
