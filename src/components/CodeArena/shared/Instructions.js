@@ -3,11 +3,12 @@ import { ArenaContext } from "../ArenaContext";
 import MarkdownWrapper from "./MarkdownWrapper";
 
 const Instructions = () => {
-  const { instructionComponent: InstructionsComponent } = useContext(
-    ArenaContext
-  );
+  const {
+    instructionComponent: InstructionsComponent,
+    isSmallScreen,
+  } = useContext(ArenaContext);
   return (
-    <MarkdownWrapper>
+    <MarkdownWrapper {...{ isSmallScreen }}>
       <InstructionsComponent />
     </MarkdownWrapper>
   );

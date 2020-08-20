@@ -51,8 +51,9 @@ const Wrapper = styled.div`
     }
 
     width: calc(
-      calc(100vw * (4 / 9)) - calc(var(--spacing-medium) * 2) -
-        var(--spacing-small)
+      calc(
+          ${({ isSmallScreen }) => (isSmallScreen ? "100vw" : "100vw * 4 / 9")}
+        ) - calc(var(--spacing-medium) * 2) - var(--spacing-small)
     );
 
     line-height: 1.2rem;
@@ -65,6 +66,8 @@ const Wrapper = styled.div`
   }
 `;
 
-const MarkdownWrapper = ({ children }) => <Wrapper>{children}</Wrapper>;
+const MarkdownWrapper = ({ children, isSmallScreen }) => (
+  <Wrapper {...{ isSmallScreen }}>{children}</Wrapper>
+);
 
 export default MarkdownWrapper;
