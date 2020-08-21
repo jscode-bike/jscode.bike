@@ -5,7 +5,7 @@ import { vs2015 } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import { ArenaContext } from "../../ArenaContext";
 
 const Outputs = ({ outputs }) => {
-  const [isCollapsed, setIsCollapsed] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState(true);
   const collapseIcon = isCollapsed ? "▸" : "▾";
 
   const { isSmallScreen } = useContext(ArenaContext);
