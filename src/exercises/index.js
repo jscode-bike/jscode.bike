@@ -1,8 +1,9 @@
 import fishBus from "./fishBus/index.js";
 import findOdd from "./findOdd/index.js";
+import twoSum from "./twoSum/index.js";
 // import LinkedList from "./LinkedList/index.js";
 
-export const arr = [fishBus, findOdd];
+export const arr = [fishBus, findOdd, twoSum];
 
 //fundamentals
 

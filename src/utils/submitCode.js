@@ -6,7 +6,7 @@ const runTestsInWorker = (code, tests, variableName) => {
   if (!window.Worker) throw new Error("please enable web workers");
 
   return new Promise((resolve, reject) => {
-    const myWorker = new Worker("worker.js");
+    const myWorker = new Worker("/worker.js");
     let timer = setTimeout(() => {
       console.warn("worker didnt respond...");
       myWorker.terminate();
