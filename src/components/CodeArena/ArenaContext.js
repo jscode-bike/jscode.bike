@@ -76,8 +76,10 @@ const ArenaProvider = (props) => {
     }
   };
   const toggleEditorTheme = (e) => {
+    const themes = ["vs-dark", "vs", "hc-black"];
     setEditorTheme((currentTheme) => {
-      return currentTheme === "vs-dark" ? "vs" : "vs-dark";
+      const idx = themes.indexOf(currentTheme);
+      return themes[(idx + 1) % 3];
     });
   };
 

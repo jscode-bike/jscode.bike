@@ -16,9 +16,16 @@ const Monaco = ({ editorTheme, code, setCode, editorRef }) => (
       contextmenu: true,
       multiCursorModifier: "ctrlCmd",
       fontSize: 18,
+      minimap: {
+        enabled: false,
+      },
     }}
     onChange={setCode}
-    editorDidMount={(e) => (editorRef.current = e)}
+    editorDidMount={(e, m) => {
+      editorRef.current = e;
+      // this is how you define theme!
+      // m.editor.defineTheme()
+    }}
     height="var(--editor-height)"
   />
 );

@@ -27,13 +27,8 @@
     />
     <title>JS Code Bike</title>
     <style>
-      html {
-        background-color: var(--bg-color);
-        color: var(--text-color);
-        font-family: "Karla";
-        --text-color: white;
+      :root {
         --header-height: 40px;
-        --header-color: black;
         --button-panel-height: 40px;
         --spacing-small: 10px;
         --spacing-medium: 22px;
@@ -44,6 +39,9 @@
             var(--tab-height) - var(--spacing-small) - var(--spacing-medium)
         );
         --panel-height: calc(100vh - var(--tab-height) - var(--header-height));
+
+        --text-color: white;
+        --header-color: black;
         --bg-color: #323330;
         --bg-color-dark: #1e1f1d;
         --bg-color-darker: #0a0b0a;
@@ -55,6 +53,11 @@
         --color-red: #b63d3d;
         --color-red-dark: #993333;
         --color-red-bright: #cb6363;
+      }
+      html {
+        background-color: var(--bg-color);
+        color: var(--text-color);
+        font-family: "Karla";
       }
       * {
         margin: 0;
