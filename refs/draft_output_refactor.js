@@ -1,13 +1,15 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext, useRef, useEffect } from "react";
 import styled from "styled-components";
+// import SyntaxHighlighter from "react-syntax-highlighter";
+// import { vs2015 } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import { ArenaContext } from "../../ArenaContext";
-import { uuid } from "../../../../utils/utils.js";
+// import SyntaxHighlighter from "react-syntax-highlighter";
 
 const Outputs = ({ outputs }) => {
   const [isCollapsed, setIsCollapsed] = useState(true);
   const collapseIcon = isCollapsed ? "▸" : "▾";
 
-  const { isSmallScreen, editorTheme } = useContext(ArenaContext);
+  const { isSmallScreen } = useContext(ArenaContext);
   return (
     <OutputsContainer {...{ isSmallScreen }}>
       <ConsoleHeading onClick={(_e) => setIsCollapsed((c) => !c)}>
@@ -16,12 +18,11 @@ const Outputs = ({ outputs }) => {
       </ConsoleHeading>
       {!isCollapsed &&
         outputs.map((o, idx) => {
-          const id = "a" + uuid();
           const codeString = `${o.args.map((a) => a.text).join(" ")}`;
           return (
             <ConsoleOutputContainer key={idx}>
-              <SyntaxHighlighterContainer {...{ editorTheme }}>
-                <SyntaxHighlighter code={codeString} id={id} />
+              <SyntaxHighlighterContainer>
+                <SyntaxHighlighter code={codeString} />
               </SyntaxHighlighterContainer>
             </ConsoleOutputContainer>
           );
@@ -30,17 +31,16 @@ const Outputs = ({ outputs }) => {
   );
 };
 
-// below is a very hacky component in order to apply syntax highlighting via monaco
-// instead of using react-syntax-highlighter with hljs
-const SyntaxHighlighter = ({ code, id }) => {
+const SyntaxHighlighter = ({ code }) => {
   const { monacoRef } = useContext(ArenaContext);
+  const component = useRef(<div>{code}</div>);
   useEffect(() => {
     if (!monacoRef.current) return;
     monacoRef.current.editor.colorize(code, "javascript").then((xml) => {
-      document.querySelector("#" + id).innerHTML = xml;
+      component.current = <div dangerouslySetInnerHTML={{ __html: xml }}></div>;
     });
-  }, [monacoRef, code, id]);
-  return <div id={id}>...</div>;
+  });
+  return component.current;
 };
 
 const SyntaxHighlighterContainer = styled.div`
@@ -59,21 +59,9 @@ const SyntaxHighlighterContainer = styled.div`
     background-color: var(--bg-color-dark);
   }
 
-  overflow-x: auto;
-
   margin: 0;
   padding: var(--spacing-small);
-  background-color: ${({ editorTheme }) => {
-    /// this is debt. gotta refactor this into a nicer structure with more accurate colors
-    return {
-      vs: "white",
-      "vs-dark": "var(--bg-color-darker)",
-      "hc-black": "black",
-    }[editorTheme];
-  }};
-
-  font-family: monospace;
-  font-size: 1.1rem;
+  background-color: var(--bg-color-darker);
 `;
 
 const ConsoleOutputContainer = styled.div``;

@@ -1,4 +1,10 @@
-import React, { useState, createContext, useEffect, useCallback } from "react";
+import React, {
+  useState,
+  createContext,
+  useEffect,
+  useCallback,
+  useRef,
+} from "react";
 
 import prettier from "prettier/standalone.js";
 import babelParser from "prettier/parser-babel";
@@ -31,6 +37,7 @@ const ArenaProvider = (props) => {
   const [code, setCode] = useState(
     fetchFromLocalStorage(variableName) || startingCode || ""
   );
+  const monacoRef = useRef(null);
   const trySubmission = async () => {
     if (loading) return;
     setTabIdx(1);
@@ -112,6 +119,7 @@ const ArenaProvider = (props) => {
     loading,
     tabIdx,
     setTabIdx,
+    monacoRef,
     message,
     editorTheme,
     code,

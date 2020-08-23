@@ -9,8 +9,6 @@ const EditorPanel = () => {
   const editorRef = useRef(null);
   const {
     editorTheme,
-    code,
-    setCode,
     trySubmission,
     loading,
     resetCode,
@@ -38,14 +36,7 @@ const EditorPanel = () => {
   }, [editorRef]);
   return (
     <EditorPanelContainer>
-      <Monaco
-        {...{
-          editorTheme,
-          code,
-          setCode,
-          editorRef,
-        }}
-      />
+      <Monaco {...{ editorRef }} />
       <ButtonPanelContainer>
         <SubmitButton onClick={trySubmission} disabled={loading}>
           Submit Code
@@ -53,7 +44,7 @@ const EditorPanel = () => {
         <ResetButton onClick={resetCode}>⎌</ResetButton>
         <BeautifyButton onClick={handlePrettify}>{"{}"}</BeautifyButton>
         <ToggleThemeButton onClick={toggleEditorTheme}>
-          {{ "vs-dark": "☼", vs: "☾" }[editorTheme]}
+          {{ "vs-dark": "☼", vs: "◐", "hc-black": "☾" }[editorTheme]}
         </ToggleThemeButton>
       </ButtonPanelContainer>
     </EditorPanelContainer>

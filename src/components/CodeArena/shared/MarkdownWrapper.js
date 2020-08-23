@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import "highlight.js/styles/vs2015.css";
 
 const Wrapper = styled.div`
   ::-webkit-scrollbar {
@@ -56,18 +55,25 @@ const Wrapper = styled.div`
         ) - calc(var(--spacing-medium) * 2) - var(--spacing-small)
     );
 
-    line-height: 1.2rem;
-    font-size: 0.9rem;
+    line-height: 1.4rem;
+    font-size: 1.2rem;
 
     margin: var(--spacing-medium) 0;
     padding: var(--spacing-small);
-    background-color: var(--bg-color-dark);
+    background-color: ${({ editorTheme }) => {
+      /// this is debt. gotta refactor this into a nicer structure with more accurate colors
+      return {
+        vs: "white",
+        "vs-dark": "var(--bg-color-darker)",
+        "hc-black": "black",
+      }[editorTheme];
+    }};
     overflow-x: auto;
   }
 `;
 
-const MarkdownWrapper = ({ children, isSmallScreen }) => (
-  <Wrapper {...{ isSmallScreen }}>{children}</Wrapper>
+const MarkdownWrapper = ({ children, isSmallScreen, editorTheme }) => (
+  <Wrapper {...{ isSmallScreen, editorTheme }}>{children}</Wrapper>
 );
 
 export default MarkdownWrapper;
