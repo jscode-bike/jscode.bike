@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import "highlight.js/styles/vs2015.css";
 
 const Wrapper = styled.div`
   ::-webkit-scrollbar {
@@ -61,9 +60,8 @@ const Wrapper = styled.div`
 
     margin: var(--spacing-medium) 0;
     padding: var(--spacing-small);
-    /* background-color: var(--bg-color-dark); */
     background-color: ${({ editorTheme }) => {
-      /// this is debt. gotta refactor this into a nicer structure
+      /// this is debt. gotta refactor this into a nicer structure with more accurate colors
       return {
         vs: "white",
         "vs-dark": "var(--bg-color-dark)",
