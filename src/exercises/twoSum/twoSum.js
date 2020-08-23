@@ -6,19 +6,9 @@ const testTemplate = ([input, expected]) =>
     input
   )})).to.eql(${JSON.stringify(expected)}))`;
 
-const rand10to100 = () => {
-  const rand = (Math.random() * 90) | 0;
-  return 10 + rand;
-};
-
-const rand100 = () => {
-  const rand = (Math.random() * 100) | 0;
-  return rand;
-};
-
-const rand = (max) => {
-  return (Math.random() * max) | 0;
-};
+const rand = (max) => (Math.random() * max) | 0;
+const rand10to1000 = () => 10 + rand(990);
+const rand100 = () => rand(100);
 
 const rand2btn = (max) => {
   const output = [];
@@ -32,17 +22,17 @@ const rand2btn = (max) => {
 
 const singleTest = () => {
   const arr = [];
-  const len = rand10to100();
+  const len = rand10to1000();
   const num1 = rand100();
   const num2 = rand100();
   const target = num1 + num2;
-  const hash = {};
+  const dontAdd = {};
   while (arr.length < len) {
     const cand = rand100();
     if ([num1, num2].includes(cand)) continue;
     const key = target - cand;
-    if (hash[key]) continue;
-    hash[cand] = true;
+    if (dontAdd[key]) continue;
+    dontAdd[cand] = true;
     arr.push(cand);
   }
 
