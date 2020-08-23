@@ -1,11 +1,9 @@
-import React, { useEffect, useRef, useContext } from "react";
+import React, { useEffect, useRef } from "react";
 import { getCssVariableNumberValue, debounce } from "../../../utils/utils.js";
-import { ArenaContext } from "../ArenaContext.js";
 import Monaco from "../shared/Monaco.js";
 
 const Editor = () => {
   const editorRef = useRef(null);
-  const { editorTheme, code, setCode } = useContext(ArenaContext);
   useEffect(() => {
     const resizeFn = debounce(function () {
       const headerTabAndSubmitHeight = [
@@ -27,16 +25,7 @@ const Editor = () => {
     window.addEventListener("resize", resizeFn);
     return () => window.removeEventListener("resize", resizeFn);
   }, [editorRef]);
-  return (
-    <Monaco
-      {...{
-        editorTheme,
-        code,
-        setCode,
-        editorRef,
-      }}
-    />
-  );
+  return <Monaco {...{ editorRef }} />;
 };
 
 export default Editor;

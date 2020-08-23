@@ -20,7 +20,7 @@ const ButtonPanel = () => {
       <ResetButton onClick={resetCode}>⎌</ResetButton>
       <BeautifyButton onClick={handlePrettify}>{"{}"}</BeautifyButton>
       <ToggleThemeButton onClick={toggleEditorTheme}>
-        {{ "vs-dark": "☼", vs: "☾" }[editorTheme]}
+        {{ "vs-dark": "☼", vs: "◐", "hc-black": "☾" }[editorTheme]}
       </ToggleThemeButton>
     </ButtonPanelContainer>
   );

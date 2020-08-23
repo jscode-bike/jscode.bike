@@ -1,33 +1,40 @@
-import React from "react";
+import React, { useContext } from "react";
 import MonacoEditor from "react-monaco-editor";
+import { ArenaContext } from "../ArenaContext";
 
-const Monaco = ({ editorTheme, code, setCode, editorRef }) => (
-  <MonacoEditor
-    language="javascript"
-    theme={editorTheme}
-    value={code}
-    options={{
-      wordWrap: "on",
-      formatOnType: true,
-      tabCompletion: "on",
-      mouseWheelZoom: true,
-      scrollBeyondLastLine: false,
-      automaticLayout: true,
-      contextmenu: true,
-      multiCursorModifier: "ctrlCmd",
-      fontSize: 18,
-      minimap: {
-        enabled: false,
-      },
-    }}
-    onChange={setCode}
-    editorDidMount={(e, m) => {
-      editorRef.current = e;
-      // this is how you define theme!
-      // m.editor.defineTheme()
-    }}
-    height="var(--editor-height)"
-  />
-);
+const Monaco = ({ editorRef }) => {
+  const { editorTheme, code, setCode, monacoRef } = useContext(ArenaContext);
+
+  return (
+    <MonacoEditor
+      language="javascript"
+      theme={editorTheme}
+      value={code}
+      options={{
+        wordWrap: "on",
+        formatOnType: true,
+        tabCompletion: "on",
+        mouseWheelZoom: true,
+        scrollBeyondLastLine: false,
+        automaticLayout: true,
+        contextmenu: true,
+        multiCursorModifier: "ctrlCmd",
+        fontSize: 18,
+        minimap: {
+          enabled: false,
+        },
+      }}
+      onChange={setCode}
+      editorDidMount={(e, m) => {
+        editorRef.current = e;
+        // this is how you define theme!
+        // m.editor.defineTheme()
+        monacoRef.current = m;
+        // using above monacoRef for syntax highlighting throughout the app
+      }}
+      height="var(--editor-height)"
+    />
+  );
+};
 
 export default Monaco;

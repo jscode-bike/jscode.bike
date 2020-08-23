@@ -12,9 +12,8 @@ difficulty: 3
 
 Given an array of positive integers `nums`, return indices of the two numbers that add up to the given `target` number. Assume that each input will have exactly one solution, and you can't use the same element twice.
 
-## Example
-
 ```javascript
+// Examples:
 const nums = [2, 7, 11, 15];
 const target = 9;
 
