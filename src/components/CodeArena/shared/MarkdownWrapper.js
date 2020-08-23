@@ -64,7 +64,7 @@ const Wrapper = styled.div`
       /// this is debt. gotta refactor this into a nicer structure with more accurate colors
       return {
         vs: "white",
-        "vs-dark": "var(--bg-color-dark)",
+        "vs-dark": "var(--bg-color-darker)",
         "hc-black": "black",
       }[editorTheme];
     }};

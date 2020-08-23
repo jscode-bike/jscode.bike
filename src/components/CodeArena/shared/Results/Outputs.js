@@ -7,7 +7,7 @@ const Outputs = ({ outputs }) => {
   const [isCollapsed, setIsCollapsed] = useState(true);
   const collapseIcon = isCollapsed ? "▸" : "▾";
 
-  const { isSmallScreen } = useContext(ArenaContext);
+  const { isSmallScreen, editorTheme } = useContext(ArenaContext);
   return (
     <OutputsContainer {...{ isSmallScreen }}>
       <ConsoleHeading onClick={(_e) => setIsCollapsed((c) => !c)}>
@@ -20,7 +20,7 @@ const Outputs = ({ outputs }) => {
           const codeString = `${o.args.map((a) => a.text).join(" ")}`;
           return (
             <ConsoleOutputContainer key={idx}>
-              <SyntaxHighlighterContainer>
+              <SyntaxHighlighterContainer {...{ editorTheme }}>
                 <SyntaxHighlighter code={codeString} id={id} />
               </SyntaxHighlighterContainer>
             </ConsoleOutputContainer>
@@ -63,7 +63,14 @@ const SyntaxHighlighterContainer = styled.div`
 
   margin: 0;
   padding: var(--spacing-small);
-  background-color: var(--bg-color-darker);
+  background-color: ${({ editorTheme }) => {
+    /// this is debt. gotta refactor this into a nicer structure with more accurate colors
+    return {
+      vs: "white",
+      "vs-dark": "var(--bg-color-darker)",
+      "hc-black": "black",
+    }[editorTheme];
+  }};
 
   font-family: monospace;
   font-size: 1.1rem;
