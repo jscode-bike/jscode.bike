@@ -14,6 +14,7 @@ const EditorPanel = () => {
     resetCode,
     handlePrettify,
     toggleEditorTheme,
+    tabIdx,
   } = useContext(ArenaContext);
   useEffect(() => {
     const resizeFn = debounce(function () {
@@ -31,11 +32,12 @@ const EditorPanel = () => {
           window.innerWidth - getCssVariableNumberValue("--spacing-small") * 2,
       });
     });
+    if (tabIdx === 2) resizeFn();
     window.addEventListener("resize", resizeFn);
     return () => window.removeEventListener("resize", resizeFn);
-  }, [editorRef]);
+  }, [editorRef, tabIdx]);
   return (
-    <EditorPanelContainer>
+    <EditorPanelContainer {...{ tabIdx }}>
       <Monaco {...{ editorRef }} />
       <ButtonPanelContainer>
         <SubmitButton onClick={trySubmission} disabled={loading}>
@@ -52,6 +54,7 @@ const EditorPanel = () => {
 };
 
 const EditorPanelContainer = styled.div`
+  display: ${({ tabIdx }) => (tabIdx === 2 ? "block" : "none")};
   padding: var(--spacing-small);
 `;
 
