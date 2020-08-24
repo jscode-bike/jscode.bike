@@ -43,10 +43,10 @@ const Wrapper = styled.div`
       cursor: pointer;
     }
     ::-webkit-scrollbar-track {
-      background-color: var(--bg-color-dark);
+      background-color: var(--bg-color-darker);
     }
     ::-webkit-scrollbar-thumb {
-      background-color: var(--bg-color-darker);
+      background-color: var(--bg-color-dark);
     }
 
     width: calc(
