@@ -28,7 +28,7 @@ const SinglePanel = () => {
         <TabPanel>
           <ResultsPanel />
         </TabPanel>
-        <TabPanel>
+        <TabPanel forceRender>
           <EditorPanel />
         </TabPanel>
       </Tabs>

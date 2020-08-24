@@ -10,7 +10,7 @@ as of 20aug20: v0 is DONE
 
 v1
 
-- create more informative dashboard on
+- create more informative dashboard on homepage
 - build out header component
 - make `message` and `error message` components more helpful
 - add more problems
@@ -27,14 +27,17 @@ After v1 items are complete, apply for advertising
 
 consider
 
-- fix cross-platform CSS issues
+- different themes!!
 - integrating tabs with router, finding new solution for tabs w/ code splitting
+- solutions tab, or at least link to blog
+- SEO, and/or potential migration to gatsby
+- create sample tests area in arena
+- clean up arena context and manage data better
+- measure runtime of solution & grade accordingly
+- fix cross-platform CSS issues
+- create data structures section for fundamentals practice
+
+completed items
+
 - finding better solution for syntax highlighter in results
   - too slow; look into memoization or just new solution altogether
-- different themes!!
-- solutions tab, or at least link to blog
-- create data structures section for fundamentals practice
-- SEO, and/or potential migration to gatsby
-- clean up arena context and manage data better
-- create sample tests area in arena
-- measure runtime of solution & grade accordingly
