@@ -6,10 +6,16 @@ import { arr as exercises } from "../../exercises/index";
 
 import Button from "../shared/Button.js";
 
+import logo from "../../assets/logo.svg";
+
 const Home = () => {
   return (
     <Container>
-      <Hero>Do some JS cardio</Hero>
+      <Hero>
+        <LogoImage src={logo} />
+        <h1>JS Code Bike</h1>
+        <p>Do some JS cardio</p>
+      </Hero>
       <ListContainer>
         {exercises.map((e) => {
           return (
@@ -24,8 +30,19 @@ const Home = () => {
 };
 
 const Hero = styled.div`
-  font-size: 2rem;
+  /* font-size: 2rem; */
   margin: var(--spacing-medium);
+  padding-bottom: var(--spacing-medium);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  h1 {
+    margin: var(--spacing-medium) 0 var(--spacing-small) 0;
+  }
+`;
+
+const LogoImage = styled.img`
+  grid-area: "a";
 `;
 
 const ExerciseButton = styled(Button)`

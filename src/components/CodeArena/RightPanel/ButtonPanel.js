@@ -4,14 +4,9 @@ import { ArenaContext } from "../ArenaContext.js";
 import Button from "../../shared/Button.js";
 
 const ButtonPanel = () => {
-  const {
-    trySubmission,
-    loading,
-    handlePrettify,
-    editorTheme,
-    toggleEditorTheme,
-    resetCode,
-  } = useContext(ArenaContext);
+  const { trySubmission, loading, handlePrettify, resetCode } = useContext(
+    ArenaContext
+  );
   return (
     <ButtonPanelContainer>
       <SubmitButton onClick={trySubmission} disabled={loading}>
@@ -19,9 +14,6 @@ const ButtonPanel = () => {
       </SubmitButton>
       <ResetButton onClick={resetCode}>⎌</ResetButton>
       <BeautifyButton onClick={handlePrettify}>{"{}"}</BeautifyButton>
-      <ToggleThemeButton onClick={toggleEditorTheme}>
-        {{ "vs-dark": "☼", vs: "◐", "hc-black": "☾" }[editorTheme]}
-      </ToggleThemeButton>
     </ButtonPanelContainer>
   );
 };
@@ -52,13 +44,6 @@ const ResetButton = styled(Button)`
   width: calc(var(--tab-height) * 1.618);
   padding: 0 var(--spacing-medium);
   font-size: 1.3rem;
-`;
-
-const ToggleThemeButton = styled(Button)`
-  background-color: var(--color-blue);
-  width: calc(var(--tab-height) * 1.618);
-  padding: 0 var(--spacing-medium);
-  font-size: 1.1rem;
 `;
 
 export default ButtonPanel;

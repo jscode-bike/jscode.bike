@@ -36,7 +36,7 @@ const Monaco = ({ editorRef }) => {
       }}
       height={
         isSmallScreen
-          ? "calc(var(--editor-height) - var(--spacing-small))"
+          ? "calc(var(--editor-height) - var(--spacing-medium))"
           : "var(--editor-height)"
       }
     />

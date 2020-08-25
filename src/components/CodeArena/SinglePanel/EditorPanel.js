@@ -8,12 +8,10 @@ import Monaco from "../shared/Monaco.js";
 const EditorPanel = () => {
   const editorRef = useRef(null);
   const {
-    editorTheme,
     trySubmission,
     loading,
     resetCode,
     handlePrettify,
-    toggleEditorTheme,
     tabIdx,
   } = useContext(ArenaContext);
   useEffect(() => {
@@ -21,16 +19,17 @@ const EditorPanel = () => {
       const headerTabAndSubmitHeight = [
         "--header-height",
         "--tab-height",
-        "--spacing-small",
+        "--spacing-medium",
         "--spacing-small",
         "--button-panel-height",
         "--spacing-medium",
       ].reduce((a, b) => a + getCssVariableNumberValue(b), 0);
       const height = window.innerHeight - headerTabAndSubmitHeight;
+      const width =
+        window.innerWidth - getCssVariableNumberValue("--spacing-medium") * 2;
       editorRef.current.layout({
         height,
-        width:
-          window.innerWidth - getCssVariableNumberValue("--spacing-medium") * 2,
+        width,
       });
     });
     if (tabIdx === 2) resizeFn();
@@ -46,9 +45,6 @@ const EditorPanel = () => {
         </SubmitButton>
         <ResetButton onClick={resetCode}>⎌</ResetButton>
         <BeautifyButton onClick={handlePrettify}>{"{}"}</BeautifyButton>
-        <ToggleThemeButton onClick={toggleEditorTheme}>
-          {{ "vs-dark": "☼", vs: "◐", "hc-black": "☾" }[editorTheme]}
-        </ToggleThemeButton>
       </ButtonPanelContainer>
     </EditorPanelContainer>
   );
@@ -56,7 +52,8 @@ const EditorPanel = () => {
 
 const EditorPanelContainer = styled.div`
   display: ${({ tabIdx }) => (tabIdx === 2 ? "block" : "none")};
-  padding: var(--spacing-small) var(--spacing-medium) var(--spacing-medium);
+  /* padding: var(--spacing-small) var(--spacing-medium) var(--spacing-medium); */
+  padding: var(--spacing-medium);
 `;
 
 const ButtonPanelContainer = styled.div`
@@ -85,13 +82,6 @@ const ResetButton = styled(Button)`
   width: calc(var(--tab-height) * 1.618);
   padding: 0 var(--spacing-medium);
   font-size: 1.3rem;
-`;
-
-const ToggleThemeButton = styled(Button)`
-  background-color: var(--color-blue);
-  width: calc(var(--tab-height) * 1.618);
-  padding: 0 var(--spacing-medium);
-  font-size: 1.1rem;
 `;
 
 export default EditorPanel;
