@@ -10,10 +10,11 @@ as of 20aug20: v0 is DONE
 
 v1
 
-- create more informative dashboard on homepage
 - build out header component
-- make `message` and `error message` components more helpful
+- different themes!!
 - add more problems
+- create more informative dashboard on homepage
+- make `message` and `error message` components more helpful
 - code split and dynamically load each problem
 - use local storage to show user progress
 
@@ -27,7 +28,6 @@ After v1 items are complete, apply for advertising
 
 consider
 
-- different themes!!
 - integrating tabs with router, finding new solution for tabs w/ code splitting
 - solutions tab, or at least link to blog
 - SEO, and/or potential migration to gatsby
