@@ -3,7 +3,9 @@ import MonacoEditor from "react-monaco-editor";
 import { ArenaContext } from "../ArenaContext";
 
 const Monaco = ({ editorRef }) => {
-  const { editorTheme, code, setCode, monacoRef } = useContext(ArenaContext);
+  const { editorTheme, code, setCode, monacoRef, isSmallScreen } = useContext(
+    ArenaContext
+  );
 
   return (
     <MonacoEditor
@@ -32,7 +34,11 @@ const Monaco = ({ editorRef }) => {
         monacoRef.current = m;
         // using above monacoRef for syntax highlighting throughout the app
       }}
-      height="var(--editor-height)"
+      height={
+        isSmallScreen
+          ? "calc(var(--editor-height) - var(--spacing-small))"
+          : "var(--editor-height)"
+      }
     />
   );
 };

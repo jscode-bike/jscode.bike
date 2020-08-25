@@ -22,6 +22,7 @@ const EditorPanel = () => {
         "--header-height",
         "--tab-height",
         "--spacing-small",
+        "--spacing-small",
         "--button-panel-height",
         "--spacing-medium",
       ].reduce((a, b) => a + getCssVariableNumberValue(b), 0);
@@ -29,7 +30,7 @@ const EditorPanel = () => {
       editorRef.current.layout({
         height,
         width:
-          window.innerWidth - getCssVariableNumberValue("--spacing-small") * 2,
+          window.innerWidth - getCssVariableNumberValue("--spacing-medium") * 2,
       });
     });
     if (tabIdx === 2) resizeFn();
@@ -55,7 +56,7 @@ const EditorPanel = () => {
 
 const EditorPanelContainer = styled.div`
   display: ${({ tabIdx }) => (tabIdx === 2 ? "block" : "none")};
-  padding: var(--spacing-small);
+  padding: var(--spacing-small) var(--spacing-medium) var(--spacing-medium);
 `;
 
 const ButtonPanelContainer = styled.div`
