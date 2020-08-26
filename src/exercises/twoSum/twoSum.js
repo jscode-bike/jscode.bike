@@ -1,5 +1,7 @@
 /// not complete;
 
+import { shuffleInPlace } from "../../utils/utils";
+
 // medium.com/building-ibotta/testing-arrays-and-objects-with-chai-js-4b372310fe6d
 const testTemplate = ([input, expected]) =>
   `(fnToTest => chai.expect(fnToTest(...${JSON.stringify(
@@ -23,8 +25,7 @@ const rand2btn = (max) => {
 const singleTest = () => {
   const arr = [];
   const len = rand10to1000();
-  const num1 = rand100();
-  const num2 = rand100();
+  const [num1, num2] = shuffleInPlace(rand2btn(100));
   const target = num1 + num2;
   const dontAdd = {};
   while (arr.length < len) {
