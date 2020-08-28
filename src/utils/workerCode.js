@@ -1,7 +1,7 @@
-/* eslint-disable no-unused-expressions */
-/* eslint-disable no-eval */
-/* eslint-disable no-undef */
-/* eslint-disable no-restricted-globals */
+/* eslint-disable no-unused-expressions */ // for string literal replacers
+/* eslint-disable no-eval */ // for evals
+/* eslint-disable no-undef */ // for globalThis conditional
+/* eslint-disable no-restricted-globals */ // for selfs in worker code
 import chaiStr from "./chaiVar.js";
 
 const codeMaker = () => {

@@ -4,6 +4,8 @@ const submitCode = (code, tests, variableName) => {
   return runTestsInWorker(code, tests, variableName);
 };
 
+/// TODO: abstract worker into more efficient singleton instance
+
 const runTestsInWorker = (code, tests, variableName) => {
   if (!window.Worker) throw new Error("please enable web workers");
 
