@@ -11,20 +11,22 @@ const ArenaWrapper = () => {
   const { variableName } = useParams();
   const exercise = exerciseHash[variableName];
   if (!exercise) return <NoMatch />;
+  debugger;
 
-  const { startingCode, tests, instructionComponent } = exercise;
-  return (
-    <ArenaProvider
-      {...{
-        startingCode,
-        tests,
-        variableName,
-        instructionComponent,
-      }}
-    >
-      <CodeArena {...exercise} />
-    </ArenaProvider>
-  );
+  // const { startingCode, tests, instructionComponent } = exercise;
+  // return (
+  //   <ArenaProvider
+  //     {...{
+  //       startingCode,
+  //       tests,
+  //       variableName,
+  //       instructionComponent,
+  //     }}
+  //   >
+  //     <CodeArena {...exercise} />
+  //   </ArenaProvider>
+  // );
+  return <div></div>;
 };
 
 export default ArenaWrapper;
