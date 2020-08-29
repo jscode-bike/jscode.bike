@@ -1,3 +1,5 @@
+/// TODO: create cleaner interface for localStorage using a custom react hook
+
 export const saveToLocalStorage = (variableName, code, submissionResults) => {
   console.log(submissionResults);
   const fetched = JSON.parse(window.localStorage.getItem(variableName));

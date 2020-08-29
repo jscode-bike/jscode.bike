@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import ScaleLoader from "react-spinners/ScaleLoader";
+import GridLoader from "react-spinners/GridLoader";
 
 const Container = styled.div`
   display: flex;
@@ -12,7 +12,7 @@ const Container = styled.div`
 const Spinner = () => {
   return (
     <Container>
-      <ScaleLoader color="var(--text-color)" />
+      <GridLoader color="var(--bg-color-dark)" />
     </Container>
   );
 };
