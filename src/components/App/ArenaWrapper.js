@@ -13,14 +13,22 @@ const ArenaWrapper = () => {
   const [exercise, setExercise] = useState(null);
 
   useEffect(() => {
+    /// refactor using this hook idea:
+    // https://juliangaramendy.dev/use-promise-subscription/
+    let isMounted = true;
     exercises
       .get(variableName)
       .then((e) => {
-        setExercise(e);
+        if (isMounted) {
+          setExercise(e);
+        }
       })
       .catch((_) => {
-        setExercise(false);
+        if (isMounted) {
+          setExercise(false);
+        }
       });
+    return () => (isMounted = false);
   }, [variableName]);
 
   if (exercise === null) return <Spinner />;
