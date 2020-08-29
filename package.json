@@ -25,7 +25,9 @@
     "test": "react-app-rewired test",
     "eject": "react-app-rewired eject",
     "analyze": "source-map-explorer 'build/static/js/*.js'",
-    "prettier": "prettier --write \"**/*.js\" --ignore-path .gitignore"
+    "prettier": "prettier --write \"**/*.js\" --ignore-path .gitignore",
+    "dev": "cd build && python -m SimpleHTTPServer 4000",
+    "bds": "npm run build && npm run dev"
   },
   "eslintConfig": {
     "extends": "react-app"

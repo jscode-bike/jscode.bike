@@ -1,12 +1,7 @@
-/* eslint-disable no-unused-expressions */ // for string literal replacers
-/* eslint-disable no-eval */ // for evals
-/* eslint-disable no-undef */ // for globalThis conditional
-/* eslint-disable no-restricted-globals */ // for selfs in worker code
 import chaiStr from "./chaiVar.js";
 
-const codeMaker = () => {
-  "START";
-  "REPLACE_THIS";
+const codeString = `
+  ${chaiStr}
 
   class Console {
     constructor(outputs) {
@@ -69,7 +64,7 @@ const codeMaker = () => {
   };
 
   const fnMaker = (code, variableName) => {
-    return eval(`console => {"use strict"\n${code}\nreturn ${variableName}}`);
+    return eval(\`console => {"use strict"\n\${code}\nreturn \${variableName}}\`);
   };
 
   self.addEventListener(
@@ -102,19 +97,10 @@ const codeMaker = () => {
     },
     false
   );
+`;
 
-  ("END");
-};
-
-let codeString = codeMaker.toString();
-codeString = codeString.replace('"REPLACE_THIS";', chaiStr);
-codeString = codeString.substring(
-  codeString.indexOf('"START"') + 8,
-  codeString.lastIndexOf('"END"')
+const workerCode = URL.createObjectURL(
+  new Blob([codeString], { type: "application/javascript" })
 );
 
-const y = new Blob([codeString], { type: "application/javascript" });
-
-const x = URL.createObjectURL(y);
-
-export default x;
+export default workerCode;
