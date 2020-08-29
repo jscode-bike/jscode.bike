@@ -6,17 +6,20 @@ const Wrapper = styled.div`
     width: var(--spacing-small);
   }
   ::-webkit-scrollbar-track {
-    background-color: var(--bg-color);
+    background-color: var(--bg-color-dark);
   }
   ::-webkit-scrollbar-thumb {
-    background-color: var(--bg-color-dark);
+    background-color: var(--bg-color-darker);
     cursor: pointer;
   }
   ::-webkit-scrollbar-thumb:hover {
     background-color: var(--bg-color-darker);
   }
   overflow-y: scroll;
-  max-height: calc(100vh - var(--header-height) - var(--tab-height));
+  max-height: calc(
+    100vh - var(--header-height) - var(--tab-height) -
+      calc(var(--spacing-medium) * 2)
+  );
   scrollbar-width: var(--spacing-small);
 
   --line-height: 2.2rem;
@@ -26,8 +29,13 @@ const Wrapper = styled.div`
   font-size: 1.2rem;
   letter-spacing: 1px;
 
+  margin: var(--spacing-medium);
+  background-color: var(--bg-color-dark);
+
   h1 {
     margin: 0 0 var(--spacing-medium) 0;
+    /* padding: var(--spacing-small) 0; */
+    line-height: 2.8rem;
   }
 
   p code {
@@ -46,13 +54,13 @@ const Wrapper = styled.div`
       background-color: var(--bg-color-darker);
     }
     ::-webkit-scrollbar-thumb {
-      background-color: var(--bg-color-dark);
+      background-color: var(--bg-color);
     }
 
     width: calc(
       calc(
           ${({ isSmallScreen }) => (isSmallScreen ? "100vw" : "100vw * 4 / 9")}
-        ) - calc(var(--spacing-medium) * 2) - var(--spacing-small)
+        ) - calc(var(--spacing-medium) * 4) - var(--spacing-small)
     );
 
     line-height: 1.4rem;
