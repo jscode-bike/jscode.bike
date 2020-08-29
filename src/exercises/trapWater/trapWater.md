@@ -18,7 +18,7 @@ Given an array `heights` of positive integers representing heights of blocks on 
 
 ```javascript
 // Examples
-const blocks = [1, 0, 2, 1, 3, 1, 2, 1, 4, 2, 3, 0, 1];
+const blocks = [1, 0, 2, 1, 3, 1, 2, 1, 4, 2, 3, 0, 2];
 trapWater(blocks); // should return 10
 
 const blocks2 = [5, 4, 1, 2, 1, 3, 1, 4];
