@@ -1,26 +1,23 @@
-import fishBus from "./fishBus/index.js";
-import findOdd from "./findOdd/index.js";
-import twoSum from "./twoSum/index.js";
-// import LinkedList from "./LinkedList/index.js";
+import findOdd from "./findOdd/meta.json";
+import fishBus from "./fishBus/meta.json";
+import twoSum from "./twoSum/meta.json";
 
-export const arr = [fishBus, findOdd, twoSum];
+export const arr = [fishBus, findOdd, twoSum].map(([n, v, d]) => ({
+  name: n,
+  variableName: v,
+  difficulty: d,
+}));
 
-//fundamentals
-
-// const sections = {
-//   fundamentals: {
-//     title: "Fundamentals",
-//     problems: {
-//       LinkedList,
-//     },
-//   },
-//   challenges: {
-//     title: "Challenges",
-//     problems: {
-//       fishBus,
-//       findOdd,
-//     },
-//   },
-// };
-
-export const obj = arr.reduce((a, b) => ({ ...a, [b.variableName]: b }), {});
+export default {
+  get(exerciseVariableName) {
+    return new Promise((resolve, reject) => {
+      import(`./${exerciseVariableName}/index.js`)
+        .then((exerciseData) => {
+          resolve(exerciseData.default);
+        })
+        .catch((e) => {
+          reject(e);
+        });
+    });
+  },
+};

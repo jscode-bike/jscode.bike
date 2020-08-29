@@ -7,25 +7,28 @@ import { arr as exercises } from "../../exercises/index";
 import Button from "../shared/Button.js";
 
 import logo from "../../assets/logo.svg";
+import OpacityTransition from "../shared/OpacityTransition";
 
 const Home = () => {
   return (
-    <Container>
-      <Hero>
-        <LogoImage src={logo} />
-        <h1>JS Code Bike</h1>
-        <p>Do some JS cardio</p>
-      </Hero>
-      <ListContainer>
-        {exercises.map((e) => {
-          return (
-            <StyledLink key={e.variableName} to={`/${e.variableName}`}>
-              <ExerciseButton>{e.name}</ExerciseButton>
-            </StyledLink>
-          );
-        })}
-      </ListContainer>
-    </Container>
+    <OpacityTransition>
+      <Container>
+        <Hero>
+          <LogoImage src={logo} />
+          <h1>JS Code Bike</h1>
+          <p>Do some JS cardio</p>
+        </Hero>
+        <ListContainer>
+          {exercises.map((e) => {
+            return (
+              <StyledLink key={e.variableName} to={`/${e.variableName}`}>
+                <ExerciseButton>{e.name}</ExerciseButton>
+              </StyledLink>
+            );
+          })}
+        </ListContainer>
+      </Container>
+    </OpacityTransition>
   );
 };
 
