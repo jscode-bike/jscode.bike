@@ -9,6 +9,9 @@ import Button from "../shared/Button.js";
 import logo from "../../assets/logo.svg";
 import OpacityTransition from "../shared/OpacityTransition";
 
+/// need to add:
+// about, privacy, terms, contact
+
 const Home = () => {
   return (
     <OpacityTransition>
