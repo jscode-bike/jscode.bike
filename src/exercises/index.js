@@ -1,8 +1,9 @@
 import findOdd from "./findOdd/meta.json";
 import fishBus from "./fishBus/meta.json";
 import twoSum from "./twoSum/meta.json";
+import trapWater from "./trapWater/meta.json";
 
-export const arr = [fishBus, findOdd, twoSum].map(([n, v, d]) => ({
+export const arr = [fishBus, findOdd, twoSum, trapWater].map(([n, v, d]) => ({
   name: n,
   variableName: v,
   difficulty: d,
