@@ -1,4 +1,3 @@
-import fixedTests from "./fixed_tests.json";
 const rand = (n) => (Math.random() * n) | 0;
 const matches = {
   "{": "}",
@@ -58,20 +57,16 @@ const generateValidSegment = () => {
   );
 };
 
-const allBraces = "({[]})";
-
-const findMismatch = (c) => {
-  const l = allBraces.replace(c, "");
-  const k = rand(l.length);
-  return l[k];
-};
+const shuffleStr = (str) => [...str].sort(() => 0.5 - Math.random()).join("");
 
 const breakValidSegment = (str) => {
-  const idx = rand(str.length - 1);
-  const replacement = findMismatch(str[idx]);
-  const arr = [...str];
-  arr[idx] = replacement;
-  return arr.join("");
+  if (str.length < 4) return "[](}{)";
+  let o = str.slice();
+  while (matchingBrackets(o)) {
+    o = shuffleStr(o);
+    console.log(o);
+  }
+  return o;
 };
 
 const w = (s) => `"${s}"`;
@@ -85,38 +80,35 @@ const createSingleTest = () => {
   }
 };
 
-const generateRandomTests = () => {
-  return Array.from({ length: 100 }).map((_) => createSingleTest());
-};
+const isOpeningBrace = (c) => "{([".includes(c);
+const isClosingBrace = (c) => "})]".includes(c);
 
-const testTemplate = ([input, expected]) =>
-  `(fnToTest => chai.expect(fnToTest(${input})).to.equal(${expected}))`;
+function matchingBrackets(str) {
+  // code here...
+  const stack = [];
+  for (let i = 0; i < str.length; i++) {
+    const c = str[i];
+    if (isOpeningBrace(c)) {
+      stack.push(c);
+    } else if (isClosingBrace(c)) {
+      const n = stack.pop();
+      if (c !== matches[n]) return false;
+    }
+  }
+  return stack.length === 0;
+}
 
-const sample = {
-  startingCode: "function matchingBrackets(str) {\n  // code here...\n}",
-  tests: [
-    {
-      description: "sample tests",
-      unitTests: [
-        ['"()[]{}"', true],
-        ['"({[]})"', true],
-        ['"(][){}"', false],
-        ['"()[]{}[]([]}"', false],
-        ['"((({{{[[[[]({}){}]]]}}})))"', true],
-      ],
-    },
-    {
-      description: "fixed tests",
-      unitTests: fixedTests,
-    },
-    {
-      description: "random tests",
-      unitTests: generateRandomTests(),
-    },
-  ].map((suite) => ({
-    ...suite,
-    unitTests: suite.unitTests.map(testTemplate),
-  })),
-};
+const arr = Array.from({ length: 100 }).map((_) => createSingleTest());
+const path = require("path");
+const fs = require("fs");
 
-export default sample;
+const filename = path.join(
+  __dirname,
+  "..",
+  "src",
+  "exercises",
+  "matchingBrackets",
+  "fixed_tests.json"
+);
+
+fs.writeFileSync(filename, JSON.stringify(arr));
