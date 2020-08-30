@@ -18,7 +18,7 @@ const runTestsInWorker = (code, tests, variableName) => {
         error: "code took too long to run",
         rawError: String(new Error("worker timed out")),
       });
-    }, 10000);
+    }, 5000);
 
     const message = { code, tests, variableName };
     myWorker.postMessage(message);

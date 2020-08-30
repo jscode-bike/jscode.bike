@@ -1,13 +1,12 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-import { arr as exercises } from "../../exercises/index";
+import { arr as exercises } from "../../exercises/index.js";
 
-import Button from "../shared/Button.js";
+import ExerciseListItem from "./ExerciseListItem.js";
 
 import logo from "../../assets/logo.svg";
-import OpacityTransition from "../shared/OpacityTransition";
+import OpacityTransition from "../shared/OpacityTransition.js";
 
 /// need to add:
 // about, privacy, terms, contact
@@ -22,13 +21,9 @@ const Home = () => {
           <p>Do some JS cardio</p>
         </Hero>
         <ListContainer>
-          {exercises.map((e) => {
-            return (
-              <StyledLink key={e.variableName} to={`/${e.variableName}`}>
-                <ExerciseButton>{e.name}</ExerciseButton>
-              </StyledLink>
-            );
-          })}
+          {exercises.map((e) => (
+            <ExerciseListItem key={e.variableName} exercise={e} />
+          ))}
         </ListContainer>
       </Container>
     </OpacityTransition>
@@ -36,7 +31,6 @@ const Home = () => {
 };
 
 const Hero = styled.div`
-  /* font-size: 2rem; */
   margin: var(--spacing-medium);
   padding-bottom: var(--spacing-medium);
   display: flex;
@@ -48,22 +42,13 @@ const Hero = styled.div`
 `;
 
 const LogoImage = styled.img`
-  grid-area: "a";
-`;
-
-const ExerciseButton = styled(Button)`
-  background-color: var(--bg-color-dark);
-  padding: var(--spacing-small) var(--spacing-medium);
+  height: 192;
+  width: 192;
 `;
 
 const ListContainer = styled.div`
   display: flex;
   gap: var(--spacing-small);
-`;
-
-const StyledLink = styled(Link)`
-  color: var(--text-color);
-  text-decoration: none;
 `;
 
 const Container = styled.div`

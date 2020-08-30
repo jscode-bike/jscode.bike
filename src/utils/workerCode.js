@@ -1,5 +1,8 @@
 import chaiStr from "./chaiVar.js";
 
+/// definitely have to find a better solution for this trash.
+// at least come up with a script that produces this from files with formatting
+// or research comlink
 const codeString = `
   ${chaiStr}
 

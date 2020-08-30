@@ -36,11 +36,12 @@ const SyntaxHighlighter = ({ code, id }) => {
   const { monacoRef } = useContext(ArenaContext);
   useEffect(() => {
     if (!monacoRef.current) return;
+    if (code.length > 1500) return;
     monacoRef.current.editor.colorize(code, "javascript").then((xml) => {
       document.querySelector("#" + id).innerHTML = xml;
     });
   }, [monacoRef, code, id]);
-  return <div id={id}>...</div>;
+  return <div id={id}>{code}</div>;
 };
 
 const SyntaxHighlighterContainer = styled.div`

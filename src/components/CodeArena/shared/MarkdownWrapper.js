@@ -40,7 +40,7 @@ const Wrapper = styled.div`
 
   p code {
     padding: 5px var(--spacing-small);
-    background-color: var(--bg-color-dark);
+    background-color: var(--bg-color-darker);
     letter-spacing: 1px;
   }
 

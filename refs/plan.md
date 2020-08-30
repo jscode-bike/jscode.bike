@@ -10,13 +10,17 @@ as of 20aug20: v0 is DONE
 
 v1
 
-- build out header component
-- different themes!!
 - add more problems
 - create more informative dashboard on homepage
+- create localStorage context to store/fetch user data
+- rebuild code running engine with improved functionality
+  - singleton with kill switch
+  - live streaming results
+  - richer test data
 - make `message` and `error message` components more helpful
-- code split and dynamically load each problem
-- use local storage to show user progress
+- build out header component
+- different themes!!
+- code split and dynamically load each problem -X
 
 After v1 items are complete, apply for advertising
 
@@ -29,6 +33,7 @@ After v1 items are complete, apply for advertising
 consider
 
 - integrating tabs with router, finding new solution for tabs w/ code splitting
+- progressively enhance arena to use panes with draggable tabs
 - solutions tab, or at least link to blog
 - SEO, and/or potential migration to gatsby
 - create sample tests area in arena

@@ -1,3 +1,6 @@
+import shortInputTests from "./short_inputs.json";
+import longInputTests from "./long_inputs.json";
+
 const testTemplate = ([input, expected]) =>
   `(fnToTest => chai.expect(fnToTest(${JSON.stringify(
     input
@@ -14,6 +17,14 @@ const sample = {
         [[3, 0, 0, 2, 0, 4], 10],
         [[1, 2, 3, 4, 3, 2, 1], 0],
       ],
+    },
+    {
+      description: "short inputs",
+      unitTests: shortInputTests,
+    },
+    {
+      description: "long inputs",
+      unitTests: longInputTests,
     },
   ].map((suite) => ({
     ...suite,
