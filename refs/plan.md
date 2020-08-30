@@ -32,8 +32,9 @@ After v1 items are complete, apply for advertising
 
 consider
 
+- disable submit button while streaming in tests so user can see and attempt challenge before waiting for all tests
 - integrating tabs with router, finding new solution for tabs w/ code splitting
-- progressively enhance arena to use panes with draggable tabs
+  - progressively enhance arena to use panes with draggable tabs
 - solutions tab, or at least link to blog
 - SEO, and/or potential migration to gatsby
 - create sample tests area in arena
