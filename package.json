@@ -27,7 +27,7 @@
     "analyze": "source-map-explorer 'build/static/js/*.js'",
     "prettier": "prettier --write \"**/*.js\" --ignore-path .gitignore",
     "dev": "cd build && python -m SimpleHTTPServer 4000",
-    "bds": "npm run build && npm run dev"
+    "bds": "rm -rf node_modules && npm i && npm run build && npm run dev"
   },
   "eslintConfig": {
     "extends": "react-app"
