@@ -10,7 +10,7 @@ difficulty: 3
 
 # Matching Brackets
 
-Given a string made up of only brackets, (`[]`, `{}`, `()`), determine whether or not the are appropriately matched; i. e. each opening character has a corresponding, appropriately placed closing character.
+Given a string made up of only brackets, (`[]`, `{}`, `()`), determine whether or not they are appropriately matched; i. e. each opening character has a corresponding, appropriately-placed closing character.
 
 ```javascript
 // Examples

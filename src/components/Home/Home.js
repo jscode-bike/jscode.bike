@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import { arr as exercises } from "../../exercises/index.js";
 
-import ExerciseListItem from "./ExerciseListItem.js";
+import ExerciseList from "./ExerciseList.js";
 
 import logo from "../../assets/logo.svg";
 import OpacityTransition from "../shared/OpacityTransition.js";
@@ -20,11 +20,7 @@ const Home = () => {
           <h1>JS Code Bike</h1>
           <p>Do some JS cardio</p>
         </Hero>
-        <ListContainer>
-          {exercises.map((e) => (
-            <ExerciseListItem key={e.variableName} exercise={e} />
-          ))}
-        </ListContainer>
+        <ExerciseList {...{ exercises }} />
       </Container>
     </OpacityTransition>
   );
@@ -44,11 +40,6 @@ const Hero = styled.div`
 const LogoImage = styled.img`
   height: 192;
   width: 192;
-`;
-
-const ListContainer = styled.div`
-  display: flex;
-  gap: var(--spacing-small);
 `;
 
 const Container = styled.div`

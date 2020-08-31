@@ -12,7 +12,7 @@ const OpacityTransition = ({ children }) => {
     from: { opacity: 0 },
     enter: { opacity: 1 },
     leave: { opacity: 0 },
-    config: { duration: 100 },
+    config: { duration: 200 },
   });
   return t.map(({ item: c, key: k, props: p }) => {
     return (
