@@ -4,13 +4,17 @@ import { ArenaContext } from "../ArenaContext.js";
 import Button from "../../shared/Button.js";
 
 const ButtonPanel = () => {
-  const { trySubmission, loading, handlePrettify, resetCode } = useContext(
-    ArenaContext
-  );
+  const {
+    trySubmission,
+    loading,
+    handlePrettify,
+    resetCode,
+    tests,
+  } = useContext(ArenaContext);
   return (
     <ButtonPanelContainer>
-      <SubmitButton onClick={trySubmission} disabled={loading}>
-        Submit Code
+      <SubmitButton onClick={trySubmission} disabled={loading || !tests}>
+        {!tests ? "Loading tests..." : "Submit Code"}
       </SubmitButton>
       <ResetButton onClick={resetCode}>⎌</ResetButton>
       <BeautifyButton onClick={handlePrettify}>{"{}"}</BeautifyButton>

@@ -24,4 +24,15 @@ export default {
         });
     });
   },
+  getTests(exerciseVariableName) {
+    return new Promise((resolve, reject) => {
+      import(`./${exerciseVariableName}/tests.js`)
+        .then((exerciseData) => {
+          resolve(exerciseData.default);
+        })
+        .catch((e) => {
+          reject(e);
+        });
+    });
+  },
 };

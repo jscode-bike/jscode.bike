@@ -1,11 +1,10 @@
 import twoSumMd from "./twoSum.md";
-import twoSum from "./twoSum.js";
 
 const {
   attributes: { name, variableName, tags, difficulty },
   react,
+  startingCode,
 } = twoSumMd;
-const { startingCode, tests } = twoSum;
 
 const output = {
   name,
@@ -13,7 +12,6 @@ const output = {
   variableName,
   instructionComponent: react,
   startingCode,
-  tests,
   tags,
 };
 export default output;

@@ -1,11 +1,10 @@
 import trapWaterMd from "./trapWater.md";
-import trapWater from "./trapWater.js";
 
 const {
   attributes: { name, variableName, tags, difficulty },
   react,
+  startingCode,
 } = trapWaterMd;
-const { startingCode, tests } = trapWater;
 
 const output = {
   name,
@@ -13,7 +12,6 @@ const output = {
   variableName,
   instructionComponent: react,
   startingCode,
-  tests,
   tags,
 };
 export default output;

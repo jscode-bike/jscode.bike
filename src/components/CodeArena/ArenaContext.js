@@ -18,13 +18,15 @@ import {
   saveToLocalStorage,
   fetchFromLocalStorage,
 } from "../../utils/localStorage.js";
+import exercises from "../../exercises/index.js";
 
 export const ArenaContext = createContext();
 
 /// lot of tech debt in this component
 const ArenaProvider = (props) => {
-  const { startingCode, tests, variableName, instructionComponent } = props;
+  const { startingCode, variableName, instructionComponent } = props;
   const { width } = useWindowSize();
+  const [tests, setTests] = useState(null);
   const isSmallScreen = width < 768;
   const [results, setResults] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -39,6 +41,7 @@ const ArenaProvider = (props) => {
   );
   const monacoRef = useRef(null);
   const trySubmission = async () => {
+    if (!tests) return;
     if (loading) return;
     setTabIdx(1);
     setLoading(true);
@@ -114,7 +117,13 @@ const ArenaProvider = (props) => {
     };
   }, [submissionCallback, prettifyCallback]);
 
+  useEffect(() => {
+    exercises.getTests(variableName).then((fetchedTests) => {
+      setTests(fetchedTests);
+    });
+  }, [variableName]);
   const value = {
+    tests,
     results,
     loading,
     tabIdx,

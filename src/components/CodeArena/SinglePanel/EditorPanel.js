@@ -13,6 +13,7 @@ const EditorPanel = () => {
     resetCode,
     handlePrettify,
     tabIdx,
+    tests,
   } = useContext(ArenaContext);
   useEffect(() => {
     const resizeFn = debounce(function () {
@@ -40,8 +41,8 @@ const EditorPanel = () => {
     <EditorPanelContainer {...{ tabIdx }}>
       <Monaco {...{ editorRef }} />
       <ButtonPanelContainer>
-        <SubmitButton onClick={trySubmission} disabled={loading}>
-          Submit Code
+        <SubmitButton onClick={trySubmission} disabled={loading || !tests}>
+          {!tests ? "Loading tests..." : "Submit Code"}
         </SubmitButton>
         <ResetButton onClick={resetCode}>⎌</ResetButton>
         <BeautifyButton onClick={handlePrettify}>{"{}"}</BeautifyButton>

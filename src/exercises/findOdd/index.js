@@ -1,11 +1,10 @@
 import findOddMd from "./findOdd.md";
-import findOdd from "./findOdd.js";
 
 const {
   attributes: { name, variableName, tags, difficulty },
   react,
+  startingCode,
 } = findOddMd;
-const { startingCode, tests } = findOdd;
 
 const output = {
   name,
@@ -13,7 +12,6 @@ const output = {
   variableName,
   instructionComponent: react,
   startingCode,
-  tests,
   tags,
 };
 

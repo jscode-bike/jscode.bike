@@ -34,12 +34,11 @@ const ArenaWrapper = () => {
   if (exercise === null) return <Spinner />;
   if (!exercise) return <NoMatch />;
 
-  const { startingCode, tests, instructionComponent } = exercise;
+  const { startingCode, instructionComponent } = exercise;
   return (
     <ArenaProvider
       {...{
         startingCode,
-        tests,
         variableName,
         instructionComponent,
       }}

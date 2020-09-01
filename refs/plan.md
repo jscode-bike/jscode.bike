@@ -13,6 +13,7 @@ v1
 - add more problems
 - create more informative dashboard on homepage
 - create localStorage context to store/fetch user data
+- find alternative test delivery strategy that doesnt block UI rendering
 - rebuild code running engine with improved functionality
   - singleton with kill switch
   - live streaming results

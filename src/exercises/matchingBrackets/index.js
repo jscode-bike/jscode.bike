@@ -1,11 +1,10 @@
 import matchingBracketsMd from "./matchingBrackets.md";
-import matchingBrackets from "./matchingBrackets.js";
 
 const {
   attributes: { name, variableName, tags, difficulty },
   react,
+  startingCode,
 } = matchingBracketsMd;
-const { startingCode, tests } = matchingBrackets;
 
 const output = {
   name,
@@ -13,7 +12,6 @@ const output = {
   variableName,
   instructionComponent: react,
   startingCode,
-  tests,
   tags,
 };
 export default output;
