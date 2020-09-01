@@ -1,9 +1,8 @@
 import matchingBracketsMd from "./matchingBrackets.md";
 
 const {
-  attributes: { name, variableName, tags, difficulty },
+  attributes: { name, variableName, tags, difficulty, startingCode },
   react,
-  startingCode,
 } = matchingBracketsMd;
 
 const output = {

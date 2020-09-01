@@ -1,7 +1,7 @@
 ---
 name: Trapping Rain Water
 variableName: trapWater
-startingCode: function trapWater(heights) {\n  // code here...\n}
+startingCode: "function trapWater(heights) {\n  // code here...\n}"
 tags:
   - optimization
   - iteration

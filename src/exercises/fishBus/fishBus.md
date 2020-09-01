@@ -5,7 +5,7 @@ tags:
   - conditionals
   - fundamentals
   - numbers
-startingCode: function fishBus(n) {\n  // code here...\n}
+startingCode: "function fishBus(n) {\n  // code here...\n}"
 difficulty: 1
 ---
 

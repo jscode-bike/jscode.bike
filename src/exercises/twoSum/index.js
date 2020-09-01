@@ -1,9 +1,8 @@
 import twoSumMd from "./twoSum.md";
 
 const {
-  attributes: { name, variableName, tags, difficulty },
+  attributes: { name, variableName, tags, difficulty, startingCode },
   react,
-  startingCode,
 } = twoSumMd;
 
 const output = {

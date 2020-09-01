@@ -4,7 +4,7 @@ variableName: matchingBrackets
 tags:
   - strings
   - stack
-startingCode: function matchingBrackets(str) {\n  // code here...\n}
+startingCode: "function matchingBrackets(str) {\n  // code here...\n}"
 difficulty: 3
 ---
 

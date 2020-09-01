@@ -1,9 +1,8 @@
 import findOddMd from "./findOdd.md";
 
 const {
-  attributes: { name, variableName, tags, difficulty },
+  attributes: { name, variableName, tags, difficulty, startingCode },
   react,
-  startingCode,
 } = findOddMd;
 
 const output = {

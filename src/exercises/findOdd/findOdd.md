@@ -3,7 +3,7 @@ name: Find Odd Integer
 variableName: findOdd
 tags:
   - arrays
-startingCode: function findOdd(arr) {\n // code here...\n}
+startingCode: "function findOdd(arr) {\n // code here...\n}"
 difficulty: 2
 ---
 

@@ -1,9 +1,8 @@
 import trapWaterMd from "./trapWater.md";
 
 const {
-  attributes: { name, variableName, tags, difficulty },
+  attributes: { name, variableName, tags, difficulty, startingCode },
   react,
-  startingCode,
 } = trapWaterMd;
 
 const output = {

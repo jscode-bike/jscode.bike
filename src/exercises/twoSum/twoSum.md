@@ -4,7 +4,7 @@ variableName: twoSum
 tags:
   - arrays
   - numbers
-startingCode: function twoSum(nums, target) {\n  // code here...\n}
+startingCode: "function twoSum(nums, target) {\n  // code here...\n}"
 difficulty: 3
 ---
 
