@@ -4,13 +4,14 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Header from "../Header/Header.js";
 import Spinner from "../shared/Spinner.js";
 import NoMatch from "./NoMatch.js";
+import LocalStorageProvider from "./LocalStorageContext.js";
 
 const Home = lazy(() => import("../Home/Home.js"));
 const ArenaWrapper = lazy(() => import("./ArenaWrapper.js"));
 
 function App() {
   return (
-    <div>
+    <LocalStorageProvider>
       <Router>
         <Header />
         <Suspense fallback={<Spinner />}>
@@ -21,7 +22,7 @@ function App() {
           </Switch>
         </Suspense>
       </Router>
-    </div>
+    </LocalStorageProvider>
   );
 }
 

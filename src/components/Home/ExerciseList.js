@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Button from "../shared/Button.js";
+import { LocalStorageContext } from "../App/LocalStorageContext.js";
 const StyledLink = styled(Link)`
   color: var(--text-color);
   text-decoration: none;
@@ -27,11 +28,16 @@ const ListContainer = styled.div`
 const ListItemContainer = styled.div``;
 
 const ExerciseList = ({ exercises }) => {
+  const { allStoredExercisesData } = useContext(LocalStorageContext);
   console.log(exercises);
   return (
     <ListContainer>
       {exercises.map((e) => (
-        <ExerciseListItem key={e.variableName} exercise={e} />
+        <ExerciseListItem
+          key={e.variableName}
+          exercise={e}
+          passed={allStoredExercisesData[e.variableName]?.passed}
+        />
       ))}
     </ListContainer>
   );
@@ -70,12 +76,14 @@ const DifficultyIndicator = ({ difficulty: d }) => {
   );
 };
 
-const ExerciseListItem = ({ exercise: e }) => {
+const ExerciseListItem = ({ exercise: e, passed }) => {
   return (
     <ListItemContainer>
       <StyledLink to={`/${e.variableName}`}>
         <ExerciseButton>
-          <div>{e.name}</div>
+          <div>
+            {e.name} {passed && "✅"}
+          </div>
           <DifficultyIndicator difficulty={e.difficulty} />
         </ExerciseButton>
       </StyledLink>

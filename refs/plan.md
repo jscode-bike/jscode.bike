@@ -13,7 +13,6 @@ v1
 - add more problems
 - create more informative dashboard on homepage
 - create localStorage context to store/fetch user data
-- find alternative test delivery strategy that doesnt block UI rendering
 - rebuild code running engine with improved functionality
   - singleton with kill switch
   - live streaming results
@@ -21,6 +20,7 @@ v1
 - make `message` and `error message` components more helpful
 - build out header component
 - different themes!!
+- find alternative test delivery strategy that doesnt block UI rendering -X
 - code split and dynamically load each problem -X
 
 After v1 items are complete, apply for advertising

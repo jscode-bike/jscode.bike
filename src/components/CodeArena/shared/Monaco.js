@@ -25,6 +25,7 @@ const Monaco = ({ editorRef }) => {
         minimap: {
           enabled: false,
         },
+        tabSize: 2,
       }}
       onChange={setCode}
       editorDidMount={(e, m) => {

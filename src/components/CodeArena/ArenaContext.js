@@ -4,6 +4,7 @@ import React, {
   useEffect,
   useCallback,
   useRef,
+  useContext,
 } from "react";
 
 import prettier from "prettier/standalone.js";
@@ -14,11 +15,12 @@ import useWindowSize from "react-use/lib/useWindowSize";
 import submitCode from "../../utils/submitCode.js";
 
 import { prettifyErrorMessage } from "../../utils/utils.js";
-import {
-  saveToLocalStorage,
-  fetchFromLocalStorage,
-} from "../../utils/localStorage.js";
+// import {
+//   saveToLocalStorage,
+//   fetchFromLocalStorage,
+// } from "../../utils/localStorage.js";
 import exercises from "../../exercises/index.js";
+import { LocalStorageContext } from "../App/LocalStorageContext.js";
 
 export const ArenaContext = createContext();
 
@@ -36,8 +38,11 @@ const ArenaProvider = (props) => {
     text: "Submit your code to see results!",
   });
   const [editorTheme, setEditorTheme] = useState("vs-dark");
+  const { allStoredExercisesData, saveExerciseData } = useContext(
+    LocalStorageContext
+  );
   const [code, setCode] = useState(
-    fetchFromLocalStorage(variableName) || startingCode || ""
+    allStoredExercisesData[variableName]?.code || startingCode || ""
   );
   const monacoRef = useRef(null);
   const trySubmission = async () => {
@@ -48,7 +53,7 @@ const ArenaProvider = (props) => {
     setResults(null);
     try {
       const submissionResults = await submitCode(code, tests, variableName);
-      saveToLocalStorage(variableName, code, submissionResults);
+      saveExerciseData(variableName, code, submissionResults);
       setResults(submissionResults);
     } catch (error) {
       const { error: text, rawError } = error;
