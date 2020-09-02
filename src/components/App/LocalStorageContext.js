@@ -12,8 +12,10 @@ const getInitialStoredData = () =>
 
 const LocalStorageProvider = (props) => {
   const version = localStorage.getItem("version");
-  if (version !== "1") localStorage.clear();
-  localStorage.setItem("version", "1");
+  if (version !== "1") {
+    localStorage.clear();
+    localStorage.setItem("version", "1");
+  }
   const [allStoredExercisesData, setStoredExerciseData] = useState(
     getInitialStoredData() || {}
   );
