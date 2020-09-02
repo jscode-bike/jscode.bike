@@ -15,10 +15,6 @@ import useWindowSize from "react-use/lib/useWindowSize";
 import submitCode from "../../utils/submitCode.js";
 
 import { prettifyErrorMessage } from "../../utils/utils.js";
-// import {
-//   saveToLocalStorage,
-//   fetchFromLocalStorage,
-// } from "../../utils/localStorage.js";
 import exercises from "../../exercises/index.js";
 import { LocalStorageContext } from "../App/LocalStorageContext.js";
 
