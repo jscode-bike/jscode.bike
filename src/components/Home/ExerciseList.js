@@ -25,7 +25,9 @@ const ListContainer = styled.div`
   flex-direction: column;
   gap: var(--spacing-small);
 `;
-const ListItemContainer = styled.div``;
+const ListItemContainer = styled.div`
+  width: 208px;
+`;
 
 const ExerciseList = ({ exercises }) => {
   const { allStoredExercisesData } = useContext(LocalStorageContext);
@@ -45,7 +47,7 @@ const ExerciseList = ({ exercises }) => {
 
 const LevelBar = styled.div`
   width: 1rem;
-  height: var(--spacing-small);
+  height: calc(var(--spacing-small) / 2);
   background-color: ${({ color }) => color};
 `;
 
@@ -53,6 +55,12 @@ const DifficultyContainer = styled.div`
   display: flex;
   margin-top: var(--spacing-small);
   gap: var(--spacing-small);
+`;
+
+const ExerciseInfo = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 `;
 
 const DifficultyIndicator = ({ difficulty: d }) => {
@@ -81,9 +89,14 @@ const ExerciseListItem = ({ exercise: e, passed }) => {
     <ListItemContainer>
       <StyledLink to={`/${e.variableName}`}>
         <ExerciseButton>
-          <div>
-            {e.name} {passed && "✅"}
-          </div>
+          <ExerciseInfo>
+            <div>{e.name}</div>
+            {passed && (
+              <span role="img" aria-label="completed">
+                ✅
+              </span>
+            )}
+          </ExerciseInfo>
           <DifficultyIndicator difficulty={e.difficulty} />
         </ExerciseButton>
       </StyledLink>
