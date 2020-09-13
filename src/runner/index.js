@@ -1,3 +1,5 @@
+// THIS IS ALL A REF AT THIS POINT
+
 import workerScript from "./generated.js";
 
 const submitCode = (code, tests, variableName) => {

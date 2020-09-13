@@ -2,7 +2,7 @@
 
 self.importScripts("/chai.min.js");
 
-// accepts unitTest, code, variableName, and should return result
+// accepts unitTestString, code, variableName, and should return result
 // result shape:
 /*
 { passed, outputs, error}
@@ -11,12 +11,12 @@ self.importScripts("/chai.min.js");
 self.addEventListener("message", messageCallback);
 
 function messageCallback(messageEvent) {
-  const { code, unitTest, variableName } = messageEvent.data;
-  const unitTestResult = runUnitTest({ code, unitTest, variableName });
+  const { code, unitTestString, variableName } = messageEvent.data;
+  const unitTestResult = runUnitTest({ code, unitTestString, variableName });
   self.postMessage(unitTestResult);
 }
 
-function runUnitTest({ code, unitTest, variableName }) {
+function runUnitTest({ code, unitTestString, variableName }) {
   const injectableFunction = packageCodeIntoInjectableFunction(
     code,
     variableName
@@ -26,7 +26,7 @@ function runUnitTest({ code, unitTest, variableName }) {
   const fnToTest = injectableFunction(spy);
   try {
     // eslint-disable-next-line no-eval
-    eval(test)(fnToTest);
+    eval(unitTestString)(fnToTest);
     return {
       passed: true,
       outputs: [...outputs],
