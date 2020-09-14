@@ -1,5 +1,22 @@
-const submitCode = (code, tests, variableName) => {
-  return runTestsInWorker(code, tests, variableName);
+const submitCode = (code, tests, variableName, submissionId) => {
+  return runTestsInWorker(code, tests, variableName, submissionId);
+};
+
+const mainWorker = new Worker("workerCode.js");
+
+const runTestsInWorker = (code, tests, variableName, submissionId) => {
+  return new Promise((resolve, reject) => {
+    mainWorker.postMessage({ code, tests, variableName, submissionId });
+    mainWorker.onmessage = (e) => {
+      if (e.data.submissionId !== submissionId) return;
+      const output = { ...e.data };
+      if (output.error) {
+        reject(output);
+      } else {
+        resolve(output);
+      }
+    };
+  });
 };
 
 export default submitCode;

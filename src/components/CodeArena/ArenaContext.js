@@ -14,7 +14,11 @@ import useWindowSize from "react-use/lib/useWindowSize";
 
 import submitCode from "../../utils/submitCode.js";
 
-import { prettifyErrorMessage } from "../../utils/utils.js";
+import {
+  prettifyErrorMessage,
+  uuid,
+  checkSubmissionId,
+} from "../../utils/utils.js";
 import exercises from "../../exercises/index.js";
 import { LocalStorageContext } from "../App/LocalStorageContext.js";
 
@@ -33,10 +37,16 @@ const ArenaProvider = (props) => {
     type: "initial",
     text: "Submit your code to see results!",
   });
+  const [isMounted, setIsMounted] = useState(true);
+  useEffect(() => {
+    return () => setIsMounted(false);
+  }, []);
   const [editorTheme, setEditorTheme] = useState("vs-dark");
-  const { allStoredExercisesData, saveExerciseData } = useContext(
-    LocalStorageContext
-  );
+  const {
+    allStoredExercisesData,
+    saveExerciseData,
+    clearExerciseData,
+  } = useContext(LocalStorageContext);
   const [code, setCode] = useState(
     allStoredExercisesData[variableName]?.code || startingCode || ""
   );
@@ -48,10 +58,21 @@ const ArenaProvider = (props) => {
     setLoading(true);
     setResults(null);
     try {
-      const submissionResults = await submitCode(code, tests, variableName);
+      const submissionId = uuid();
+      const submissionResults = await submitCode(
+        code,
+        tests,
+        variableName,
+        submissionId
+      );
+      if (!checkSubmissionId(submissionId, submissionResults.submissionId)) {
+        return;
+      }
+      if (!isMounted) return;
       saveExerciseData(variableName, code, submissionResults);
       setResults(submissionResults);
     } catch (error) {
+      if (!isMounted) return;
       const { error: text, rawError } = error;
       setMessage({
         type: "error",
@@ -64,10 +85,13 @@ const ArenaProvider = (props) => {
   const resetCode = () => {
     const confirmMessage =
       "Are you sure you want to reset back to starting code?\n" +
-      "Your current input will be deleted";
+      "Your current input and saved progress will be deleted";
     // eslint-disable-next-line no-restricted-globals
     const res = confirm(confirmMessage);
-    if (res) setCode(startingCode || "");
+    if (res) {
+      clearExerciseData(variableName);
+      setCode(startingCode || "");
+    }
   };
   const handlePrettify = (e) => {
     try {

@@ -38,3 +38,7 @@ export function uuid() {
   );
   return output;
 }
+
+export function checkSubmissionId(a, b) {
+  return a === b;
+}

@@ -1,12 +1,12 @@
 import workerScript from "./workerCode.js";
 
-const submitCode = (code, tests, variableName) => {
-  return runTestsInWorker(code, tests, variableName);
+const submitCode = (code, tests, variableName, submissionId) => {
+  return runTestsInWorker(code, tests, variableName, submissionId);
 };
 
 /// TODO: abstract worker into more efficient singleton instance
 
-const runTestsInWorker = (code, tests, variableName) => {
+const runTestsInWorker = (code, tests, variableName, submissionId) => {
   if (!window.Worker) throw new Error("please enable web workers");
 
   return new Promise((resolve, reject) => {
@@ -24,10 +24,11 @@ const runTestsInWorker = (code, tests, variableName) => {
     myWorker.postMessage(message);
     myWorker.onmessage = (e) => {
       clearTimeout(timer);
-      if (e.data.error) {
-        reject(e.data);
+      const output = { ...e.data, submissionId };
+      if (output.error) {
+        reject(output);
       } else {
-        resolve(e.data);
+        resolve(output);
       }
       console.info("terminating worker...");
       myWorker.terminate();

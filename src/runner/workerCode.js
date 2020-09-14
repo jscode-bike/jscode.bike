@@ -88,7 +88,7 @@ const testRunner = new TestRunner();
 // returns full testResults and summary
 
 function messageCallback(e) {
-  const { code, tests, variableName } = e.data;
+  const { code, tests, variableName, submissionId } = e.data;
   const testResultsPromises = tests.map((testGroup) =>
     testRunner.runTestGroup(testGroup, code, variableName)
   );
@@ -96,6 +96,7 @@ function messageCallback(e) {
     self.postMessage({
       testResults,
       summary: generateOverallSummary(testResults),
+      submissionId,
     });
   });
 }
