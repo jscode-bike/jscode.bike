@@ -9,14 +9,15 @@
 // if the test times out, we pre-fill and load a failed result
 // would have to micro manage testRunner worker life cycle
 
+const createNewWorker = () => new Worker("unitTestRunner.js");
 class TestRunner {
   constructor() {
-    this.worker = new Worker("testRunner.js");
+    this.worker = createNewWorker();
   }
 
   timeoutTest() {
     this.worker.terminate();
-    this.worker = new Worker("testRunner.js");
+    this.worker = createNewWorker();
     return {
       passed: false,
       outputs: [
