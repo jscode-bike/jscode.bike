@@ -1,6 +1,6 @@
 /* eslint-disable no-restricted-globals */
 
-self.importScripts("/chai.min.js");
+self.importScripts("chai.min.js");
 
 // accepts unitTestString, code, variableName, and should return result
 // result shape:
@@ -11,9 +11,9 @@ self.importScripts("/chai.min.js");
 self.addEventListener("message", messageCallback);
 
 function messageCallback(messageEvent) {
-  const { code, unitTestString, variableName } = messageEvent.data;
+  const { code, unitTestString, variableName, unitTestId } = messageEvent.data;
   const unitTestResult = runUnitTest({ code, unitTestString, variableName });
-  self.postMessage(unitTestResult);
+  self.postMessage({ ...unitTestResult, unitTestId });
 }
 
 function runUnitTest({ code, unitTestString, variableName }) {
@@ -42,12 +42,12 @@ function runUnitTest({ code, unitTestString, variableName }) {
 }
 
 function packageCodeIntoInjectableFunction(code, variableName) {
-  // eslint-disable-next-line no-new-func
-  return new Function([
-    `console => {"use strict"\n${code}\nreturn ${variableName}}`,
-  ]);
+  //   return new Function([
+  //     `console => {"use strict"\n${code}\nreturn ${variableName}}`,
+  //   ]);
   /// make sure this ^ works; or default to:
-  // return eval(`console => {"use strict"\n\${code}\nreturn \${variableName}}`);
+  // eslint-disable-next-line no-eval
+  return eval(`console => {"use strict"\n${code}\nreturn ${variableName}}`);
 }
 
 class Console {

@@ -12,7 +12,8 @@ import babelParser from "prettier/parser-babel";
 
 import useWindowSize from "react-use/lib/useWindowSize";
 
-import submitCode from "../../utils/submitCode.js";
+// import submitCode from "../../utils/submitCode.js";
+import submitCode from "../../runner/submitCode";
 
 import {
   prettifyErrorMessage,

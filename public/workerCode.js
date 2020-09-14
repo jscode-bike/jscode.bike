@@ -32,6 +32,8 @@ class TestRunner {
     // times out after 5 seconds, returns failed test
     // returns the result of the test as object (shape subject to change)
     // tentative shape: {passed, outputs, error}
+    const unitTestId = uuid();
+    console.info(`test ${variableName} (${unitTestId}): ${unitTestString} ...`);
     return new Promise((resolve, reject) => {
       let timer = setTimeout(() => {
         console.warn("test runner worker didn't respond...");
@@ -39,13 +41,19 @@ class TestRunner {
         resolve(this.timeoutTest());
       }, 5000);
 
-      const message = { code, unitTestString, variableName };
-      function processUnitTestMessage(messageEvent) {
+      const message = {
+        code,
+        unitTestString,
+        variableName,
+        unitTestId,
+      };
+      const processUnitTestMessage = (messageEvent) => {
+        if (messageEvent?.data?.unitTestId !== message.unitTestId) return;
         clearTimeout(timer);
         this.worker.removeEventListener("message", processUnitTestMessage);
         const unitTestResult = messageEvent.data;
         resolve(unitTestResult);
-      }
+      };
       this.worker.addEventListener("message", processUnitTestMessage);
       this.worker.postMessage(message);
     });
@@ -131,4 +139,17 @@ function generateOverallSummary(testGroupResultsArray) {
       failed: 0,
     }
   );
+}
+
+function uuid() {
+  var dt = new Date().getTime();
+  var output = "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(
+    /[xy]/g,
+    function (c) {
+      var r = (dt + Math.random() * 16) % 16 | 0;
+      dt = Math.floor(dt / 16);
+      return (c === "x" ? r : (r & 0x3) | 0x8).toString(16);
+    }
+  );
+  return output;
 }
