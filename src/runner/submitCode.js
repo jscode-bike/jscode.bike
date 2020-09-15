@@ -1,8 +1,13 @@
+let mainWorker = new Worker("workerCode.js");
+
 const submitCode = (code, tests, variableName, submissionId) => {
   return runTestsInWorker(code, tests, variableName, submissionId);
 };
 
-const mainWorker = new Worker("workerCode.js");
+export const refreshWorker = () => {
+  mainWorker.terminate();
+  mainWorker = new Worker("workerCode.js");
+};
 
 const runTestsInWorker = (code, tests, variableName, submissionId) => {
   return new Promise((resolve, reject) => {

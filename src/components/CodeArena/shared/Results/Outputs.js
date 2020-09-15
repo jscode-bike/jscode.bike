@@ -8,24 +8,34 @@ const Outputs = ({ outputs }) => {
   const collapseIcon = isCollapsed ? "▸" : "▾";
 
   const { isSmallScreen, editorTheme } = useContext(ArenaContext);
+  const renderOutputs = () => {
+    if (outputs.length > 20) {
+      const str = outputs
+        .map((o, idx) => {
+          return o.args.map((a) => a.text).join(" ");
+        })
+        .join("\n");
+      return <PlainOutputContainer>{`${str}`}</PlainOutputContainer>;
+    }
+    return outputs.map((o, idx) => {
+      const id = "a" + uuid();
+      const codeString = `${o.args.map((a) => a.text).join(" ")}`;
+      return (
+        <ConsoleOutputContainer key={idx}>
+          <SyntaxHighlighterContainer {...{ editorTheme }}>
+            <SyntaxHighlighter code={codeString} id={id} />
+          </SyntaxHighlighterContainer>
+        </ConsoleOutputContainer>
+      );
+    });
+  };
   return (
     <OutputsContainer {...{ isSmallScreen }}>
       <ConsoleHeading onClick={(_e) => setIsCollapsed((c) => !c)}>
         <span>{collapseIcon}</span>
         <span>console</span>
       </ConsoleHeading>
-      {!isCollapsed &&
-        outputs.map((o, idx) => {
-          const id = "a" + uuid();
-          const codeString = `${o.args.map((a) => a.text).join(" ")}`;
-          return (
-            <ConsoleOutputContainer key={idx}>
-              <SyntaxHighlighterContainer {...{ editorTheme }}>
-                <SyntaxHighlighter code={codeString} id={id} />
-              </SyntaxHighlighterContainer>
-            </ConsoleOutputContainer>
-          );
-        })}
+      {!isCollapsed && renderOutputs()}
     </OutputsContainer>
   );
 };
@@ -36,7 +46,7 @@ const SyntaxHighlighter = ({ code, id }) => {
   const { monacoRef } = useContext(ArenaContext);
   useEffect(() => {
     if (!monacoRef.current) return;
-    if (code.length > 1500) return;
+    if (code.length > 500) return;
     monacoRef.current.editor.colorize(code, "javascript").then((xml) => {
       document.querySelector("#" + id).innerHTML = xml;
     });
@@ -78,6 +88,11 @@ const SyntaxHighlighterContainer = styled.div`
 `;
 
 const ConsoleOutputContainer = styled.div``;
+const PlainOutputContainer = styled.div`
+  font-family: monospace;
+  padding: var(--spacing-small);
+  white-space: pre-wrap;
+`;
 
 const OutputsContainer = styled.div`
   background-color: var(--bg-color-darker);

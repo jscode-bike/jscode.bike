@@ -1,13 +1,4 @@
 /* eslint-disable no-restricted-globals */
-// this should be the main worker
-// spawns other workers for individual tests
-// recieves an array of test suites
-
-// test runner worker accepts a test (thru postMessage)
-// returns the result (thru onMessage)
-// result shape : {passed, outputs, error}
-// if the test times out, we pre-fill and load a failed result
-// would have to micro manage testRunner worker life cycle
 
 const createNewWorker = () => new Worker("unitTestRunner.js");
 class TestRunner {
@@ -18,20 +9,10 @@ class TestRunner {
   timeoutTest() {
     this.worker.terminate();
     this.worker = createNewWorker();
-    return {
-      passed: false,
-      outputs: [
-        "your console outputs weren't loaded because the test timed out.",
-      ],
-      error: new Error("code timed out: took longer than 5 seconds"),
-    };
+    return makeErrorObj();
   }
 
   runUnitTest({ code, unitTestString, variableName }) {
-    // accepts code, test, varName and runs the test in the worker
-    // times out after 5 seconds, returns failed test
-    // returns the result of the test as object (shape subject to change)
-    // tentative shape: {passed, outputs, error}
     const unitTestId = uuid();
     console.info(`test ${variableName} (${unitTestId}): ${unitTestString} ...`);
     return new Promise((resolve, reject) => {
@@ -82,18 +63,6 @@ self.addEventListener(
 );
 
 const testRunner = new TestRunner();
-
-// messageCallback: so this is where a lot of management happens
-// this recieves the message from the main thread
-// message shape:
-/*
-{
-  code (str), 
-  tests [{description, unitTests}], 
-  variableName(str)
-}
-*/
-// returns full testResults and summary
 
 function messageCallback(e) {
   const { code, tests, variableName, submissionId } = e.data;
@@ -152,4 +121,24 @@ function uuid() {
     }
   );
   return output;
+}
+
+function makeErrorObj() {
+  return {
+    passed: false,
+    outputs: [
+      {
+        key: "error",
+        type: "error",
+        args: [
+          {
+            type: "error",
+            text:
+              "your console outputs weren't loaded because the test timed out.",
+          },
+        ],
+      },
+    ],
+    error: new Error("code timed out: took longer than 5 seconds"),
+  };
 }

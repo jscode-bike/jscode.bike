@@ -36,4 +36,6 @@ const runTestsInWorker = (code, tests, variableName, submissionId) => {
   });
 };
 
+export const refreshWorker = () => {};
+
 export default submitCode;

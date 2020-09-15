@@ -17,10 +17,17 @@ function messageCallback(messageEvent) {
 }
 
 function runUnitTest({ code, unitTestString, variableName }) {
-  const injectableFunction = packageCodeIntoInjectableFunction(
-    code,
-    variableName
-  );
+  let injectableFunction;
+
+  try {
+    injectableFunction = packageCodeIntoInjectableFunction(code, variableName);
+  } catch (e) {
+    return {
+      passed: false,
+      outputs: [],
+      error: new Error(`Problem with submitted code: ${e}`),
+    };
+  }
   const outputs = [];
   const spy = new Console(outputs);
   const fnToTest = injectableFunction(spy);

@@ -12,8 +12,8 @@ import babelParser from "prettier/parser-babel";
 
 import useWindowSize from "react-use/lib/useWindowSize";
 
-// import submitCode from "../../utils/submitCode.js";
-import submitCode from "../../runner/submitCode";
+import submitCode, { refreshWorker } from "../../utils/submitCode.js";
+// import submitCode, { refreshWorker } from "../../runner/submitCode";
 
 import {
   prettifyErrorMessage,
@@ -40,7 +40,10 @@ const ArenaProvider = (props) => {
   });
   const [isMounted, setIsMounted] = useState(true);
   useEffect(() => {
-    return () => setIsMounted(false);
+    return () => {
+      setIsMounted(false);
+      refreshWorker();
+    };
   }, []);
   const [editorTheme, setEditorTheme] = useState("vs-dark");
   const {
