@@ -1,6 +1,6 @@
 /**
  * Determine the mobile operating system.
- * This function returns one of 'iOS', 'Android', 'Windows Phone', or 'unknown'.
+ * This function returns one of 'iOS', 'Android', 'Windows Phone', or 'other'.
  *
  * @returns {String}
  */
