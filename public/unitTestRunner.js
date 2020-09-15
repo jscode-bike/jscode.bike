@@ -19,7 +19,7 @@ function runUnitTest({ code, unitTestString, variableName }) {
     return {
       passed: false,
       outputs: [],
-      error: new Error(`Problem with submitted code: ${e}`),
+      error: new Error("Problem with submitted code: " + e.toString()),
       runtime: null,
     };
   }
@@ -48,7 +48,9 @@ function runUnitTest({ code, unitTestString, variableName }) {
 
 function packageCodeIntoInjectableFunction(code, variableName) {
   // eslint-disable-next-line no-eval
-  return eval(`console => {"use strict"\n${code}\nreturn ${variableName}}`);
+  return eval(
+    'console => {"use strict"\n' + code + "\nreturn " + variableName + "}"
+  );
 }
 
 function getCurrentTime() {
