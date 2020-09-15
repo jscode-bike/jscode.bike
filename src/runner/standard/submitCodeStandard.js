@@ -1,0 +1,36 @@
+let mainWorker = getNewWorker();
+
+/// figure out way to stream output in real time... hashes/keys/updates etc
+const submitCode = (code, tests, variableName, submissionId) => {
+  return runTestsInWorker(code, tests, variableName, submissionId);
+};
+
+export const refreshWorker = () => {
+  mainWorker.terminate();
+  mainWorker = getNewWorker();
+  return Promise.resolve();
+};
+
+const runTestsInWorker = (code, tests, variableName, submissionId) => {
+  return new Promise((resolve, reject) => {
+    mainWorker.postMessage({ code, tests, variableName, submissionId });
+    /// see if below onmessage call causes memory leak- consider adding/removing eventListener
+    mainWorker.onmessage = (e) => {
+      if (e.data.submissionId !== submissionId) return;
+      const output = { ...e.data };
+      if (output.error) {
+        reject(output);
+      } else {
+        resolve(output);
+      }
+    };
+  });
+};
+
+function getNewWorker() {
+  if (!Worker) throw new Error("Please enable web workers.");
+  // make sure workerCode.js, unitTestRunner.js, and chai.min.js are all available in public/worker/
+  return new Worker("worker/workerCode.js");
+}
+
+export default submitCode;

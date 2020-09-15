@@ -26,7 +26,7 @@ const ResultsSummary = ({
   );
 };
 
-const SummaryContainer = styled.code`
+const SummaryContainer = styled.span`
   margin: var(--spacing-medium) var(--spacing-medium) 0;
   padding: var(--spacing-medium);
   background-color: var(

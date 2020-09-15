@@ -12,7 +12,7 @@ import babelParser from "prettier/parser-babel";
 
 import useWindowSize from "react-use/lib/useWindowSize";
 
-import submitCode, { refreshWorker } from "../../runner/submitCode";
+import runner from "../../runner/runner.js";
 
 import {
   prettifyErrorMessage,
@@ -39,9 +39,9 @@ const ArenaProvider = (props) => {
   });
   const [isMounted, setIsMounted] = useState(true);
   useEffect(() => {
-    return () => {
+    return async () => {
       setIsMounted(false);
-      refreshWorker();
+      await runner.refreshWorker();
     };
   }, []);
   const [editorTheme, setEditorTheme] = useState("vs-dark");
@@ -62,7 +62,7 @@ const ArenaProvider = (props) => {
     setResults(null);
     try {
       const submissionId = uuid();
-      const submissionResults = await submitCode(
+      const submissionResults = await runner.submitCode(
         code,
         tests,
         variableName,

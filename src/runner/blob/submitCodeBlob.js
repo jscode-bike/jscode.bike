@@ -10,6 +10,7 @@ const submitCode = (code, tests, variableName, submissionId) => {
 export const refreshWorker = () => {
   mainWorker.terminate();
   mainWorker = getNewWorker();
+  return Promise.resolve();
 };
 
 const runTestsInWorker = (code, tests, variableName, submissionId) => {
@@ -30,7 +31,7 @@ const runTestsInWorker = (code, tests, variableName, submissionId) => {
 
 function getNewWorker() {
   if (!Worker) throw new Error("Please enable web workers.");
-  // return new Worker("workerCode.js");
+  console.log("spawning new worker...", fullWorkerDataURL);
   return new Worker(fullWorkerDataURL);
 }
 

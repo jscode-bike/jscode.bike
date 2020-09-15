@@ -9,6 +9,10 @@ const Result = ({ result }) => {
   const [isCollapsed, setIsCollapsed] = useState(isPassing);
   const collapseIcon = isCollapsed ? "▸" : "▾";
   const ratio = `${passed}/${total}`;
+  const renderRuntime = (runtime) => {
+    if (runtime === null || runtime === undefined) return null;
+    return <Runtime>{`${runtime} ms`}</Runtime>;
+  };
   return (
     <ResultContainer>
       <Description onClick={(_e) => setIsCollapsed(!isCollapsed)}>
@@ -26,7 +30,7 @@ const Result = ({ result }) => {
                   <ResultText>
                     {passed ? "☑ Passed" : `🅧 Not Passing: ${error.message}`}
                   </ResultText>
-                  <Runtime>{runtime !== null && `${runtime} ms`}</Runtime>
+                  {renderRuntime(runtime)}
                 </ResultTextContainter>
                 {!!outputs.length && <Outputs {...{ outputs }} />}
               </UnitTestContainer>
