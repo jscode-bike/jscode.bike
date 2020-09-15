@@ -12,8 +12,7 @@ import babelParser from "prettier/parser-babel";
 
 import useWindowSize from "react-use/lib/useWindowSize";
 
-import submitCode, { refreshWorker } from "../../utils/submitCode.js";
-// import submitCode, { refreshWorker } from "../../runner/submitCode";
+import submitCode, { refreshWorker } from "../../runner/submitCode";
 
 import {
   prettifyErrorMessage,
