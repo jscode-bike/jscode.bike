@@ -1,5 +1,6 @@
 let mainWorker = getNewWorker();
 
+/// figure out way to stream output in real time... hashes/keys/updates etc
 const submitCode = (code, tests, variableName, submissionId) => {
   return runTestsInWorker(code, tests, variableName, submissionId);
 };
@@ -12,6 +13,7 @@ export const refreshWorker = () => {
 const runTestsInWorker = (code, tests, variableName, submissionId) => {
   return new Promise((resolve, reject) => {
     mainWorker.postMessage({ code, tests, variableName, submissionId });
+    /// see if below onmessage call causes memory leak- consider adding/removing eventListener
     mainWorker.onmessage = (e) => {
       if (e.data.submissionId !== submissionId) return;
       const output = { ...e.data };
