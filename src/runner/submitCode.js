@@ -1,4 +1,4 @@
-let mainWorker = new Worker("workerCode.js");
+let mainWorker = getNewWorker();
 
 const submitCode = (code, tests, variableName, submissionId) => {
   return runTestsInWorker(code, tests, variableName, submissionId);
@@ -6,7 +6,7 @@ const submitCode = (code, tests, variableName, submissionId) => {
 
 export const refreshWorker = () => {
   mainWorker.terminate();
-  mainWorker = new Worker("workerCode.js");
+  mainWorker = getNewWorker();
 };
 
 const runTestsInWorker = (code, tests, variableName, submissionId) => {
@@ -23,5 +23,10 @@ const runTestsInWorker = (code, tests, variableName, submissionId) => {
     };
   });
 };
+
+function getNewWorker() {
+  if (!Worker) throw new Error("Please enable web workers.");
+  return new Worker("workerCode.js");
+}
 
 export default submitCode;

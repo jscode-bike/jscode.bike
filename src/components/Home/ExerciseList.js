@@ -31,7 +31,6 @@ const ListItemContainer = styled.div`
 
 const ExerciseList = ({ exercises }) => {
   const { allStoredExercisesData } = useContext(LocalStorageContext);
-  console.log(exercises);
   return (
     <ListContainer>
       {exercises.map((e) => (

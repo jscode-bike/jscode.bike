@@ -12,10 +12,10 @@ v1
 
 - add more problems
 - create more informative dashboard on homepage
-- rebuild code running engine with improved functionality
-  - singleton with kill switch
+- rebuild code running engine with improved functionality -P
+  - singleton with kill switch -X
+  - richer test data -X
   - live streaming results
-  - richer test data
 - make `message` and `error message` components more helpful
 - build out header component
 - different themes!!
@@ -33,7 +33,7 @@ After v1 items are complete, apply for advertising
 
 consider
 
-- disable submit button while streaming in tests so user can see and attempt challenge before waiting for all tests
+- caching network calls using service workers
 - integrating tabs with router, finding new solution for tabs w/ code splitting
   - progressively enhance arena to use panes with draggable tabs
 - solutions tab, or at least link to blog
@@ -43,8 +43,10 @@ consider
 - measure runtime of solution & grade accordingly
 - fix cross-platform CSS issues
 - create data structures section for fundamentals practice
+- user defined timeout threshold
 
 completed items
 
+- disable submit button while streaming in tests so user can see and attempt challenge before waiting for all tests -X
 - finding better solution for syntax highlighter in results
   - too slow; look into memoization or just new solution altogether

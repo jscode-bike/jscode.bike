@@ -32,7 +32,7 @@ const TestResultsContainer = styled.div`
 const Results = ({ results: { summary, testResults } }) => {
   const { passed, total } = summary;
   const isPassing = passed === total;
-  const [isCollapsed, setIsCollapsed] = useState(isPassing);
+  const [isCollapsed, setIsCollapsed] = useState(false);
   return (
     <ResultsContainer>
       <ResultsSummary

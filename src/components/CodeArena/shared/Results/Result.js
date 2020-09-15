@@ -19,11 +19,14 @@ const Result = ({ result }) => {
       {!isCollapsed && (
         <UnitTestsContainer>
           {unitTestResults.map((u, idx) => {
-            const { outputs, passed, error } = u;
+            const { outputs, passed, error, runtime } = u;
             return (
               <UnitTestContainer key={idx} passed={passed}>
                 <ResultTextContainter>
-                  {passed ? "☑ Passed" : `🅧 Not Passing: ${error.message}`}
+                  <ResultText>
+                    {passed ? "☑ Passed" : `🅧 Not Passing: ${error.message}`}
+                  </ResultText>
+                  <Runtime>{runtime !== null && `${runtime} ms`}</Runtime>
                 </ResultTextContainter>
                 {!!outputs.length && <Outputs {...{ outputs }} />}
               </UnitTestContainer>
@@ -36,8 +39,17 @@ const Result = ({ result }) => {
 };
 
 const ResultTextContainter = styled.div`
-  font-family: monospace;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const ResultText = styled.div`
   font-size: 0.9rem;
+`;
+
+const Runtime = styled.div`
+  font-size: 0.6rem;
 `;
 
 const DescriptionSpan = styled.span``;

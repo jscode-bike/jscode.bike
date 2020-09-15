@@ -20,11 +20,13 @@ function runUnitTest({ code, unitTestString, variableName }) {
       passed: false,
       outputs: [],
       error: new Error(`Problem with submitted code: ${e}`),
+      runtime: null,
     };
   }
   const outputs = [];
   const spy = new Console(outputs);
   const fnToTest = injectableFunction(spy);
+  const startTime = getCurrentTime();
   try {
     // eslint-disable-next-line no-eval
     eval(unitTestString)(fnToTest);
@@ -32,12 +34,14 @@ function runUnitTest({ code, unitTestString, variableName }) {
       passed: true,
       outputs: [...outputs],
       error: null,
+      runtime: getFormattedRuntime(startTime, getCurrentTime()),
     };
   } catch (e) {
     return {
       passed: false,
       outputs: [...outputs],
       error: e,
+      runtime: getFormattedRuntime(startTime, getCurrentTime()),
     };
   }
 }
@@ -47,6 +51,18 @@ function packageCodeIntoInjectableFunction(code, variableName) {
   return eval(`console => {"use strict"\n${code}\nreturn ${variableName}}`);
 }
 
+function getCurrentTime() {
+  if (performance) {
+    return performance.now();
+  } else {
+    return Date.now();
+  }
+}
+
+function getFormattedRuntime(startTime, endTime) {
+  const diff = endTime - startTime;
+  return diff.toFixed(2);
+}
 class Console {
   constructor(outputs) {
     Object.keys(console).forEach((key) => {

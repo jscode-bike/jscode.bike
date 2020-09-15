@@ -12,15 +12,15 @@ class TestRunner {
     return makeErrorObj();
   }
 
-  runUnitTest({ code, unitTestString, variableName }) {
+  runUnitTest({ code, unitTestString, variableName }, workerTimeoutMs = 5000) {
     const unitTestId = uuid();
-    console.info(`test ${variableName} (${unitTestId}): ${unitTestString} ...`);
+
     return new Promise((resolve, reject) => {
       let timer = setTimeout(() => {
         console.warn("test runner worker didn't respond...");
         this.worker.removeEventListener("message", processUnitTestMessage);
         resolve(this.timeoutTest());
-      }, 5000);
+      }, workerTimeoutMs);
 
       const message = {
         code,
@@ -55,12 +55,7 @@ class TestRunner {
   }
 }
 
-self.addEventListener(
-  "message",
-
-  messageCallback,
-  false
-);
+self.addEventListener("message", messageCallback, false);
 
 const testRunner = new TestRunner();
 
@@ -134,11 +129,12 @@ function makeErrorObj() {
           {
             type: "error",
             text:
-              "your console outputs weren't loaded because the test timed out.",
+              "your console outputs were not loaded because the test timed out.",
           },
         ],
       },
     ],
     error: new Error("code timed out: took longer than 5 seconds"),
+    runtime: "5000+",
   };
 }
