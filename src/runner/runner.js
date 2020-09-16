@@ -1,61 +1,56 @@
 import getMobileOperatingSystem from "../utils/getMobileOS";
 
 const isMobileOS = getMobileOperatingSystem() !== "other";
+class Runner {
+  constructor() {
+    this._fetched = false;
+    this._submitCode = null;
+    this._refreshWorker = null;
+  }
 
-const submitCode = (...args) => {
-  return new Promise((resolve, reject) => {
-    if (isMobileOS) {
-      import("./mobile/submitCodeMobile.js")
-        .then((submitCodeMobileData) => {
-          resolve(submitCodeMobileData.default(...args));
-        })
-        .catch((e) => {
-          reject(e);
-        });
+  async _fetchEngine() {
+    if (!this._fetched) {
+      const promise = isMobileOS
+        ? import("./mobile/submitCodeMobile.js")
+        : import("./blob/submitCodeBlob.js");
+      const engine = await promise;
+      const { default: submitCode, refreshWorker } = engine;
+      this._submitCode = submitCode;
+      this._refreshWorker = refreshWorker;
+      this.fetched = true;
+      return { submitCode, refreshWorker };
     } else {
-      import("./blob/submitCodeBlob.js")
-        .then(async (submitCodeBlobData) => {
-          const val = await submitCodeBlobData.default(...args);
-          resolve(val);
-        })
-        .catch((e) => {
-          reject(e);
-        });
+      return Promise.resolve({
+        submitCode: this._submitCode,
+        refreshWorker: this._refreshWorker,
+      });
     }
-  });
+  }
+
+  async submitCode(...args) {
+    const engine = await this._fetchEngine();
+    const val = await engine.submitCode(...args);
+    return val;
+  }
+  async refreshWorker() {
+    const engine = await this._fetchEngine();
+    await engine.refreshWorker();
+    return;
+  }
+}
+
+const runner = new Runner();
+const { submitCode, refreshWorker } = runner;
+
+const output = {
+  submitCode: submitCode.bind(runner),
+  refreshWorker: refreshWorker.bind(runner),
 };
 
-const refreshWorker = () => {
-  return new Promise((resolve, reject) => {
-    if (isMobileOS) {
-      import("./mobile/submitCodeMobile.js")
-        .then((submitCodeMobileData) => {
-          resolve(submitCodeMobileData.refreshWorker());
-        })
-        .catch((e) => {
-          reject(e);
-        });
-    } else {
-      import("./blob/submitCodeBlob.js")
-        .then((submitCodeBlobData) => {
-          resolve(submitCodeBlobData.refreshWorker());
-        })
-        .catch((e) => {
-          reject(e);
-        });
-    }
-  });
-};
-
-const runner = {
-  submitCode,
-  refreshWorker,
-};
-
-export default runner;
+export default output;
 
 /// TODO:
 
-// feature detection for mobile OS
-// code splitting
+// feature detection for mobile OS -X
+// code splitting -X
 // write script for building public/worker
