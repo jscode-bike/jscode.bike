@@ -1,6 +1,6 @@
 import workerScript from "./workerCode.js";
 
-const submitCode = (code, tests, variableName, submissionId) => {
+export const submitCode = (code, tests, variableName, submissionId) => {
   return runTestsInWorker(code, tests, variableName, submissionId);
 };
 
@@ -37,5 +37,3 @@ const runTestsInWorker = (code, tests, variableName, submissionId) => {
 };
 
 export const refreshWorker = () => Promise.resolve();
-
-export default submitCode;

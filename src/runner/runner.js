@@ -14,7 +14,7 @@ class Runner {
         ? import("./mobile/submitCodeMobile.js")
         : import("./blob/submitCodeBlob.js");
       const engine = await promise;
-      const { default: submitCode, refreshWorker } = engine;
+      const { submitCode, refreshWorker } = engine;
       this._submitCode = submitCode;
       this._refreshWorker = refreshWorker;
       this.fetched = true;

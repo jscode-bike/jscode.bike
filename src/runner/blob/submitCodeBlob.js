@@ -3,7 +3,7 @@ import fullWorkerDataURL from "./fullWorkerDataURL";
 let mainWorker = getNewWorker();
 
 /// figure out way to stream output in real time... hashes/keys/updates etc
-const submitCode = (code, tests, variableName, submissionId) => {
+export const submitCode = (code, tests, variableName, submissionId) => {
   return runTestsInWorker(code, tests, variableName, submissionId);
 };
 
@@ -33,5 +33,3 @@ function getNewWorker() {
   if (!Worker) throw new Error("Please enable web workers.");
   return new Worker(fullWorkerDataURL);
 }
-
-export default submitCode;

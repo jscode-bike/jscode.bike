@@ -1,7 +1,7 @@
 let mainWorker = getNewWorker();
 
 /// figure out way to stream output in real time... hashes/keys/updates etc
-const submitCode = (code, tests, variableName, submissionId) => {
+export const submitCode = (code, tests, variableName, submissionId) => {
   return runTestsInWorker(code, tests, variableName, submissionId);
 };
 
@@ -32,5 +32,3 @@ function getNewWorker() {
   // make sure workerCode.js, unitTestRunner.js, and chai.min.js are all available in public/worker/
   return new Worker("worker/workerCode.js");
 }
-
-export default submitCode;
