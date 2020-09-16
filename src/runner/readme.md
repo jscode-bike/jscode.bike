@@ -22,3 +22,15 @@ we ship either the mobile version or blob version in prod based off OS detection
 ### Mobile (legacy)
 
 this is the first version of the code runner I came up with; just 1 worker which is killed after every test
+
+[add diagram here]
+
+### Standard (latest)
+
+[add description here]
+
+[add diagram here]
+
+### blob (current)
+
+[add description here]
