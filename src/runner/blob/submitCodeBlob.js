@@ -31,7 +31,6 @@ const runTestsInWorker = (code, tests, variableName, submissionId) => {
 
 function getNewWorker() {
   if (!Worker) throw new Error("Please enable web workers.");
-  console.log("spawning new worker...", fullWorkerDataURL);
   return new Worker(fullWorkerDataURL);
 }
 
