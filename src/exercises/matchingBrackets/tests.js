@@ -51,9 +51,7 @@ const generateValidSegment = () => {
   return (
     wrapValidUnit(randomValidSegment()) +
     Array.from({ length: rand(3) })
-      .map((_) => {
-        return randomValidSegment();
-      })
+      .map((_) => randomValidSegment())
       .join("")
   );
 };
