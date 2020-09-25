@@ -1,4 +1,5 @@
 long_inputs.json
 short_inputs.json
+fixed_tests.json
 
 refs/**/*
