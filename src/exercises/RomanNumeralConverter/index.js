@@ -1,16 +1,17 @@
-import RomanNumeralConverterMd from "./RomanNumeralConverter.md";
+import instructionsMd from "./instructions.md";
 
 const {
   attributes: { name, variableName, tags, difficulty, startingCode },
-  react,
-} = RomanNumeralConverterMd;
+  react: instructionComponent,
+} = instructionsMd;
 
 const output = {
   name,
   difficulty,
   variableName,
-  instructionComponent: react,
+  instructionComponent,
   startingCode,
   tags,
 };
+
 export default output;

@@ -1,16 +1,17 @@
-import twoSumMd from "./twoSum.md";
+import instructionsMd from "./instructions.md";
 
 const {
   attributes: { name, variableName, tags, difficulty, startingCode },
-  react,
-} = twoSumMd;
+  react: instructionComponent,
+} = instructionsMd;
 
 const output = {
   name,
   difficulty,
   variableName,
-  instructionComponent: react,
+  instructionComponent,
   startingCode,
   tags,
 };
+
 export default output;

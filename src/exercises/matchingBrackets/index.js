@@ -1,16 +1,17 @@
-import matchingBracketsMd from "./matchingBrackets.md";
+import instructionsMd from "./instructions.md";
 
 const {
   attributes: { name, variableName, tags, difficulty, startingCode },
-  react,
-} = matchingBracketsMd;
+  react: instructionComponent,
+} = instructionsMd;
 
 const output = {
   name,
   difficulty,
   variableName,
-  instructionComponent: react,
+  instructionComponent,
   startingCode,
   tags,
 };
+
 export default output;

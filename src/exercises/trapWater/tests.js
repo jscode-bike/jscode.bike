@@ -1,5 +1,5 @@
-import shortInputTests from "./short_inputs.json";
-import longInputTests from "./long_inputs.json";
+import shortInputTests from "./artifacts/short_inputs.json";
+import longInputTests from "./artifacts/long_inputs.json";
 
 const testTemplate = ([input, expected]) =>
   `(fnToTest => chai.expect(fnToTest(${JSON.stringify(

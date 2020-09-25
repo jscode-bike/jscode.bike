@@ -1,4 +1,4 @@
-import fixedTests from "./fixed_tests.json";
+import fixedTests from "./artifacts/fixed_tests.json";
 const rand = (n) => (Math.random() * n) | 0;
 const matches = {
   "{": "}",
