@@ -6,7 +6,7 @@ const {
   react: instructionComponent,
 } = instructionsMd;
 
-const output = {
+export default {
   name,
   difficulty,
   variableName,
@@ -14,5 +14,3 @@ const output = {
   startingCode,
   tags,
 };
-
-export default output;

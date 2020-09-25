@@ -40,7 +40,7 @@ function runSingleCycle(grid) {
   return {
     hasChanged,
     newGrid,
-    hasOnes
+    hasOnes,
   };
 }
 
@@ -55,4 +55,3 @@ function getAdjacentCells(x, y, w, h) {
     return x < w && y < h && x >= 0 && y >= 0;
   });
 }
-
