@@ -1,5 +1,5 @@
 const code = /* javascript */ `
-function rottenOranges(grid) {
+function rottenLimes(grid) {
   // code here...
   return -1;
 }

@@ -1,15 +1,15 @@
 ---
-name: Rotten Oranges
-variableName: rottenOranges
+name: Rotten Limes
+variableName: rottenLimes
 tags:
   - iteration
   - recursion
 difficulty: 4
 ---
 
-# Rotten Oranges
+# Rotten Limes
 
-How many cycles until all oranges are rotten ??
+How many cycles until all limes are rotten ??
 
 ```javascript
 // Examples
