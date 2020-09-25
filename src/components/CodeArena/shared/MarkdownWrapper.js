@@ -15,6 +15,10 @@ const Wrapper = styled.div`
   ::-webkit-scrollbar-thumb:hover {
     background-color: var(--bg-color-darker);
   }
+
+  scrollbar-color: var(--bg-color-darker) var(--bg-color-dark);
+  scrollbar-width: var(--spacing-small);
+
   overflow-y: scroll;
   max-height: calc(
     100vh - var(--header-height) - var(--tab-height) -
@@ -56,6 +60,9 @@ const Wrapper = styled.div`
     ::-webkit-scrollbar-thumb {
       background-color: var(--bg-color);
     }
+
+    scrollbar-color: var(--bg-color) var(--bg-color-darker);
+    scrollbar-width: var(--spacing-small);
 
     width: calc(
       calc(

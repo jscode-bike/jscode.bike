@@ -2,19 +2,20 @@ import React, { useState, createContext } from "react";
 
 export const LocalStorageContext = createContext();
 
+const EXERCISES = "exercises",
+  VERSION = "version";
 /**
 
 {version, settings, exercises}
  */
 
-const getInitialStoredData = () =>
-  JSON.parse(localStorage.getItem("exercises"));
+const getInitialStoredData = () => JSON.parse(localStorage.getItem(EXERCISES));
 
 const LocalStorageProvider = (props) => {
-  const version = localStorage.getItem("version");
-  if (version !== "1") {
+  const version = localStorage.getItem(VERSION);
+  if (version !== "0") {
     localStorage.clear();
-    localStorage.setItem("version", "1");
+    localStorage.setItem(VERSION, "0");
   }
   const [allStoredExercisesData, setStoredExerciseData] = useState(
     getInitialStoredData() || {}
@@ -29,19 +30,19 @@ const LocalStorageProvider = (props) => {
     const o = { code, passed };
     const newData = { ...allStoredExercisesData };
     newData[variableName] = o;
-    localStorage.setItem("exercises", JSON.stringify(newData));
+    localStorage.setItem(EXERCISES, JSON.stringify(newData));
     setStoredExerciseData(newData);
   };
 
   const clearExerciseData = (variableName) => {
     const newData = { ...allStoredExercisesData };
     delete newData[variableName];
-    localStorage.setItem("exercises", JSON.stringify(newData));
+    localStorage.setItem(EXERCISES, JSON.stringify(newData));
     setStoredExerciseData(newData);
   };
 
   const clearAllExerciseData = () => {
-    localStorage.setItem("exercises", "{}");
+    localStorage.setItem(EXERCISES, "{}");
     setStoredExerciseData({});
   };
 

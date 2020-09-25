@@ -24,6 +24,9 @@ const TestResultsContainer = styled.div`
     background-color: var(--bg-color-darker);
   }
 
+  scrollbar-color: var(--bg-color-darker) var(--bg-color-dark);
+  scrollbar-width: var(--spacing-small);
+
   display: flex;
   flex-direction: column;
   gap: var(--spacing-medium);

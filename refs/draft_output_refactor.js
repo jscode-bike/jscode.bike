@@ -59,6 +59,9 @@ const SyntaxHighlighterContainer = styled.div`
     background-color: var(--bg-color-dark);
   }
 
+  scrollbar-color: var(--bg-color) var(--bg-color-darker);
+  scrollbar-width: var(--spacing-small);
+
   margin: 0;
   padding: var(--spacing-small);
   background-color: var(--bg-color-darker);
