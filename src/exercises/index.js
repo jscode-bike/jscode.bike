@@ -4,7 +4,7 @@ import twoSum from "./twoSum/meta.json";
 import trapWater from "./trapWater/meta.json";
 import matchingBrackets from "./matchingBrackets/meta.json";
 import RomanNumeralConverter from "./RomanNumeralConverter/meta.json";
-// import rottenOranges from "./rottenOranges/meta.json";
+// import rottenLimes from "./rottenLimes/meta.json";
 
 export const arr = [
   fishBus,
@@ -13,7 +13,7 @@ export const arr = [
   trapWater,
   matchingBrackets,
   RomanNumeralConverter,
-  // rottenOranges,
+  // rottenLimes,
 ].map(([n, v, d]) => ({
   name: n,
   variableName: v,
