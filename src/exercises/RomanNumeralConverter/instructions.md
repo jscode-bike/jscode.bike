@@ -1,11 +1,11 @@
 ---
 name: Roman Numerals
-variableName: RomanNumeralConverder
+variableName: RomanNumeralConverter
 tags:
   - strings
   - numbers
 startingCode: "class RomanNumeralConverter {\n\n  static numberToRoman(num) {\n    // code here...\n  }\n\n  static romanToNumber(str) {\n    // ...and here\n  }\n\n}"
-difficulty: 4
+difficulty: 3
 ---
 
 # Roman Numerals
