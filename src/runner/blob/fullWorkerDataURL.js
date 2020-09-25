@@ -65,6 +65,11 @@ function getFormattedRuntime(startTime, endTime) {
   const diff = endTime - startTime;
   return diff.toFixed(2);
 }
+const xformFns = {
+  function: (a) => String(a),
+  string: (a) => a,
+  other: (a) => JSON.stringify(a),
+};
 class Console {
   constructor(outputs) {
     Object.keys(console).forEach((key) => {
@@ -76,7 +81,8 @@ class Console {
             if (a === this || a === globalThis)
               throw new Error("illegal console operation");
             const type = typeof a;
-            const text = type === "function" ? String(a) : JSON.stringify(a);
+            const transformer = xformFns[type] || xformFns.other;
+            const text = transformer(a);
             return { type, text };
           }),
         });

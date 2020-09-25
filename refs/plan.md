@@ -33,6 +33,7 @@ After v1 items are complete, apply for advertising
 
 consider
 
+- creating lightweight editor for mobile
 - caching network calls using service workers
 - integrating tabs with router, finding new solution for tabs w/ code splitting
   - progressively enhance arena to use panes with draggable tabs
