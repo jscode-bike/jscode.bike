@@ -4,7 +4,7 @@
 
 each exercise should contain at least 4 files:
 
-1. index.js - all of the index.js files are identical; just exporting all necessary UI fixtures
+1. index.js - all of the index.js files are almost identical; just exporting all necessary UI fixtures
 2. instructions.md - contains the markup necessary for rendering instructions
 3. meta.json - has metadata about problem to populate the problems list
 4. tests.js - contains an array export of test objects, each with shape: `{description: string, unitTests: []string}`; details about the strings in the `unitTests` array are described below.
