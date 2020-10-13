@@ -61,6 +61,7 @@ const TextArea = styled.textarea`
   resize: none;
   outline: none;
   font-size: 1.2rem;
+  font-family: monospace;
 `;
 
 export default LightWeightEditor;
