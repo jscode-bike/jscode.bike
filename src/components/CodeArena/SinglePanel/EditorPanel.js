@@ -1,12 +1,10 @@
-import React, { useContext, useEffect, useRef } from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
-import { getCssVariableNumberValue, debounce } from "../../../utils/utils.js";
 import Button from "../../shared/Button.js";
 import { ArenaContext } from "../ArenaContext.js";
-import Monaco from "../shared/Monaco.js";
+import LightWeightEditor from "./LightWeightEditor.js";
 
 const EditorPanel = () => {
-  const editorRef = useRef(null);
   const {
     trySubmission,
     loading,
@@ -15,31 +13,9 @@ const EditorPanel = () => {
     tabIdx,
     tests,
   } = useContext(ArenaContext);
-  useEffect(() => {
-    const resizeFn = debounce(function () {
-      const headerTabAndSubmitHeight = [
-        "--header-height",
-        "--tab-height",
-        "--spacing-medium",
-        "--spacing-small",
-        "--button-panel-height",
-        "--spacing-medium",
-      ].reduce((a, b) => a + getCssVariableNumberValue(b), 0);
-      const height = window.innerHeight - headerTabAndSubmitHeight;
-      const width =
-        window.innerWidth - getCssVariableNumberValue("--spacing-medium") * 2;
-      editorRef.current.layout({
-        height,
-        width,
-      });
-    });
-    if (tabIdx === 2) resizeFn();
-    window.addEventListener("resize", resizeFn);
-    return () => window.removeEventListener("resize", resizeFn);
-  }, [editorRef, tabIdx]);
   return (
     <EditorPanelContainer {...{ tabIdx }}>
-      <Monaco {...{ editorRef }} />
+      <LightWeightEditor />
       <ButtonPanelContainer>
         <SubmitButton onClick={trySubmission} disabled={loading || !tests}>
           {!tests ? "Loading tests..." : "Submit Code"}
@@ -53,7 +29,6 @@ const EditorPanel = () => {
 
 const EditorPanelContainer = styled.div`
   display: ${({ tabIdx }) => (tabIdx === 2 ? "block" : "none")};
-  /* padding: var(--spacing-small) var(--spacing-medium) var(--spacing-medium); */
   padding: var(--spacing-medium);
 `;
 
