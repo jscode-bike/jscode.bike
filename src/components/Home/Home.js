@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 import { arr as exercises } from "../../exercises/index.js";
 
-import ExerciseList from "./ExerciseList.js";
+import ExerciseList from "./ExerciseList/ExerciseList.js";
 
 import logo from "../../assets/logo.svg";
 import OpacityTransition from "../shared/OpacityTransition.js";
