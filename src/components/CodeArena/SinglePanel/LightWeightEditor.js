@@ -44,6 +44,10 @@ const LightWeightEditor = () => {
         onChange={handleChange}
         onKeyDown={handleTab}
         autoFocus
+        spellCheck="false"
+        autoCapitalize="none"
+        autoCorrect="off"
+        autoComplete="off"
       />
     </div>
   );
