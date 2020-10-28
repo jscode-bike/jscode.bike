@@ -4,6 +4,7 @@ import twoSum from "./twoSum/meta.json";
 import trapWater from "./trapWater/meta.json";
 import matchingBrackets from "./matchingBrackets/meta.json";
 import RomanNumeralConverter from "./RomanNumeralConverter/meta.json";
+import removeDuplicates from "./removeDuplicates/meta.json";
 // import rottenLimes from "./rottenLimes/meta.json";
 
 export const arr = [
@@ -13,6 +14,7 @@ export const arr = [
   trapWater,
   matchingBrackets,
   RomanNumeralConverter,
+  removeDuplicates,
   // rottenLimes,
 ].map(([n, v, d]) => ({
   name: n,

@@ -40,6 +40,20 @@ the reason for this is so we can take the test string and `eval` it to turn it i
 - spiral matrix
   - [link](https://practice.geeksforgeeks.org/problems/spirally-traversing-a-matrix/0)
 
+### problems to add
+
+- remove duplicates
+
+  - [link](https://practice.geeksforgeeks.org/problems/remove-duplicates3034/1)
+
+- count the triplets
+
+  - [link](https://practice.geeksforgeeks.org/problems/count-the-triplets4615/1)
+
+- longest common prefix in an array
+
+  - [link](https://practice.geeksforgeeks.org/problems/longest-common-prefix-in-an-array/0)
+
 ## good resources for ideas
 
 [geeks4geeks](https://www.geeksforgeeks.org/must-do-coding-questions-for-companies-like-amazon-microsoft-adobe/)
