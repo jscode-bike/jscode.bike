@@ -26,7 +26,12 @@ export const ArenaContext = createContext();
 
 /// lot of tech debt in this component
 const ArenaProvider = (props) => {
-  const { startingCode, variableName, instructionComponent } = props;
+  const {
+    startingCode,
+    variableName,
+    instructionComponent,
+    solutionComponent,
+  } = props;
   const { width } = useWindowSize();
   const [tests, setTests] = useState(null);
   const isSmallScreen = width < 768;
@@ -53,6 +58,7 @@ const ArenaProvider = (props) => {
   const [code, setCode] = useState(
     allStoredExercisesData[variableName]?.code || startingCode || ""
   );
+
   const monacoRef = useRef(null);
   const trySubmission = async () => {
     if (!tests) return;
@@ -161,6 +167,7 @@ const ArenaProvider = (props) => {
     editorTheme,
     code,
     setCode,
+    solutionComponent,
     trySubmission,
     resetCode,
     handlePrettify,
