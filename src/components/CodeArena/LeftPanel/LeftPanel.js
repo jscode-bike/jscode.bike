@@ -4,6 +4,7 @@ import { Tabs, TabPanel } from "react-tabs";
 import { ArenaContext } from "../ArenaContext.js";
 import { TabStyled, TabListStyled } from "../shared/styledTabs.js";
 import Instructions from "../shared/Instructions.js";
+import Solution from "../shared/Solution.js";
 import ResultsPanel from "../shared/Results/ResultsPanel.js";
 
 const LeftPanel = () => {
@@ -14,12 +15,16 @@ const LeftPanel = () => {
         <TabListStyled>
           <TabStyled>Instructions</TabStyled>
           <TabStyled>Results</TabStyled>
+          <TabStyled>Solution</TabStyled>
         </TabListStyled>
         <TabPanel>
           <Instructions />
         </TabPanel>
         <TabPanel>
           <ResultsPanel />
+        </TabPanel>
+        <TabPanel>
+          <Solution />
         </TabPanel>
       </Tabs>
     </LeftPanelContaner>

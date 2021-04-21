@@ -1,15 +1,19 @@
 import React, { useEffect, useContext } from "react";
+import { useParams } from "react-router-dom";
 import { ArenaContext } from "../ArenaContext";
 import MarkdownWrapper from "./MarkdownWrapper";
+import { LocalStorageContext } from "../../App/LocalStorageContext";
 
-const Instructions = () => {
+const Solution = () => {
   const {
     solutionComponent: SolutionComponent,
     isSmallScreen,
     editorTheme,
     monacoRef,
   } = useContext(ArenaContext);
-
+  const { allStoredExercisesData } = useContext(LocalStorageContext);
+  const { variableName } = useParams();
+  const isSolved = allStoredExercisesData[variableName]?.passed;
   // the useEffect below is a hack to apply syntax highlighting via monaco rather than importing hljs
   useEffect(() => {
     if (!monacoRef.current) return;
@@ -23,9 +27,9 @@ const Instructions = () => {
   }, [monacoRef]);
   return (
     <MarkdownWrapper {...{ isSmallScreen, editorTheme }}>
-      <SolutionComponent />
+      {isSolved ? <SolutionComponent /> : <p>solve it first</p>}
     </MarkdownWrapper>
   );
 };
 
-export default Instructions;
+export default Solution;

@@ -175,6 +175,7 @@ const ArenaProvider = (props) => {
     instructionComponent,
     isSmallScreen,
   };
+  debugger;
   return (
     <ArenaContext.Provider value={value}>
       {props.children}
