@@ -22,7 +22,7 @@ export const arr = [
   difficulty: d,
 }));
 
-export default {
+const exercisesObj = {
   get(exerciseVariableName) {
     return new Promise((resolve, reject) => {
       import(`./${exerciseVariableName}/index.js`)
@@ -46,3 +46,5 @@ export default {
     });
   },
 };
+
+export default exercisesObj;

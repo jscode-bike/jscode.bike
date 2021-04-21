@@ -128,8 +128,15 @@ const ArenaProvider = (props) => {
   };
 
   // listeners from RightPanel
-  const submissionCallback = useCallback(trySubmission);
-  const prettifyCallback = useCallback(handlePrettify);
+  const submissionCallback = useCallback(trySubmission, [
+    tests,
+    loading,
+    code,
+    isMounted,
+    saveExerciseData,
+    variableName,
+  ]);
+  const prettifyCallback = useCallback(handlePrettify, [code, variableName]);
   useEffect(() => {
     const cmdSaveFn = async (e) => {
       if ((e.ctrlKey || e.metaKey) && e.keyCode === 83) {
