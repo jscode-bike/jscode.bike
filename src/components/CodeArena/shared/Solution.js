@@ -20,7 +20,7 @@ const Solution = () => {
     const elements = document.querySelectorAll("code.language-javascript");
     if (!elements.length) return;
     elements.forEach((element) => {
-      const code = element.innerHTML;
+      const code = element.innerText;
       const colorized = monacoRef.current.editor.colorize(code, "javascript");
       colorized.then((text) => {
         element.innerHTML = text;

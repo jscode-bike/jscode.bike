@@ -15,7 +15,7 @@ const Instructions = () => {
     if (!monacoRef.current) return;
     const element = document.querySelector("code.language-javascript");
     if (!element) return;
-    const code = element.innerHTML;
+    const code = element.innerText;
     const colorized = monacoRef.current.editor.colorize(code, "javascript");
     colorized.then((text) => {
       element.innerHTML = text;
