@@ -1,6 +1,6 @@
 ## Fishbus Solution
 
-To solve this problem, we must return a value based on a condition, namely whether the input value is divisible by 3, 5, or both 3 and 5. The most straightforward way to approach this would be to check for those 3 conditions, making sure to check for the most specific condition first, so as not to return the incorrect output from a more general condition. So we should check the `fishBus` condition first.
+To solve this problem, we must return a value based on a condition, namely whether the input value is divisible by 3, 5, or both 3 and 5. The most straightforward approach would be to check for those 3 conditions, making sure to check for the most specific condition first, so we do not to return the incorrect output from a more general condition. So we should check the `fishBus` condition first.
 
 In order to check for divisibility, we can use the modulus operator (`%`), which gives us the remainder when divided by the operand (i. e. `5 % 4 === 1 // true`);
 
