@@ -27,10 +27,20 @@ const LocalStorageProvider = (props) => {
     const passed = total === p;
 
     if (oldProblemData?.passed && !passed) return;
-    const o = { code, passed };
+
+    const solutionUnlocked = passed ? true : !!oldProblemData.solutionUnlocked;
+
+    const o = { code, passed, solutionUnlocked };
     const newData = { ...allStoredExercisesData };
     newData[variableName] = o;
     localStorage.setItem(EXERCISES, JSON.stringify(newData));
+    setStoredExerciseData(newData);
+  };
+
+  const unlockSolution = (variableName) => {
+    const newData = { ...allStoredExercisesData };
+    newData[variableName].solutionUnlocked = true;
+    localStorage.setItem(EXERCISES, newData);
     setStoredExerciseData(newData);
   };
 
@@ -53,6 +63,7 @@ const LocalStorageProvider = (props) => {
         saveExerciseData,
         clearExerciseData,
         clearAllExerciseData,
+        unlockSolution,
       }}
     >
       {props.children}

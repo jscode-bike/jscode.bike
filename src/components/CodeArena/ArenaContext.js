@@ -54,6 +54,7 @@ const ArenaProvider = (props) => {
     allStoredExercisesData,
     saveExerciseData,
     clearExerciseData,
+    unlockSolution,
   } = useContext(LocalStorageContext);
   const [code, setCode] = useState(
     allStoredExercisesData[variableName]?.code || startingCode || ""
@@ -175,6 +176,7 @@ const ArenaProvider = (props) => {
     code,
     setCode,
     solutionComponent,
+    unlockSolution,
     trySubmission,
     resetCode,
     handlePrettify,

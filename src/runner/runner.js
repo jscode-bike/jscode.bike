@@ -17,7 +17,7 @@ class Runner {
       const { submitCode, refreshWorker } = engine;
       this._submitCode = submitCode;
       this._refreshWorker = refreshWorker;
-      this.fetched = true;
+      this._fetched = true;
       return { submitCode, refreshWorker };
     } else {
       return Promise.resolve({

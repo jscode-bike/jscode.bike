@@ -13,7 +13,8 @@ const Solution = () => {
   } = useContext(ArenaContext);
   const { allStoredExercisesData } = useContext(LocalStorageContext);
   const { variableName } = useParams();
-  const isSolved = allStoredExercisesData[variableName]?.passed;
+  const isSolutionUnlocked =
+    allStoredExercisesData[variableName]?.solutionUnlocked;
   // the useEffect below is a hack to apply syntax highlighting via monaco rather than importing hljs
   useEffect(() => {
     if (!monacoRef.current) return;
@@ -29,7 +30,7 @@ const Solution = () => {
   }, [monacoRef]);
   return (
     <MarkdownWrapper {...{ isSmallScreen, editorTheme }}>
-      {isSolved ? <SolutionComponent /> : <p>solve it first</p>}
+      {isSolutionUnlocked ? <SolutionComponent /> : <p>solve it first</p>}
     </MarkdownWrapper>
   );
 };
