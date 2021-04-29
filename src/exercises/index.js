@@ -29,9 +29,7 @@ const exercisesObj = {
         .then((exerciseData) => {
           resolve(exerciseData.default);
         })
-        .catch((e) => {
-          reject(e);
-        });
+        .catch(reject);
     });
   },
   getTests(exerciseVariableName) {
@@ -40,9 +38,16 @@ const exercisesObj = {
         .then((exerciseData) => {
           resolve(exerciseData.default);
         })
-        .catch((e) => {
-          reject(e);
-        });
+        .catch(reject);
+    });
+  },
+  getSolutionComponent(exerciseVariableName) {
+    return new Promise((resolve, reject) => {
+      import(`./${exerciseVariableName}/solution.js`)
+        .then((solutionData) => {
+          resolve(solutionData.default);
+        })
+        .catch(reject);
     });
   },
 };
