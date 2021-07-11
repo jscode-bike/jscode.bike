@@ -28,3 +28,7 @@ a frontend-only implementation of codewars-style javascript problem solving edit
 
 - to customize themes of editor:
   https://microsoft.github.io/monaco-editor/playground.html#customizing-the-appearence-exposed-colors
+
+start script:
+
+cd ~/Desktop/p/jscode.bike && code .
