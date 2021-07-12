@@ -3,7 +3,8 @@ import React, { useState, createContext } from "react";
 export const LocalStorageContext = createContext();
 
 const EXERCISES = "exercises",
-  VERSION = "version";
+  VERSION = "jscode.bike_version",
+  js_code_bike_version = "0";
 /**
 
 {version, settings, exercises}
@@ -13,9 +14,9 @@ const getInitialStoredData = () => JSON.parse(localStorage.getItem(EXERCISES));
 
 const LocalStorageProvider = (props) => {
   const version = localStorage.getItem(VERSION);
-  if (version !== "0") {
+  if (version !== js_code_bike_version) {
     localStorage.clear();
-    localStorage.setItem(VERSION, "0");
+    localStorage.setItem(VERSION, js_code_bike_version);
   }
   const [allStoredExercisesData, setStoredExerciseData] = useState(
     getInitialStoredData() || {}
@@ -28,7 +29,7 @@ const LocalStorageProvider = (props) => {
 
     if (oldProblemData?.passed && !passed) return;
 
-    const solutionUnlocked = passed ? true : !!oldProblemData.solutionUnlocked;
+    const solutionUnlocked = passed ? true : !!oldProblemData?.solutionUnlocked;
 
     const o = { code, passed, solutionUnlocked };
     const newData = { ...allStoredExercisesData };
