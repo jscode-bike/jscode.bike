@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import Outputs from "./Outputs.js";
+import UnitTest from "./UnitTest.js";
 
 const Result = ({ result }) => {
   const { description, unitTestResults, testSummary } = result;
@@ -9,10 +9,6 @@ const Result = ({ result }) => {
   const [isCollapsed, setIsCollapsed] = useState(isPassing);
   const collapseIcon = isCollapsed ? "▸" : "▾";
   const ratio = `${passed}/${total}`;
-  const renderRuntime = (runtime) => {
-    if (runtime === null || runtime === undefined) return null;
-    return <Runtime>{`${runtime} ms`}</Runtime>;
-  };
   return (
     <ResultContainer>
       <Description onClick={(_e) => setIsCollapsed(!isCollapsed)}>
@@ -25,15 +21,10 @@ const Result = ({ result }) => {
           {unitTestResults.map((u, idx) => {
             const { outputs, passed, error, runtime } = u;
             return (
-              <UnitTestContainer key={idx} passed={passed}>
-                <ResultTextContainter>
-                  <ResultText>
-                    {passed ? "☑ Passed" : `🅧 Not Passing: ${error.message}`}
-                  </ResultText>
-                  {renderRuntime(runtime)}
-                </ResultTextContainter>
-                {!!outputs.length && <Outputs {...{ outputs }} />}
-              </UnitTestContainer>
+              <UnitTest
+                key={idx}
+                {...{ outputs, passed, error, runtime, idx }}
+              />
             );
           })}
         </UnitTestsContainer>
@@ -41,20 +32,6 @@ const Result = ({ result }) => {
     </ResultContainer>
   );
 };
-
-const ResultTextContainter = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-const ResultText = styled.div`
-  font-size: 0.9rem;
-`;
-
-const Runtime = styled.div`
-  font-size: 0.6rem;
-`;
 
 const DescriptionSpan = styled.span``;
 
@@ -66,15 +43,6 @@ const DescriptionRatio = styled(DescriptionSpan)`
   color: var(
     ${({ isPassing }) =>
       isPassing ? "--color-green-bright" : "--color-red-bright"}
-  );
-`;
-
-const UnitTestContainer = styled.div`
-  align-self: stretch;
-  padding: var(--spacing-small);
-  font-weight: bolder;
-  background-color: var(
-    ${({ passed }) => (passed ? "--color-green" : "--color-red-dark")}
   );
 `;
 
