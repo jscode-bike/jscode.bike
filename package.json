@@ -27,9 +27,9 @@
     "analyze": "source-map-explorer 'build/static/js/*.js'",
     "prettier": "prettier --write \"**/*.js\" --ignore-path .gitignore",
     "dev": "http-server build/",
-    "reinstall": "rm -rf node_modules && npm i",
-    "rebuild": "npm run reinstall && npm run build",
-    "bds": "npm run rebuild && npm run dev",
+    "reinstall": "rm -rf node_modules && yarn",
+    "rebuild": "yarn run reinstall && yarn run build",
+    "bds": "yarn run rebuild && yarn run dev",
     "inspect": "node --inspect-brk"
   },
   "eslintConfig": {
@@ -52,7 +52,7 @@
     "chai": "^4.2.0",
     "http-server": "^0.12.3",
     "husky": "^4.2.5",
-    "monaco-editor-webpack-plugin": "^2.0.0",
+    "monaco-editor-webpack-plugin": "^7.0.1",
     "pretty-quick": "^2.0.1",
     "react-app-rewire-frontmatter-markdown": "^1.4.0",
     "react-app-rewired": "^2.1.6",
