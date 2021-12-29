@@ -17,6 +17,7 @@ a frontend-only implementation of codewars-style javascript problem solving edit
 
 - [syntax highlighting for md code snippets](https://github.com/markdown-it/markdown-it)
 - [in browser python interpreter](https://skulpt.org/using.html)
+- [pyodide](https://pyodide.org/en/stable/usage/quickstart.html)
 
 ## useful tips
 
