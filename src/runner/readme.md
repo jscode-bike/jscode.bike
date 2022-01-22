@@ -2,7 +2,7 @@
 
 ## API
 
-the runner has simper api:
+the runner has simple api:
 
 - `submitCode(code, tests, variableName, submissionId) => Promise<results>`
 - `refreshWorker() => Promise<void>`
