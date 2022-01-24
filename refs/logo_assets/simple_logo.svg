@@ -1,6 +1,6 @@
 <svg version="1.1" width="192px" height="192px" viewBox="0 0 192 192" xmlns="http://www.w3.org/2000/svg">
   <rect x="0" y="0" width="192" height="192" fill="#f0db4f" />
-  <g transform="translate(110 160)">
+  <g transform="translate(79 149) scale(1.6)">
 
     <circle cx="12" r='10' fill="none" stroke="black" stroke-width='2' />
     <circle cx="12" r='2.4' fill="black" />
