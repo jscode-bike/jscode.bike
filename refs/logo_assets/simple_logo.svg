@@ -2,19 +2,19 @@
   <rect x="0" y="0" width="192" height="192" fill="#f0db4f" />
   <g transform="translate(79 149) scale(1.6)">
 
-    <circle cx="12" r='10' fill="none" stroke="black" stroke-width='2' />
+    <circle cx="12" r='10' fill="none" stroke="black" stroke-width="2.2" />
     <circle cx="12" r='2.4' fill="black" />
-    <line x1="12" x2="28" stroke="black" stroke-width="2" stroke-linecap="round" />
-    <line x1="12" x2="20" y2="-13.856" stroke="black" stroke-width="2" stroke-linecap="round" />
-    <line x1="18" y1="-17.32" x2="28" stroke="black" stroke-width="2" stroke-linecap="round" />
-    <line x1="20" y1="-13.856" x2="36" y2="-13.856" stroke="black" stroke-width="2" stroke-linecap="round" />
-    <line x1="36" y1="-13.856" x2="28" stroke="black" stroke-width="2" stroke-linecap="round" />
-    <line x1="34" y1="-17.32" x2="44" stroke="black" stroke-width="2" stroke-linecap="round" />
+    <line x1="12" x2="28" stroke="black" stroke-width="2.2" stroke-linecap="round" />
+    <line x1="12" x2="20" y2="-13.856" stroke="black" stroke-width="2.2" stroke-linecap="round" />
+    <line x1="18" y1="-17.32" x2="28" stroke="black" stroke-width="2.2" stroke-linecap="round" />
+    <line x1="20" y1="-13.856" x2="36" y2="-13.856" stroke="black" stroke-width="2.2" stroke-linecap="round" />
+    <line x1="36" y1="-13.856" x2="28" stroke="black" stroke-width="2.2" stroke-linecap="round" />
+    <line x1="34" y1="-17.32" x2="44" stroke="black" stroke-width="2.2" stroke-linecap="round" />
 
-    <line x1="15" y1="-17.32" x2="20" y2="-17.32" stroke="black" stroke-width="2" stroke-linecap="round" />
-    <line x1="30" y1="-17.32" x2="34" y2="-17.32" stroke="black" stroke-width="2" stroke-linecap="round" />
+    <line x1="15" y1="-17.32" x2="20" y2="-17.32" stroke="black" stroke-width="2.2" stroke-linecap="round" />
+    <line x1="30" y1="-17.32" x2="34" y2="-17.32" stroke="black" stroke-width="2.2" stroke-linecap="round" />
 
-    <circle cx="44" r='10' fill="none" stroke="black" stroke-width='2' />
+    <circle cx="44" r='10' fill="none" stroke="black" stroke-width="2.2" />
     <circle cx="44" r='2.4' fill="black" />
 
   </g>
