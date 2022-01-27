@@ -1,5 +1,5 @@
 import React, { Suspense, lazy } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 import Header from "../Header/Header.js";
 import Spinner from "../shared/Spinner.js";
@@ -12,16 +12,14 @@ const ArenaWrapper = lazy(() => import("./ArenaWrapper.js"));
 function App() {
   return (
     <LocalStorageProvider>
-      <Router>
-        <Header />
-        <Suspense fallback={<Spinner />}>
-          <Switch>
-            <Route path="/" exact component={Home} />
-            <Route path="/:variableName" component={ArenaWrapper} />
-            <Route path="*" component={NoMatch} />
-          </Switch>
-        </Suspense>
-      </Router>
+      <Header />
+      <Suspense fallback={<Spinner />}>
+        <Routes>
+          <Route index element={<Home />} />
+          <Route path=":variableName" element={<ArenaWrapper />} />
+          <Route path="*" element={<NoMatch />} />
+        </Routes>
+      </Suspense>
     </LocalStorageProvider>
   );
 }
