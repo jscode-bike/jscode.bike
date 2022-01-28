@@ -18,6 +18,7 @@ const DesktopContainer = styled.div`
   display: grid;
   grid-template-columns: 4fr 5fr;
   grid-template-rows: 1fr;
+  background: var(--bg-color);
 `;
 
 export default DesktopView;

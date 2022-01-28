@@ -5,6 +5,7 @@ import OpacityTransition from "../../shared/OpacityTransition.js";
 
 const MobileContainer = styled.div`
   height: calc(100vh - var(--header-height));
+  background: var(--bg-color);
 `;
 
 const MobileView = () => (
