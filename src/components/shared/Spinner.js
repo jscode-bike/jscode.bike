@@ -12,7 +12,7 @@ const Container = styled.div`
 const Spinner = () => {
   return (
     <Container>
-      <GridLoader color="var(--bg-color-dark)" />
+      <GridLoader color="var(--bg-color-darker)" />
     </Container>
   );
 };
