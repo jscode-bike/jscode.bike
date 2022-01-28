@@ -7,6 +7,7 @@ import ExerciseList from "./ExerciseList/ExerciseList.js";
 
 import logo from "../../assets/logo.svg";
 import OpacityTransition from "../shared/OpacityTransition.js";
+import Footer from "./Footer.js";
 
 /// need to add:
 // about, privacy, terms, contact
@@ -21,6 +22,7 @@ const Home = () => {
           <p>Do some JS cardio</p>
         </Hero>
         <ExerciseList {...{ exercises }} />
+        <Footer />
       </Container>
     </OpacityTransition>
   );
@@ -47,6 +49,7 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background: var(--bg-color);
 `;
 
 export default Home;
