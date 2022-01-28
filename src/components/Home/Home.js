@@ -5,9 +5,9 @@ import { arr as exercises } from "../../exercises/index.js";
 
 import ExerciseList from "./ExerciseList/ExerciseList.js";
 
-import logo from "../../assets/logo.svg";
 import OpacityTransition from "../shared/OpacityTransition.js";
 import Footer from "./Footer.js";
+import JScodeBikeLogo from "../../assets/JScodeBikeLogo.js";
 
 /// need to add:
 // about, privacy, terms, contact
@@ -17,7 +17,7 @@ const Home = () => {
     <OpacityTransition>
       <Container>
         <Hero>
-          <LogoImage src={logo} />
+          <JScodeBikeLogo />
           <h1>JS Code Bike</h1>
           <p>Do some JS cardio</p>
         </Hero>
@@ -37,11 +37,6 @@ const Hero = styled.div`
   h1 {
     margin: var(--spacing-medium) 0 var(--spacing-small) 0;
   }
-`;
-
-const LogoImage = styled.img`
-  height: 192;
-  width: 192;
 `;
 
 const Container = styled.div`
