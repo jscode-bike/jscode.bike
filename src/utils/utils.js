@@ -15,6 +15,8 @@ export const shuffleInPlace = (arr) => {
   return arr;
 };
 
+export const rand = (n) => (Math.random() * n) | 0;
+
 export function debounce(fn, ms = 100) {
   let timer;
   return (_) => {
