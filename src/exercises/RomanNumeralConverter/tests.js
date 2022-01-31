@@ -1,5 +1,4 @@
-import num2rom from "./artifacts/num2rom.json";
-import rom2num from "./artifacts/rom2num.json";
+import generateRandomTests from "./artifacts/createRandomTests";
 
 const testTemplate = ([input, expected]) =>
   `(classToTest=> chai.expect(classToTest${input}).to.equal(${expected}))`;
@@ -21,20 +20,10 @@ const tests = [
       ['.romanToNumber("MMIV")', 2004],
     ],
   },
-  // {
-  //   description: "exhaustive: numbers 1 through 5000",
-  //   unitTests: Object.entries(num2rom).map(([key, val]) => [
-  //     `.numberToRoman(${key})`,
-  //     val,
-  //   ]),
-  // },
-  // {
-  //   description: "exhaustive: roman numerals I through MMMMM",
-  //   unitTests: Object.entries(rom2num).map(([key, val]) => [
-  //     `.romanToNumber("${key}")`,
-  //     val,
-  //   ]),
-  // },
+  {
+    description: "random tests",
+    unitTests: generateRandomTests(),
+  },
 ].map((suite) => ({
   ...suite,
   unitTests: suite.unitTests.map(testTemplate),
