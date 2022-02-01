@@ -27,7 +27,7 @@ const Message = styled.h2`
 `;
 
 const HomeButton = styled(Button)`
-  background-color: var(--bg-color-dark);
+  background-color: var(--bg-color);
   padding: var(--spacing-small) var(--spacing-medium);
 `;
 
