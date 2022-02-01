@@ -7,7 +7,7 @@ import RomanNumeralConverter from "./RomanNumeralConverter/meta.json";
 import removeDuplicates from "./removeDuplicates/meta.json";
 // import rottenLimes from "./rottenLimes/meta.json";
 
-export const arr = [
+export const exerciseList = [
   fishBus,
   findOdd,
   twoSum,

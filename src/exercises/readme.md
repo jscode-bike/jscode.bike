@@ -4,9 +4,9 @@
 
 each exercise should contain at least 4 files:
 
-1. index.js - all of the index.js files are almost identical; just exporting all necessary UI fixtures
-2. instructions.md - contains the markup necessary for rendering instructions
-3. meta.json - has metadata about problem to populate the problems list
+1. index.js - all of the index.js files are almost identical; just exporting all necessary UI fixtures: `name`, `difficulty`, `variableName`, `instructionComponent`, `solutionComponent`, `startingCode`, and `tags`
+2. instructions.md - contains the markup necessary for rendering instructions; surfaces as `solutionComponent` in index.js
+3. meta.json - has metadata about problem to populate the problems list; consumed by `exerciseList` for Home.js. This file contains an array with exactly 3 elements: 0) the exercise name: used to populate the name in the ui and thus should be treated as a proper noun and capitalized, 1) the variable name, as it is used in the problem and tests, usually camel cased (or pascal cased if it is a class), and 2) the difficulty of the problem, expressed as a number from 1 (easiest) to 5 (hardest)
 4. tests.js - contains an array export of test objects, each with shape: `{description: string, unitTests: []string}`; details about the strings in the `unitTests` array are described below.
 5. (optional) artifacts directory - containing anything needed to populate above files
 

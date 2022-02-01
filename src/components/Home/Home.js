@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import { arr as exercises } from "../../exercises/index.js";
+import { exerciseList as exercises } from "../../exercises/index.js";
 
 import ExerciseList from "./ExerciseList/ExerciseList.js";
 
