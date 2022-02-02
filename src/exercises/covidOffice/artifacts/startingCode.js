@@ -1,5 +1,5 @@
 const code = /* javascript */ `
-function rottenLimes(grid) {
+function covidOffice(grid) {
   // code here...
   return -1;
 }
