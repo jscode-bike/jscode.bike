@@ -48,6 +48,12 @@ const Wrapper = styled.div`
     letter-spacing: 1px;
   }
 
+  ul {
+    margin-left: var(--spacing-medium);
+    padding: var(--spacing-small);
+    list-style: square;
+  }
+
   pre {
     ::-webkit-scrollbar {
       width: var(--spacing-small);

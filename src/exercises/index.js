@@ -5,7 +5,7 @@ import trapWater from "./trapWater/meta.json";
 import matchingBrackets from "./matchingBrackets/meta.json";
 import RomanNumeralConverter from "./RomanNumeralConverter/meta.json";
 import removeDuplicates from "./removeDuplicates/meta.json";
-// import rottenLimes from "./rottenLimes/meta.json";
+// import covidOffice from "./covidOffice/meta.json";
 
 export const exerciseList = [
   fishBus,
@@ -15,7 +15,7 @@ export const exerciseList = [
   matchingBrackets,
   RomanNumeralConverter,
   removeDuplicates,
-  // rottenLimes,
+  // covidOffice,
 ].map(([n, v, d]) => ({
   name: n,
   variableName: v,
