@@ -13,12 +13,14 @@ const Instructions = () => {
   // the useEffect below is a hack to apply syntax highlighting via monaco rather than importing hljs
   useEffect(() => {
     if (!monacoRef.current) return;
-    const element = document.querySelector("code.language-javascript");
-    if (!element) return;
-    const code = element.innerText;
-    const colorized = monacoRef.current.editor.colorize(code, "javascript");
-    colorized.then((text) => {
-      element.innerHTML = text;
+    const elements = document.querySelectorAll("code.language-javascript");
+    if (!elements.length) return;
+    elements.forEach((element) => {
+      const code = element.innerText;
+      const colorized = monacoRef.current.editor.colorize(code, "javascript");
+      colorized.then((text) => {
+        element.innerHTML = text;
+      });
     });
   }, [monacoRef]);
   return (
