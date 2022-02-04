@@ -10,7 +10,7 @@ startingCode: "function covidOffice(grid) {\n  // code here...\n}"
 
 # Covid Office ☠️
 
-A company decided to open their offices and force their developers to work in cubicles arranged in a `m x n` `grid` where each cell represents a cubicle. Each cell contains one of three values:
+A company decided to open their offices and force their developers to work in cubicles arranged in an `m` x `n` `grid` where each cell represents a cubicle. Each cell contains one of three values:
 
 - `0` represents an empty cubicle
 - `1` represents a healthy developer working in the cubicle
