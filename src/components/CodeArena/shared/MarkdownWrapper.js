@@ -42,7 +42,8 @@ const Wrapper = styled.div`
     line-height: 2.8rem;
   }
 
-  p code {
+  p code,
+  li code {
     padding: 5px var(--spacing-small);
     background-color: var(--bg-color-darker);
     letter-spacing: 1px;
