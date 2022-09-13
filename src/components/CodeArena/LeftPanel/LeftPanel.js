@@ -23,9 +23,9 @@ const LeftPanel = () => {
         <TabPanel>
           <ResultsPanel />
         </TabPanel>
-        <TabPanel>
+        {/* <TabPanel>
           <Solution />
-        </TabPanel>
+        </TabPanel> */}
       </Tabs>
     </LeftPanelContaner>
   );
