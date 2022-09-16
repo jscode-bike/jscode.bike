@@ -44,7 +44,7 @@ const ArenaWrapper = () => {
         solutionComponent,
       }}
     >
-      <CodeArena {...exercise} />
+      <CodeArena />
     </ArenaProvider>
   );
 };
