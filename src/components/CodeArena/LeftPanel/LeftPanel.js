@@ -4,7 +4,7 @@ import { Tabs, TabPanel } from "react-tabs";
 import { ArenaContext } from "../ArenaContext.js";
 import { TabStyled, TabListStyled } from "../shared/styledTabs.js";
 import Instructions from "../shared/Instructions.js";
-import Solution from "../shared/Solution.js";
+// import Solution from "../shared/Solution.js";
 import ResultsPanel from "../shared/Results/ResultsPanel.js";
 
 const LeftPanel = () => {
