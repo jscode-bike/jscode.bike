@@ -15,7 +15,7 @@ const LeftPanel = () => {
         <TabListStyled>
           <TabStyled>Instructions</TabStyled>
           <TabStyled>Results</TabStyled>
-          <TabStyled>Solution</TabStyled>
+          {/* <TabStyled>Solution</TabStyled> */}
         </TabListStyled>
         <TabPanel>
           <Instructions />
