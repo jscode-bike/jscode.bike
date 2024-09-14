@@ -6,22 +6,22 @@ const socials = {
     element: GithubLogoSVG,
     url: "https://github.com/jscode-bike",
   },
-  Twitter: {
-    element: TwitterLogoSVG,
-    url: "https://twitter.com/jscodebike",
-  },
+  // Twitter: {
+  //   element: TwitterLogoSVG,
+  //   url: "https://twitter.com/jscodebike",
+  // },
   LinkedIn: {
     element: LinkedInLogoSVG,
     url: "https://www.linkedin.com/company/jscode-bike",
   },
-  Facebook: {
-    element: FacebookLogoSVG,
-    url: "https://www.facebook.com/JScode.bike",
-  },
-  Instagram: {
-    element: InstagramLogoSVG,
-    url: "https://www.instagram.com/jscode.bike/",
-  },
+  // Facebook: {
+  //   element: FacebookLogoSVG,
+  //   url: "https://www.facebook.com/JScode.bike",
+  // },
+  // Instagram: {
+  //   element: InstagramLogoSVG,
+  //   url: "https://www.instagram.com/jscode.bike/",
+  // },
 };
 
 const Footer = () => {
@@ -42,11 +42,9 @@ const Footer = () => {
 };
 
 const FooterContainer = styled.footer`
-  margin-top: var(--spacing-medium);
-  background-color: var(--bg-color-dark);
   width: 100%;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   gap: var(--spacing-small);
   padding: var(--spacing-medium);
 `;

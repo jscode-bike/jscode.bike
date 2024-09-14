@@ -29,13 +29,17 @@ const Home = () => {
 };
 
 const Hero = styled.div`
-  margin: var(--spacing-medium);
+  margin-top: var(--spacing-medium);
   padding-bottom: var(--spacing-medium);
   display: flex;
   flex-direction: column;
   align-items: center;
   h1 {
     margin: var(--spacing-medium) 0 var(--spacing-small) 0;
+  }
+  p {
+    padding: 0;
+    margin: 0;
   }
 `;
 
